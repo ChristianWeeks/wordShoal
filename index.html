@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/dependencies/d3.v3.js"></script>
+		<script src="js/dependencies/jquery-1.11.2.min.js"></script>
+		<script src="js/dependencies/bootstrap.min.js"></script>
+		<script src="js/dependencies/plugins.js"></script>
+		<script src="js/util.js"></script>
+		<script src="js/graphObject.js"></script>
+		<script src="js/scatterPlot.js"></script>
+		<script src="js/barGraph.js"></script>
+		<script src="js/timeline.js"></script>
+		<title>Speech Visualization - Draft</title>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell">Select a Year</span></div>
+				<div class="col-md-8">
+					<div align="left" id="topButtonsBar"></div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-9">
+					<div align="left" id="barCanvas">
+					</div>
+					<div align="left" id="scatterCanvas">
+					</div>
+				</div>
+				<div class="col-md-3" id="sideBar">
+					<div class="row" id="sideBar1" align="center">
+					</div>
+					<div class="col-md-4" id="category">
+					</div>
+					<div class="col-md-4" id="value">
+					</div>
+					<div class="col-md-4" id="percent">
+					</div>
+					<div class="row" id="sideBar2">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/controller.js"></script>
+	</body>
+</html>

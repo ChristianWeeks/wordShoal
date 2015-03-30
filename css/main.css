@@ -1,0 +1,112 @@
+html {
+	font-family: Helvetica;
+}
+
+:root {
+	repC1: #DAA;
+	repC2: #F22;
+	demC1: #44A;
+	demC2: #22F;
+	indC1: #AAA;
+	indC2: #555
+}
+.rep{
+	fill: #FAA;
+	stroke: #F22; 
+}
+
+.sideBox{
+	border-radius: 10px;
+}
+.repBox{
+	background:#FAA;
+}
+.demBox{
+	background:#AAF;
+}
+.indBox{
+	background:#CAC;
+}
+
+.demText{
+	font-size: 20px;
+	fill: #88F;
+	opacity: 1;
+}
+.repText{
+	font-size: 20px;
+	fill: #F88;
+	opacity: 1;
+}
+
+.dem{
+	fill: #AAF;
+	stroke: #22F;
+}
+.ind{
+	fill: #CAC;
+	stroke: #656;
+}
+
+.button{
+	fill-opacity: .6;
+	stroke-opacity: .6;
+
+}
+
+.yearText{
+	fill: #000;
+	font-size: 16px;
+}
+
+.Title{
+
+}
+.axisTitle{
+	fill: #000;
+	stroke-weight: "bold";
+	font-size: 30px;
+}
+
+.button.active{
+	fill: #FF530F;
+	stroke: #FF530F;
+	stroke-width: 8;
+}
+.button.mouseOver{
+	fill: #0DE488;
+	stroke: #0DE488;
+/*	stroke-width: 6;*/
+
+
+}
+
+.button.neutral{
+	fill: #1B8AE0;
+	stroke: #1B8AE0;
+/*	stroke-width: 4;*/
+}
+
+.startMonth{
+
+}
+
+.endMonth{
+
+}
+
+.butText{
+
+}
+
+.graphTitle{
+
+}
+
+.loadingText{
+
+}
+
+.axisLabels{
+
+}
