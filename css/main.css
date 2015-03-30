@@ -47,6 +47,11 @@ html {
 	fill: #CAC;
 	stroke: #656;
 }
+.scatterCircle{
+	stroke-width: 2px;
+}
+.mOver{
+	stroke-width: 10px;
 
 .button{
 	fill-opacity: .6;

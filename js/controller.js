@@ -55,14 +55,16 @@ function main(){
 		var voteMagnitude, speechMagnitude;
 		var isRandom = 0;
 		voteMin = voteMax = speechMin = speechMax = 0;
-		console.log(speechMin);
-		console.log(speechMax);
 		
 		//First we find the magnitude to normalize all the values between 0 and 1.
 		for(var i = 0; i < data.length; i++){
-		//console.log(speechMin);
+			console.log("Ideal: " + data[i].s);
+			console.log("Idealz: " + data[i].speechPos)
+			console.log("Theta: " + data[i].v);
+			console.log("Thetaz: " + data[i].votePos)
+			
+			//calculating the max and mins
 			if(data[i].speechPos > speechMax)
-		//		console.log(data[i].speechPos);
 				speechMax = data[i].speechPos;
 			if(data[i].speechPos < speechMin)
 				speechMin = data[i].speechPos;
@@ -80,7 +82,8 @@ function main(){
 					voteMin = data[i].votePos;	
 			}
 		}
-
+		console.log(speechMax);
+		console.log(speechMin);
 		speechMagnitude = speechMax - speechMin;
 		if(isRandom)
 			voteMagnitude = 1;
@@ -125,7 +128,7 @@ function main(){
 
 	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN function
 	function readDataCSV(year){
-		var fileName = !year ? "data/Wordshoal_and_RC_positions.csv" : "data/EstimatesSenate1"+year+".csv";
+		var fileName = !year ? "data/Wordshoal_and_RC_positions_normalized.csv" : "data/EstimatesSenate1"+year+".csv";
 		d3.csv(fileName, function(d){
 			return {
 				//NOTE: The original CSV file headers contain periods in them (e.g., theta.est).
@@ -133,8 +136,10 @@ function main(){
 				speaker: d.speaker,
 				state: d.state,
 				party: d.party,
-				votePos: +d["ideal.est"],
-				speechPos: +d["theta.est"],
+				v: +d["ideal.est"],
+				s: +d["theta.est"],
+				votePos: +d["ideal.est.z"],
+				speechPos: +d["theta.est.z"],
 			//	thetaCilb: +d.thetacilb,
 			//	thetaCiub: +d.thetaciub	
 				};
