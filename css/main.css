@@ -10,21 +10,17 @@ html {
 	indC1: #AAA;
 	indC2: #555
 }
-.rep{
-	fill: #FAA;
-	stroke: #F22; 
-}
 
 .sideBox{
 	border-radius: 10px;
 }
-.repBox{
+.c_repBox{
 	background:#FAA;
 }
-.demBox{
+.c_demBox{
 	background:#AAF;
 }
-.indBox{
+.c_indBox{
 	background:#CAC;
 }
 
@@ -38,20 +34,44 @@ html {
 	fill: #F88;
 	opacity: 1;
 }
+/* Graph SVG classes*/
 
-.dem{
+/*base classes for scatter points and bargraph bars*/
+.scatterPoint{
+	stroke-width: 2px;
+	opacity: 1.0;
+}
+.barBar{
+	stroke-width: 2px;
+	opacity: 1.0;
+}
+
+/*base color classes for the different political parties.  The "c_" prefix indicates they store color information*/
+.c_dem{
 	fill: #AAF;
 	stroke: #22F;
 }
-.ind{
+.c_ind{
 	fill: #CAC;
 	stroke: #656;
 }
-.scatterCircle{
-	stroke-width: 2px;
+
+.c_rep{
+	fill: #FAA;
+	stroke: #F22; 
 }
+/* Interaction classes- these handle stylistic changes based on user interactions */
 .mOver{
-	stroke-width: 10px;
+	stroke-width: 5;
+}
+.mOverBar{
+	stroke-width: 5;
+	stroke: #000;
+}
+
+.fadeOut{
+	opacity: 0.1;
+}
 
 .button{
 	fill-opacity: .6;

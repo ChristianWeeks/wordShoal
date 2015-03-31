@@ -236,50 +236,70 @@ graphObject.prototype.coupleMouseEvents = function(elementStr, x, y){
 		.on("mouseover", this.mouseOver)
 		.on("mouseout", this.mouseOut);
 }
+
+graphObject.prototype.updateFilter = function(filterStr){
+	this.svgElements[this.datumSvgs].transition()
+		.attr("class", function(d){
+			console.log(d.data.datum.state);
+			if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
+				d3.select(this).moveToFront();		
+				return d.cssClass;
+			}
+			else{
+				return d.cssClass + " fadeOut"
+			}
+		});
+}
+
 //Closure needed to have multiple svg-elements activate (highlight) when any one of them is highlighted
 //Ex. Mousing over the label, line plot, or color legend for any single computer / user will cause the label to increase its font
 //and the line to turn black and increase its stroke width.
 function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 	var elementMouseOver = function(d, i){
-		//draw lines extending to x and y axes
-		var pointKey = "#" + d.name + "Point";
-		var barKey = "#" + d.name + "Bar";
-		var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
-		var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
-		d.svgXTrace = d3.select("#scatterPlot").append("line").attr({
-			x1: traceX,
-			y1: traceY,
-			x2: traceX,
-			y2: graphY,
-			class: d.cssClass
-		})
-		.style("opacity", 0)
-		.style("stroke-width", "0px");
-		d.svgYTrace = d3.select("#scatterPlot").append("line").attr({
-			x1: traceX,
-			y1: traceY,
-			x2: graphX,
-			y2: traceY,
-			class: d.cssClass,
-		})
-		.style("opacity", 0)
-		.style("stroke-width", "0px");
-		//highlight the nodes
+		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
+			//draw lines extending to x and y axes
+			var pointKey = "#" + d.name + "Point";
+			var barKey = "#" + d.name + "Bar";
+			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
+			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
+			d.svgXTrace = d3.select("#scatterPlot").append("line").attr({
+				x1: traceX,
+				y1: traceY,
+				x2: traceX,
+				y2: graphY,
+				class: d.cssClass
+			})
+			.style("opacity", 0)
+			.style("stroke-width", "0px");
+			d.svgYTrace = d3.select("#scatterPlot").append("line").attr({
+				x1: traceX,
+				y1: traceY,
+				x2: graphX,
+				y2: traceY,
+				class: d.cssClass,
+			})
+			.style("opacity", 0)
+			.style("stroke-width", "0px");
+			//highlight the nodes
+			
+			d3.select(pointKey).moveToFront();
+			d3.select(pointKey).transition()
+				.attr("r", 15)
+				.attr("class", function(d){return d.cssClass + " mOver"});
+			d3.select(barKey).moveToFront();
+			d3.select(barKey).transition()
+				.attr("class", function(d){return d.cssClass + " mOverBar"});
 		
-		d3.select(pointKey).moveToFront();
-		d3.select(pointKey).transition().attr("r", 15).style("stroke-width", "5px");
-		d3.select(barKey).moveToFront();
-		d3.select(barKey).transition().style("stroke-width", "8px").style("stroke", "black");
-	
-		d.svgXTrace.transition().style("opacity",1).style("stroke-width", "3px");
-		d.svgYTrace.transition().style("opacity",1).style("stroke-width", "3px");
+			d.svgXTrace.transition().style("opacity",1).style("stroke-width", "3px");
+			d.svgYTrace.transition().style("opacity",1).style("stroke-width", "3px");
 
-		//fill in the information bar at the side
-		var sideBarTop = d3.select("#sideBar1").attr("class", d.cssClass +"Box sideBox");
-		document.getElementById("sideBar1").innerHTML = "<h3>" + d.title + "</h3><h2>Years in Office</h2><h3>" + d.party + "</h3>" + "<h3>IMAGE GOES HERE</h3>";
-		document.getElementById("category").innerHTML = "<h3>Vote:<br/>Speech:</h3>"; 
-		document.getElementById("value").innerHTML = "<h3>" + d.xVal.toFixed(2) + "<br/>" + d.yVal.toFixed(2) + "</h3>";
-	   	document.getElementById("percent").innerHTML = "<h3>" + Math.floor(100*d.data.votePercent) + "<br/>" + Math.floor(100*d.data.speechPercent) + "</h3>";
+			//fill in the information bar at the side
+			var sideBarTop = d3.select("#sideBar1").attr("class", d.cssClass +"Box sideBox");
+			document.getElementById("sideBar1").innerHTML = "<h3>" + d.title + "</h3><h2>Years in Office</h2><h3>" + d.party + "</h3>" + "<h3>IMAGE GOES HERE</h3>";
+			document.getElementById("category").innerHTML = "<h3>Vote:<br/>Speech:</h3>"; 
+			document.getElementById("value").innerHTML = "<h3>" + d.xVal.toFixed(2) + "<br/>" + d.yVal.toFixed(2) + "</h3>";
+			document.getElementById("percent").innerHTML = "<h3>" + Math.floor(100*d.data.votePercent) + "<br/>" + Math.floor(100*d.data.speechPercent) + "</h3>";
+		}
 		//	+"<h2>Personal information</h2><h2>Wikipedia Link</h2><p>???Vote History???</p><p>???Speech History???</p>";
 	}
 	return elementMouseOver;
@@ -288,15 +308,19 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 //Closure handling mouse out that reverts effects of the mouse-over closure
 function elementMouseOutClosure(){
 	var elementMouseOut = function(d, i){
-		var pointKey = "#" + d.name + "Point";
-		var barKey = "#" + d.name + "Bar";
-		d3.select(pointKey).transition().attr("r", 8).style("stroke-width", "2px");
-		d3.select(barKey).transition().style("stroke-width", "2px");
-		d.svgXTrace.transition().style("opacity",0);
-		d.svgYTrace.transition().style("opacity",0);
-		d.svgXTrace.remove();
-		d.svgYTrace.remove();
-		
+		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
+			var pointKey = "#" + d.name + "Point";
+			var barKey = "#" + d.name + "Bar";
+			d3.select(pointKey).transition()
+				.attr("r", 8)
+				.attr("class", function(d){return d.cssClass});
+			d3.select(barKey).transition()
+				.attr("class", function(d){return d.cssClass});
+			d.svgXTrace.transition().style("opacity",0);
+			d.svgYTrace.transition().style("opacity",0);
+			d.svgXTrace.remove();
+			d.svgYTrace.remove();
+		}	
 	}
 	return elementMouseOut;
 }

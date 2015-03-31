@@ -1,14 +1,13 @@
 "use strict";
 
-
-
+var global = function(){};
 function main(){
-	var mainWidth = 1200;
-	var mainHeight = 700;
+	var mainWidth = 900;
+	var mainHeight = 900;
 	var barSvgHeight = 500;
 	var topBarHeight = 80;
-	var xPadding = 150;
-	var yPadding = 150;
+	var xPadding = 120;
+	var yPadding = 120;
 	var yBarPadding = 75;
 	var scatterWidth = mainWidth - xPadding; 
 	var scatterHeight = mainHeight - yPadding; 
@@ -58,11 +57,6 @@ function main(){
 		
 		//First we find the magnitude to normalize all the values between 0 and 1.
 		for(var i = 0; i < data.length; i++){
-			console.log("Ideal: " + data[i].s);
-			console.log("Idealz: " + data[i].speechPos)
-			console.log("Theta: " + data[i].v);
-			console.log("Thetaz: " + data[i].votePos)
-			
 			//calculating the max and mins
 			if(data[i].speechPos > speechMax)
 				speechMax = data[i].speechPos;
@@ -103,10 +97,10 @@ function main(){
 				id: data[i].party,
 				//----------------------------------------------------------------------------------------------------------------------
 				//temporary random() while votePos is being calculated for all years
-				x: normalVote, 
+				x: data[i].votePos, 
 				//----------------------------------------------------------------------------------------------------------------------
-				y: normalSpeech,
-				delta: normalSpeech - normalVote,
+				y: data[i].speechPos,
+				delta: data[i].speechPos - data[i].votePos,
 				r: 5, 
 				shape: "circle",
 			};
@@ -153,6 +147,7 @@ function main(){
 				if(!SCATTER_PLOT){
 					SCATTER_PLOT = new scatterPlot(xPadding * 2 / 3, mainHeight-(yPadding / 2) - 30, scatterWidth, scatterHeight, scatterSvg);
 					SCATTER_PLOT.setTitleY("Speech Position").setTitleX("Vote Position");
+					global.SCATTER_PLOT = SCATTER_PLOT;
 				}
 				//remove all of the previous svgs when loading a new year
 				else
@@ -160,7 +155,8 @@ function main(){
 
 				if(!BAR_GRAPH){
 					BAR_GRAPH = new barGraph(xPadding * 2 / 3, barSvgHeight-(yPadding / 2) - 30, barWidth, barHeight, barSvg);
-					BAR_GRAPH.setTitle("Difference between Speech Position and Vote Position").setTitleY("Delta").setTitleX("Senator");
+					BAR_GRAPH.setTitle("Difference between Speech and Vote Positions").setTitleY("Delta").setTitleX("Senator");
+					global.BAR_GRAPH = BAR_GRAPH;
 				}
 				//remove all of the previous svgs when loading a new year
 				else
@@ -189,8 +185,23 @@ function main(){
 		}
 		return readYearCSVClosure;
 	}
+
+	//filters results on selecting different states
+	function changeState(){
+		global.activeStateFilter = "";
+		SCATTER_PLOT.updateFilter();
+		BAR_GRAPH.updateFilter();
+	}
+	global.activeStateFilter = "None";
+	createStateList("stateDropDown");
 	createYearButtons();
 	readDataCSV();
 }
+
 main();
 
+function changeState(value){
+	global.activeStateFilter = value;
+	global.SCATTER_PLOT.updateFilter(value);
+	global.BAR_GRAPH.updateFilter(value);
+}

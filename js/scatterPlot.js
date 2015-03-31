@@ -3,6 +3,13 @@
 function scatterPlot(x, y, width, height, svg){
 	scatterPlot.superClass.constructor.call(this, x, y, width, height, svg);
 	console.log(this.x);
+	this.baseCSSClass = "scatterPoint";
+	this.fadeCSSClass = "fadeOut";
+	this.datumSvgs = "points";
+	this.xMax = 3;
+	this.xMin = -3;
+	this.yMax = 3;
+	this.yMin = -3;
 	this.svgPoints = [];
 }
 extend(scatterPlot, graphObject);
@@ -20,11 +27,11 @@ scatterPlot.prototype.setYAttr = function (){
 	for (var i in this.data){
 		var cssClass;
 		if(this.data[i].id == "R")
-			cssClass = "rep";
+			cssClass = "c_rep";
 		else if(this.data[i].id == "D")
-			cssClass = "dem";
+			cssClass = "c_dem";
 		else
-			cssClass = "ind";
+			cssClass = "c_ind";
 
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
 		this.currentlyViewedData[i] = {
@@ -37,7 +44,7 @@ scatterPlot.prototype.setYAttr = function (){
 			"yVal": this.data[i].y,
 			"y": this.mapYValToGraph(this.data[i].y),
 			"x": this.mapXValToGraph(this.data[i].x),
-			"cssClass": cssClass,
+			"cssClass": this.baseCSSClass + " " + cssClass,
 			"svgLabel": null,
 		};
 	}
@@ -48,6 +55,7 @@ scatterPlot.prototype.draw = function(){
 	
 //	this.mouseOver = elementMouseOverClosure(this.x, this.y);
 //	this.mouseOut = elementMouseOutClosure();
+	this.drawCenterLine();
 	this.drawPoints();
 
 	this.drawYAxisLabel();
@@ -71,7 +79,7 @@ scatterPlot.prototype.drawPoints= function(){
 		.append("circle")	
 		.attr("class", function(d){return d.cssClass;})
 		.attr("id", function(d){ return d.id;})
-		.style("stroke-width", "2px")
+	//	.style("stroke-width", "2px")
 
 	//	.style("fill", function(d) {return d.color})
 	//	.style("stroke", function(d) {return d.color})
@@ -138,4 +146,17 @@ scatterPlot.prototype.drawAxesLegends = function() {
 	console.log("HELLO");
 		
 	return this;
+}
+
+scatterPlot.prototype.drawCenterLine = function() {
+	this.svgElements["centerLine"] = this.svgPointer
+		.append("line")
+		.attr("x1", this.mapXValToGraph(this.xMin))
+		.attr("y1", this.mapYValToGraph(this.yMin))
+		.attr("x2", this.mapXValToGraph(this.xMax))
+		.attr("y2", this.mapYValToGraph(this.yMax))
+		.attr("stroke", "#000")
+		.style("stroke-width", "3px")
+		.style("opacity", 0.6);
+
 }

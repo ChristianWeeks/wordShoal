@@ -2,8 +2,10 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function barGraph(x, y, width, height, svg){
 	barGraph.superClass.constructor.call(this, x, y, width, height, svg);
-	this.yMax = 0.5;
-	this.yMin = -0.5;
+	this.baseCSSClass = "barBar";
+	this.datumSvgs = "bars";
+	this.yMax = 3.0;
+	this.yMin = -3.0;
 }
 extend(barGraph, graphObject);
 
@@ -23,11 +25,11 @@ barGraph.prototype.setYAttr = function (){
 	for (var i in this.data){
 		var cssClass;
 		if(this.data[i].id == "R")
-			cssClass = "rep";
+			cssClass = "c_rep";
 		else if(this.data[i].id == "D")
-			cssClass = "dem";
+			cssClass = "c_dem";
 		else
-			cssClass = "ind";
+			cssClass = "c_ind";
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
 		this.currentlyViewedData[i] = {
 			"data": this.data[i],
@@ -41,7 +43,7 @@ barGraph.prototype.setYAttr = function (){
 			"yTop": (this.data[i].delta > 0) ? this.mapYValToGraph(this.data[i].delta) : this.mapYValToGraph(0),
 			"yBot": (this.data[i].delta <= 0) ? this.mapYValToGraph(this.data[i].delta) : this.mapYValToGraph(0),
 			"x": this.x + (this.x_step / 2) + (count * this.x_step),
-			"cssClass": cssClass,
+			"cssClass": this.baseCSSClass + " " + cssClass,
 			"svgBar": null,
 		};
 		//	console.log(this.mapYValToGraph(this.data[i].y));
@@ -77,7 +79,6 @@ barGraph.prototype.drawBars = function(){
 		.append("rect")	
 		.attr("id", function(d){return d.id})
 		.attr("class", function(d){return d.cssClass})
-		.style("stroke-width", "2px")
 		.attr({
 			x: function(d) { 
 				d.svgBar = this;
