@@ -303,6 +303,7 @@ function elementMouseClickClosure(minifyFunc){
 		document.getElementById("category").innerHTML = "";
 		document.getElementById("value").innerHTML = "";
 		document.getElementById("percent").innerHTML = "";
+		setViewLevel("garbage");
 
 
 	}
