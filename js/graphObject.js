@@ -227,16 +227,19 @@ graphObject.prototype.drawYAxis = function(){
 
 
 //Couples the mousevents for the scatterplot and the bargraph, so they can effect eachother
-graphObject.prototype.coupleMouseEvents = function(elementStr, x, y){
+graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, minifyFunc){
 
 	this.mouseOver = elementMouseOverClosure(x, y);
 	this.mouseOut = elementMouseOutClosure();
+	this.mouseClick = elementMouseClickClosure(minifyFunc);
 
 	this.svgElements[elementStr]
 		.on("mouseover", this.mouseOver)
-		.on("mouseout", this.mouseOut);
+		.on("mouseout", this.mouseOut)
+		.on("click", this.mouseClick);
 }
 
+//updates the filter so only the filtered data elements show up
 graphObject.prototype.updateFilter = function(filterStr){
 	this.svgElements[this.datumSvgs].transition()
 		.attr("class", function(d){
@@ -258,44 +261,16 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 	var elementMouseOver = function(d, i){
 		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
 			//draw lines extending to x and y axes
-			var pointKey = "#" + d.name + "Point";
 			var barKey = "#" + d.name + "Bar";
-			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
-			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
-			d.svgXTrace = d3.select("#scatterPlot").append("line").attr({
-				x1: traceX,
-				y1: traceY,
-				x2: traceX,
-				y2: graphY,
-				class: d.cssClass
-			})
-			.style("opacity", 0)
-			.style("stroke-width", "0px");
-			d.svgYTrace = d3.select("#scatterPlot").append("line").attr({
-				x1: traceX,
-				y1: traceY,
-				x2: graphX,
-				y2: traceY,
-				class: d.cssClass,
-			})
-			.style("opacity", 0)
-			.style("stroke-width", "0px");
 			//highlight the nodes
-			
-			d3.select(pointKey).moveToFront();
-			d3.select(pointKey).transition()
-				.attr("r", 15)
-				.attr("class", function(d){return d.cssClass + " mOver"});
 			d3.select(barKey).moveToFront();
 			d3.select(barKey).transition()
 				.attr("class", function(d){return d.cssClass + " mOverBar"});
 		
-			d.svgXTrace.transition().style("opacity",1).style("stroke-width", "3px");
-			d.svgYTrace.transition().style("opacity",1).style("stroke-width", "3px");
 
 			//fill in the information bar at the side
 			var sideBarTop = d3.select("#sideBar1").attr("class", d.cssClass +"Box sideBox");
-			document.getElementById("sideBar1").innerHTML = "<h3>" + d.title + "</h3><h2>Years in Office</h2><h3>" + d.party + "</h3>" + "<h3>IMAGE GOES HERE</h3>";
+			document.getElementById("sideBar1").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office</h3><h3>" + d.party + "</h3>" + "<h3>IMAGE GOES HERE</h3>";
 			document.getElementById("category").innerHTML = "<h3>Vote:<br/>Speech:</h3>"; 
 			document.getElementById("value").innerHTML = "<h3>" + d.xVal.toFixed(2) + "<br/>" + d.yVal.toFixed(2) + "</h3>";
 			document.getElementById("percent").innerHTML = "<h3>" + Math.floor(100*d.data.votePercent) + "<br/>" + Math.floor(100*d.data.speechPercent) + "</h3>";
@@ -309,35 +284,28 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 function elementMouseOutClosure(){
 	var elementMouseOut = function(d, i){
 		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
-			var pointKey = "#" + d.name + "Point";
 			var barKey = "#" + d.name + "Bar";
-			d3.select(pointKey).transition()
-				.attr("r", 8)
-				.attr("class", function(d){return d.cssClass});
 			d3.select(barKey).transition()
 				.attr("class", function(d){return d.cssClass});
-			d.svgXTrace.transition().style("opacity",0);
-			d.svgYTrace.transition().style("opacity",0);
-			d.svgXTrace.remove();
-			d.svgYTrace.remove();
 		}	
 	}
 	return elementMouseOut;
 }
 
-/*function pathMouseOverClosure(){
-	var PathMouseOver = function (d, i){
-		d3.select(d.svgLabel).transition().style("font-weight", "bold").style("font-size", 22);
-	//	d3.select(d.svgPopup).transition().style("opacity", 0);
-		d3.select(d.svgLinePlot).transition().style("stroke-weight", 6);
+//clicks will change the granularity to the senator level, add a small box to the side bar with senator information, and scrunch the top
+function elementMouseClickClosure(minifyFunc){
+
+	var elementMouseClick = function(d, i){
+		minifyFunc();
+		global.currentSenator = d.name;
+		document.getElementById("senatorViewBox").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office<br/>" + d.party + "</h3>";
+		document.getElementById("sideBar1").innerHTML = "";
+		document.getElementById("category").innerHTML = "";
+		document.getElementById("value").innerHTML = "";
+		document.getElementById("percent").innerHTML = "";
+
+
 	}
-	return PathMouseOver;
+	return elementMouseClick;
+
 }
-function pathMouseOutClosure(){
-	var PathMouseOut = function (d, i){
-		d3.select(d.svgLabel).transition().style("font-weight", "normal").style("font-size", 16);
-	//	d3.select(d.svgPopup).transition().style("opacity", 0);
-		d3.select(d.svgLinePlot).transition().style("stroke-weight", 2);
-	}
-	return PathMouseOut;
-}*/

@@ -1,0 +1,1020 @@
+"speaker","congress","first.name","last.name","state","party","speaker.name","speakerID","stateName","retiring","running","appointeeRunning","specialElection","female"
+"mr abraham",104,"Spencer","Abraham","MI","R","Abraham (MI)",1,"Michigan",0,0,0,0,0
+"mr abraham",105,"Spencer","Abraham","MI","R","Abraham (MI)",1,"Michigan",0,0,0,0,0
+"mr abraham",106,"Spencer","Abraham","MI","R","Abraham (MI)",1,"Michigan",0,1,0,0,0
+"mr akaka",104,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr akaka",105,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr akaka",106,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,1,0,0,0
+"mr akaka",107,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr alexander",108,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr akaka",109,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,1,0,0,0
+"mr akaka",110,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr akaka",111,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",0,0,0,0,0
+"mr akaka",112,"Daniel","Akaka","HI","D","Akaka (HI)",2,"Hawaii",1,0,0,0,0
+"mr alexander",109,"Lamar","Alexander","TN","R","Alexander (TN)",3,"Tennessee",0,0,0,0,0
+"mr alexander",110,"Lamar","Alexander","TN","R","Alexander (TN)",3,"Tennessee",0,1,0,0,0
+"mr alexander",111,"Lamar","Alexander","TN","R","Alexander (TN)",3,"Tennessee",0,0,0,0,0
+"mr alexander",112,"Lamar","Alexander","TN","R","Alexander (TN)",3,"Tennessee",0,0,0,0,0
+"mr alexander",113,"Lamar","Alexander","TN","R","Alexander (TN)",3,"Tennessee",0,1,0,0,0
+"mr allard",105,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",0,0,0,0,0
+"mr allard",106,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",0,0,0,0,0
+"mr allard",107,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",0,1,0,0,0
+"mr allard",108,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",0,0,0,0,0
+"mr allard",109,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",0,0,0,0,0
+"mr allard",110,"Wayne","Allard","CO","R","Allard (CO)",4,"Colorado",1,0,0,0,0
+"mr allen",107,"George","Allen","VA","R","Allen (VA)",5,"Virginia",0,0,0,0,0
+"mr allen",108,"George","Allen","VA","R","Allen (VA)",5,"Virginia",0,0,0,0,0
+"mr allen",109,"George","Allen","VA","R","Allen (VA)",5,"Virginia",0,1,0,0,0
+"mr ashcroft",104,"John","Ashcroft","MO","R","Ashcroft (MO)",6,"Missouri",0,0,0,0,0
+"mr ashcroft",105,"John","Ashcroft","MO","R","Ashcroft (MO)",6,"Missouri",0,0,0,0,0
+"mr ashcroft",106,"John","Ashcroft","MO","R","Ashcroft (MO)",6,"Missouri",0,1,0,0,0
+"ms ayotte",112,"Kelly","Ayotte","NH","R","Ayotte (NH)",7,"New Hampshire",0,0,0,0,1
+"ms ayotte",113,"Kelly","Ayotte","NH","R","Ayotte (NH)",7,"New Hampshire",0,0,0,0,1
+"ms baldwin",113,"Tammy","Baldwin","WI","D","Baldwin (WI)",8,"Wisconsin",0,0,0,0,1
+"mr barkley",107,"Dean","Barkley","MN","I","Barkley (MN)",9,"Minnesota",0,0,0,0,0
+"mr barrasso",110,"John","Barrasso","WY","R","Barrasso (WY)",10,"Wyoming",0,0,1,1,0
+"mr barrasso",111,"John","Barrasso","WY","R","Barrasso (WY)",10,"Wyoming",0,0,0,0,0
+"mr barrasso",112,"John","Barrasso","WY","R","Barrasso (WY)",10,"Wyoming",0,0,0,0,0
+"mr barrasso",113,"John","Barrasso","WY","R","Barrasso (WY)",10,"Wyoming",0,0,0,0,0
+"mr baucus",104,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,1,0,0,0
+"mr baucus",105,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",106,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",107,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,1,0,0,0
+"mr baucus",108,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",109,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",110,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,1,0,0,0
+"mr baucus",111,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",112,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr baucus",113,"Max","Baucus","MT","D","Baucus (MT)",11,"Montana",0,0,0,0,0
+"mr bayh",106,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",0,0,0,0,0
+"mr bayh",107,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",0,0,0,0,0
+"mr bayh",108,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",0,1,0,0,0
+"mr bayh",109,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",0,0,0,0,0
+"mr bayh",110,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",0,0,0,0,0
+"mr bayh",111,"Evan","Bayh","IN","D","Bayh (IN)",12,"Indiana",1,0,0,0,0
+"mr begich",111,"Mark","Begich","AK","D","Begich (AK)",13,"Alaska",0,0,0,0,0
+"mr begich",112,"Mark","Begich","AK","D","Begich (AK)",13,"Alaska",0,0,0,0,0
+"mr begich",113,"Mark","Begich","AK","D","Begich (AK)",13,"Alaska",0,1,0,0,0
+"mr bennet",111,"Michael","Bennet","CO","D","Bennet (CO)",14,"Colorado",0,0,1,0,0
+"mr bennet",112,"Michael","Bennet","CO","D","Bennet (CO)",14,"Colorado",0,0,0,0,0
+"mr bennet",113,"Michael","Bennet","CO","D","Bennet (CO)",14,"Colorado",0,0,0,0,0
+"mr bennett",104,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,0,0,0,0
+"mr bennett",105,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,1,0,0,0
+"mr bennett",106,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,0,0,0,0
+"mr bennett",107,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,0,0,0,0
+"mr bennett",108,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,1,0,0,0
+"mr bennett",109,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,0,0,0,0
+"mr bennett",110,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,0,0,0,0
+"mr bennett",111,"Robert","Bennett","UT","R","Bennett (UT)",15,"Utah",0,1,0,0,0
+"mr biden",104,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,1,0,0,0
+"mr biden",105,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,0,0,0,0
+"mr biden",106,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,0,0,0,0
+"mr biden",107,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,1,0,0,0
+"mr biden",108,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,0,0,0,0
+"mr biden",109,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,0,0,0,0
+"mr biden",110,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,1,0,0,0
+"mr biden",111,"Joseph R., Jr.","Biden","DE","D","Biden (DE)",16,"Delaware",0,0,0,0,0
+"mr bingaman",104,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",105,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",106,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,1,0,0,0
+"mr bingaman",107,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",108,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",109,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,1,0,0,0
+"mr bingaman",110,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",111,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",0,0,0,0,0
+"mr bingaman",112,"Jeff","Bingaman","NM","D","Bingaman (NM)",17,"New Mexico",1,0,0,0,0
+"mr blumenthal",112,"Richard","Blumenthal","CT","D","Blumenthal (CT)",18,"Connecticut",0,0,0,0,0
+"mr blumenthal",113,"Richard","Blumenthal","CT","D","Blumenthal (CT)",18,"Connecticut",0,0,0,0,0
+"mr blunt",112,"Roy","Blunt","MO","R","Blunt (MO)",19,"Missouri",0,0,0,0,0
+"mr blunt",113,"Roy","Blunt","MO","R","Blunt (MO)",19,"Missouri",0,0,0,0,0
+"mr bond",104,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,0,0,0,0
+"mr bond",105,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,1,0,0,0
+"mr bond",106,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,0,0,0,0
+"mr bond",107,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,0,0,0,0
+"mr bond",108,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,1,0,0,0
+"mr bond",109,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,0,0,0,0
+"mr bond",110,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",0,0,0,0,0
+"mr bond",111,"Kit","Bond","MO","R","Bond (MO)",20,"Missouri",1,0,0,0,0
+"mr booker",113,"Cory","Booker","NJ","D","Booker (NJ)",21,"New Jersey",0,1,0,0,0
+"mr boozman",112,"John","Boozman","AR","R","Boozman (AR)",22,"Arkansas",0,0,0,0,0
+"mr boozman",113,"John","Boozman","AR","R","Boozman (AR)",22,"Arkansas",0,0,0,0,0
+"mrs boxer",104,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",105,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,1,0,0,1
+"mrs boxer",106,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",107,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",108,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,1,0,0,1
+"mrs boxer",109,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",110,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",111,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,1,0,0,1
+"mrs boxer",112,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mrs boxer",113,"Barbara","Boxer","CA","D","Boxer (CA)",23,"California",0,0,0,0,1
+"mr bradley",104,"Bill","Bradley","NJ","D","Bradley (NJ)",24,"New Jersey",1,0,0,0,0
+"mr breaux",104,"John","Breaux","LA","D","Breaux (LA)",25,"Louisiana",0,0,0,0,0
+"mr breaux",105,"John","Breaux","LA","D","Breaux (LA)",25,"Louisiana",0,1,0,0,0
+"mr breaux",106,"John","Breaux","LA","D","Breaux (LA)",25,"Louisiana",0,0,0,0,0
+"mr breaux",107,"John","Breaux","LA","D","Breaux (LA)",25,"Louisiana",0,0,0,0,0
+"mr breaux",108,"John","Breaux","LA","D","Breaux (LA)",25,"Louisiana",1,0,0,0,0
+"mr brown",104,"George Hanks (Hank)","Brown","CO","R","Brown (CO)",26,"Colorado",1,0,0,0,0
+"mr brown of massachusetts",111,"Scott P.","Brown","MA","R","Brown (MA)",27,"Massachusetts",0,0,0,0,0
+"mr brown of massachusetts",112,"Scott P.","Brown","MA","R","Brown (MA)",27,"Massachusetts",0,1,0,0,0
+"mr brown",110,"Sherrod","Brown","OH","D","Brown (OH)",28,"Ohio",0,0,0,0,0
+"mr brown of ohio",111,"Sherrod","Brown","OH","D","Brown (OH)",28,"Ohio",0,0,0,0,0
+"mr brown of ohio",112,"Sherrod","Brown","OH","D","Brown (OH)",28,"Ohio",0,1,0,0,0
+"mr brown",113,"Sherrod","Brown","OH","D","Brown (OH)",28,"Ohio",0,0,0,0,0
+"mr brownback",105,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,1,0,0,0
+"mr brownback",106,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,0,0,0,0
+"mr brownback",107,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,0,0,0,0
+"mr brownback",108,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,1,0,0,0
+"mr brownback",109,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,0,0,0,0
+"mr brownback",110,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",0,0,0,0,0
+"mr brownback",111,"Sam","Brownback","KS","R","Brownback (KS)",29,"Kansas",1,0,0,0,0
+"mr bryan",104,"Richard","Bryan","NV","D","Bryan (NV)",30,"Nevada",0,0,0,0,0
+"mr bryan",105,"Richard","Bryan","NV","D","Bryan (NV)",30,"Nevada",0,0,0,0,0
+"mr bryan",106,"Richard","Bryan","NV","D","Bryan (NV)",30,"Nevada",1,0,0,0,0
+"mr bumpers",104,"Dale","Bumpers","AR","D","Bumpers (AR)",31,"Arkansas",0,0,0,0,0
+"mr bumpers",105,"Dale","Bumpers","AR","D","Bumpers (AR)",31,"Arkansas",1,0,0,0,0
+"mr bunning",106,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",0,0,0,0,0
+"mr bunning",107,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",0,0,0,0,0
+"mr bunning",108,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",0,1,0,0,0
+"mr bunning",109,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",0,0,0,0,0
+"mr bunning",110,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",0,0,0,0,0
+"mr bunning",111,"Jim","Bunning","KY","R","Bunning (KY)",32,"Kentucky",1,0,0,0,0
+"mr burns",104,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,0,0,0,0
+"mr burns",105,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,0,0,0,0
+"mr burns",106,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,1,0,0,0
+"mr burns",107,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,0,0,0,0
+"mr burns",108,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,0,0,0,0
+"mr burns",109,"Conrad","Burns","MT","R","Burns (MT)",33,"Montana",0,1,0,0,0
+"mr burr",109,"Richard","Burr","NC","R","Burr (NC)",34,"North Carolina",0,0,0,0,0
+"mr burr",110,"Richard","Burr","NC","R","Burr (NC)",34,"North Carolina",0,0,0,0,0
+"mr burr",111,"Richard","Burr","NC","R","Burr (NC)",34,"North Carolina",0,1,0,0,0
+"mr burr",112,"Richard","Burr","NC","R","Burr (NC)",34,"North Carolina",0,0,0,0,0
+"mr burr",113,"Richard","Burr","NC","R","Burr (NC)",34,"North Carolina",0,0,0,0,0
+"mr burris",111,"Roland","Burris","IL","D","Burris (IL)",35,"Illinois",0,0,0,0,0
+"mr byrd",104,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr byrd",105,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr byrd",106,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,1,0,0,0
+"mr byrd",107,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr byrd",108,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr byrd",109,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,1,0,0,0
+"mr byrd",110,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr byrd",111,"Robert C.","Byrd","WV","D","Byrd (WV)",36,"West Virginia",0,0,0,0,0
+"mr campbell",104,"Ben Nighthorse","Campbell","CO","R","Campbell (CO)",37,"Colorado",0,0,0,0,0
+"mr campbell",105,"Ben Nighthorse","Campbell","CO","R","Campbell (CO)",37,"Colorado",0,1,0,0,0
+"mr campbell",106,"Ben Nighthorse","Campbell","CO","R","Campbell (CO)",37,"Colorado",0,0,0,0,0
+"mr campbell",107,"Ben Nighthorse","Campbell","CO","R","Campbell (CO)",37,"Colorado",0,0,0,0,0
+"mr campbell",108,"Ben Nighthorse","Campbell","CO","R","Campbell (CO)",37,"Colorado",1,0,0,0,0
+"ms cantwell",107,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,0,0,0,1
+"ms cantwell",108,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,0,0,0,1
+"ms cantwell",109,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,1,0,0,1
+"ms cantwell",110,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,0,0,0,1
+"ms cantwell",111,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,0,0,0,1
+"ms cantwell",112,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,1,0,0,1
+"ms cantwell",113,"Maria","Cantwell","WA","D","Cantwell (WA)",38,"Washington",0,0,0,0,1
+"mr cardin",110,"Ben","Cardin","MD","D","Cardin (MD)",39,"Maryland",0,0,0,0,0
+"mr cardin",111,"Ben","Cardin","MD","D","Cardin (MD)",39,"Maryland",0,0,0,0,0
+"mr cardin",112,"Ben","Cardin","MD","D","Cardin (MD)",39,"Maryland",0,1,0,0,0
+"mr cardin",113,"Ben","Cardin","MD","D","Cardin (MD)",39,"Maryland",0,0,0,0,0
+"mrs carnahan",107,"Jean","Carnahan","MO","D","Carnahan (MO)",40,"Missouri",0,0,1,1,1
+"mr carper",107,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,0,0,0,0
+"mr carper",108,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,0,0,0,0
+"mr carper",109,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,1,0,0,0
+"mr carper",110,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,0,0,0,0
+"mr carper",111,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,0,0,0,0
+"mr carper",112,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,1,0,0,0
+"mr carper",113,"Tom","Carper","DE","D","Carper (DE)",41,"Delaware",0,0,0,0,0
+"mr casey",110,"Robert","Casey","PA","D","Casey (PA)",42,"Pennsylvania",0,0,0,0,0
+"mr casey",111,"Robert","Casey","PA","D","Casey (PA)",42,"Pennsylvania",0,0,0,0,0
+"mr casey",112,"Robert","Casey","PA","D","Casey (PA)",42,"Pennsylvania",0,1,0,0,0
+"mr casey",113,"Robert","Casey","PA","D","Casey (PA)",42,"Pennsylvania",0,0,0,0,0
+"mr chafee",104,"John H.","Chafee","RI","R","Chafee (RI)",43,"Rhode Island",0,0,0,0,0
+"mr chafee",105,"John H.","Chafee","RI","R","Chafee (RI)",43,"Rhode Island",0,0,0,0,0
+"mr chafee",106,"Lincoln D.","Chafee","RI","R","Chafee (RI)",44,"Rhode Island",0,0,0,0,0
+"mr chafee",107,"Lincoln D.","Chafee","RI","R","Chafee (RI)",44,"Rhode Island",0,0,0,0,0
+"mr chafee",108,"Lincoln D.","Chafee","RI","R","Chafee (RI)",44,"Rhode Island",0,0,0,0,0
+"mr chafee",109,"Lincoln D.","Chafee","RI","R","Chafee (RI)",44,"Rhode Island",0,1,0,0,0
+"mr chambliss",108,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,0,0,0,0
+"mr chambliss",109,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,0,0,0,0
+"mr chambliss",110,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,1,0,0,0
+"mr chambliss",111,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,0,0,0,0
+"mr chambliss",112,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,0,0,0,0
+"mr chambliss",113,"Saxby","Chambliss","GA","R","Chambliss (GA)",45,"Georgia",0,1,0,0,0
+"mr chiesa",113,"Jeffrey S.","Chiesa","NJ","R","Chiesa (NJ)",46,"New Jersey",0,0,0,0,0
+"mr cleland",105,"Max","Cleland","GA","D","Cleland (GA)",47,"Georgia",0,0,0,0,0
+"mr cleland",106,"Max","Cleland","GA","D","Cleland (GA)",47,"Georgia",0,0,0,0,0
+"mr cleland",107,"Max","Cleland","GA","D","Cleland (GA)",47,"Georgia",0,1,0,0,0
+"mrs clinton",107,"Hillary Rodham","Clinton","NY","D","Clinton (NY)",48,"New York",0,0,0,0,1
+"mrs clinton",108,"Hillary Rodham","Clinton","NY","D","Clinton (NY)",48,"New York",0,0,0,0,1
+"mrs clinton",109,"Hillary Rodham","Clinton","NY","D","Clinton (NY)",48,"New York",0,1,0,0,1
+"mrs clinton",110,"Hillary Rodham","Clinton","NY","D","Clinton (NY)",48,"New York",0,0,0,0,1
+"mrs clinton",111,"Hillary Rodham","Clinton","NY","D","Clinton (NY)",48,"New York",0,0,0,0,1
+"mr coats",104,"Daniel","Coats","IN","R","Coats (IN)",49,"Indiana",0,0,0,0,0
+"mr coats",105,"Daniel","Coats","IN","R","Coats (IN)",49,"Indiana",1,0,0,0,0
+"mr coats",112,"Daniel","Coats","IN","R","Coats (IN)",49,"Indiana",0,0,0,0,0
+"mr coats",113,"Daniel","Coats","IN","R","Coats (IN)",49,"Indiana",0,0,0,0,0
+"mr coburn",109,"Tom","Coburn","OK","R","Coburn (OK)",50,"Oklahoma",0,0,0,0,0
+"mr coburn",110,"Tom","Coburn","OK","R","Coburn (OK)",50,"Oklahoma",0,0,0,0,0
+"mr coburn",111,"Tom","Coburn","OK","R","Coburn (OK)",50,"Oklahoma",0,1,0,0,0
+"mr coburn",112,"Tom","Coburn","OK","R","Coburn (OK)",50,"Oklahoma",0,0,0,0,0
+"mr coburn",113,"Tom","Coburn","OK","R","Coburn (OK)",50,"Oklahoma",1,0,0,0,0
+"mr cochran",104,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,1,0,0,0
+"mr cochran",105,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",106,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",107,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,1,0,0,0
+"mr cochran",108,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",109,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",110,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,1,0,0,0
+"mr cochran",111,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",112,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,0,0,0,0
+"mr cochran",113,"Thad","Cochran","MS","R","Cochran (MS)",51,"Mississippi",0,1,0,0,0
+"mr cohen",104,"William S.","Cohen","ME","R","Cohen (ME)",52,"Maine",1,0,0,0,0
+"mr coleman",108,"Norm","Coleman","MN","R","Coleman (MN)",53,"Minnesota",0,0,0,0,0
+"mr coleman",109,"Norm","Coleman","MN","R","Coleman (MN)",53,"Minnesota",0,0,0,0,0
+"mr coleman",110,"Norm","Coleman","MN","R","Coleman (MN)",53,"Minnesota",0,1,0,0,0
+"ms collins",105,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",106,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",107,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,1,0,0,1
+"ms collins",108,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",109,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",110,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,1,0,0,1
+"ms collins",111,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",112,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,0,0,0,1
+"ms collins",113,"Susan","Collins","ME","R","Collins (ME)",54,"Maine",0,1,0,0,1
+"mr conrad",104,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",105,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",106,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,1,0,0,0
+"mr conrad",107,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",108,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",109,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,1,0,0,0
+"mr conrad",110,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",111,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",0,0,0,0,0
+"mr conrad",112,"Kent","Conrad","ND","D","Conrad (ND)",55,"North Dakota",1,0,0,0,0
+"mr coons",111,"Christopher","Coons","DE","D","Coons (DE)",56,"Delaware",0,0,0,0,0
+"mr coons",112,"Christopher","Coons","DE","D","Coons (DE)",56,"Delaware",0,0,0,0,0
+"mr coons",113,"Christopher","Coons","DE","D","Coons (DE)",56,"Delaware",0,1,0,0,0
+"mr corker",110,"Robert","Corker","TN","R","Corker (TN)",57,"Tennessee",0,0,0,0,0
+"mr corker",111,"Robert","Corker","TN","R","Corker (TN)",57,"Tennessee",0,0,0,0,0
+"mr corker",112,"Robert","Corker","TN","R","Corker (TN)",57,"Tennessee",0,1,0,0,0
+"mr corker",113,"Robert","Corker","TN","R","Corker (TN)",57,"Tennessee",0,0,0,0,0
+"mr cornyn",108,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,0,0,0,0
+"mr cornyn",109,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,0,0,0,0
+"mr cornyn",110,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,1,0,0,0
+"mr cornyn",111,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,0,0,0,0
+"mr cornyn",112,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,0,0,0,0
+"mr cornyn",113,"John","Cornyn","TX","R","Cornyn (TX)",58,"Texas",0,1,0,0,0
+"mr corzine",107,"Jon","Corzine","NJ","D","Corzine (NJ)",59,"New Jersey",0,0,0,0,0
+"mr corzine",108,"Jon","Corzine","NJ","D","Corzine (NJ)",59,"New Jersey",0,0,0,0,0
+"mr corzine",109,"Jon","Corzine","NJ","D","Corzine (NJ)",59,"New Jersey",0,0,0,0,0
+"mr coverdell",104,"Paul","Coverdell","GA","R","Coverdell (GA)",60,"Georgia",0,0,0,0,0
+"mr coverdell",105,"Paul","Coverdell","GA","R","Coverdell (GA)",60,"Georgia",0,1,0,0,0
+"mr coverdell",106,"Paul","Coverdell","GA","R","Coverdell (GA)",60,"Georgia",0,0,0,0,0
+"mr cowan",113,"William 'Mo'","Cowan","MA","D","Cowan (MA)",61,"Massachusetts",0,0,0,0,0
+"mr craig",104,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,1,0,0,0
+"mr craig",105,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,0,0,0,0
+"mr craig",106,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,0,0,0,0
+"mr craig",107,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,1,0,0,0
+"mr craig",108,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,0,0,0,0
+"mr craig",109,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",0,0,0,0,0
+"mr craig",110,"Larry E.","Craig","ID","R","Craig (ID)",62,"Idaho",1,0,0,0,0
+"mr crapo",106,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr crapo",107,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr crapo",108,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,1,0,0,0
+"mr crapo",109,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr crapo",110,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr crapo",111,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,1,0,0,0
+"mr crapo",112,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr crapo",113,"Mike","Crapo","ID","R","Crapo (ID)",63,"Idaho",0,0,0,0,0
+"mr cruz",113,"Ted","Cruz","TX","R","Cruz (TX)",64,"Texas",0,0,0,0,0
+"mr d'amato",104,"Alfonse M.","DAmato","NY","R","DAmato (NY)",65,"New York",0,0,0,0,0
+"mr d'amato",105,"Alfonse M.","DAmato","NY","R","DAmato (NY)",65,"New York",0,1,0,0,0
+"mr daschle",104,"Tom","Daschle","SD","D","Daschle (SD)",66,"South Dakota",0,0,0,0,0
+"mr daschle",105,"Tom","Daschle","SD","D","Daschle (SD)",66,"South Dakota",0,1,0,0,0
+"mr daschle",106,"Tom","Daschle","SD","D","Daschle (SD)",66,"South Dakota",0,0,0,0,0
+"mr daschle",107,"Tom","Daschle","SD","D","Daschle (SD)",66,"South Dakota",0,0,0,0,0
+"mr daschle",108,"Tom","Daschle","SD","D","Daschle (SD)",66,"South Dakota",0,1,0,0,0
+"mr dayton",107,"Mark","Dayton","MN","DFL","Dayton (MN)",67,"Minnesota",0,0,0,0,0
+"mr dayton",108,"Mark","Dayton","MN","DFL","Dayton (MN)",67,"Minnesota",0,0,0,0,0
+"mr dayton",109,"Mark","Dayton","MN","DFL","Dayton (MN)",67,"Minnesota",1,0,0,0,0
+"mr demint",109,"James","DeMint","SC","R","DeMint (SC)",68,"South Carolina",0,0,0,0,0
+"mr demint",110,"James","DeMint","SC","R","DeMint (SC)",68,"South Carolina",0,0,0,0,0
+"mr demint",111,"James","DeMint","SC","R","DeMint (SC)",68,"South Carolina",0,1,0,0,0
+"mr demint",112,"James","DeMint","SC","R","DeMint (SC)",68,"South Carolina",0,0,0,0,0
+"mr dewine",104,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,0,0,0,0
+"mr dewine",105,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,0,0,0,0
+"mr dewine",106,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,1,0,0,0
+"mr dewine",107,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,0,0,0,0
+"mr dewine",108,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,0,0,0,0
+"mr dewine",109,"Mike","DeWine","OH","R","DeWine (OH)",69,"Ohio",0,1,0,0,0
+"mr dodd",104,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,0,0,0,0
+"mr dodd",105,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,1,0,0,0
+"mr dodd",106,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,0,0,0,0
+"mr dodd",107,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,0,0,0,0
+"mr dodd",108,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,1,0,0,0
+"mr dodd",109,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,0,0,0,0
+"mr dodd",110,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",0,0,0,0,0
+"mr dodd",111,"Christopher J.","Dodd","CT","D","Dodd (CT)",70,"Connecticut",1,0,0,0,0
+"mrs dole",108,"Elizabeth","Dole","NC","R","Dole (NC)",71,"North Carolina",0,0,0,0,1
+"mrs dole",109,"Elizabeth","Dole","NC","R","Dole (NC)",71,"North Carolina",0,0,0,0,1
+"mrs dole",110,"Elizabeth","Dole","NC","R","Dole (NC)",71,"North Carolina",0,1,0,0,1
+"mr dole",104,"Robert","Dole","KS","R","Dole (KS)",72,"Kansas",0,0,0,0,0
+"mr domenici",104,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,1,0,0,0
+"mr domenici",105,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,0,0,0,0
+"mr domenici",106,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,0,0,0,0
+"mr domenici",107,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,1,0,0,0
+"mr domenici",108,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,0,0,0,0
+"mr domenici",109,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",0,0,0,0,0
+"mr domenici",110,"Pete V.","Domenici","NM","R","Domenici (NM)",73,"New Mexico",1,0,0,0,0
+"mr donnelly",113,"Joe","Donnelly","IN","D","Donnelly (IN)",74,"Indiana",0,0,0,0,0
+"mr dorgan",104,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,0,0,0,0
+"mr dorgan",105,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,1,0,0,0
+"mr dorgan",106,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,0,0,0,0
+"mr dorgan",107,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,0,0,0,0
+"mr dorgan",108,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,1,0,0,0
+"mr dorgan",109,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,0,0,0,0
+"mr dorgan",110,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",0,0,0,0,0
+"mr dorgan",111,"Byron L.","Dorgan","ND","D","Dorgan (ND)",75,"North Dakota",1,0,0,0,0
+"mr durbin",105,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",106,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",107,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,1,0,0,0
+"mr durbin",108,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",109,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",110,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,1,0,0,0
+"mr durbin",111,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",112,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,0,0,0,0
+"mr durbin",113,"Richard","Durbin","IL","D","Durbin (IL)",76,"Illinois",0,1,0,0,0
+"mr edwards",106,"John","Edwards","NC","D","Edwards (NC)",77,"North Carolina",0,0,0,0,0
+"mr edwards",107,"John","Edwards","NC","D","Edwards (NC)",77,"North Carolina",0,0,0,0,0
+"mr edwards",108,"John","Edwards","NC","D","Edwards (NC)",77,"North Carolina",1,0,0,0,0
+"mr ensign",107,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,0,0,0,0
+"mr ensign",108,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,0,0,0,0
+"mr ensign",109,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,1,0,0,0
+"mr ensign",110,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,0,0,0,0
+"mr ensign",111,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,0,0,0,0
+"mr ensign",112,"John","Ensign","NV","R","Ensign (NV)",78,"Nevada",0,0,0,0,0
+"mr enzi",105,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",106,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",107,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,1,0,0,0
+"mr enzi",108,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",109,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",110,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,1,0,0,0
+"mr enzi",111,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",112,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,0,0,0,0
+"mr enzi",113,"Michael","Enzi","WY","R","Enzi (WY)",79,"Wyoming",0,1,0,0,0
+"mr exon",104,"J. James","Exon","NE","D","Exon (NE)",80,"Nebraska",1,0,0,0,0
+"mr faircloth",104,"D. M. 'Lauch'","Faircloth","NC","R","Faircloth (NC)",81,"North Carolina",0,0,0,0,0
+"mr faircloth",105,"D. M. 'Lauch'","Faircloth","NC","R","Faircloth (NC)",81,"North Carolina",0,1,0,0,0
+"mr feingold",104,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,0,0,0,0
+"mr feingold",105,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,1,0,0,0
+"mr feingold",106,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,0,0,0,0
+"mr feingold",107,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,0,0,0,0
+"mr feingold",108,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,1,0,0,0
+"mr feingold",109,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,0,0,0,0
+"mr feingold",110,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,0,0,0,0
+"mr feingold",111,"Russell","Feingold","WI","D","Feingold (WI)",82,"Wisconsin",0,1,0,0,0
+"mrs feinstein",104,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",105,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",106,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,1,0,0,1
+"mrs feinstein",107,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",108,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",109,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,1,0,0,1
+"mrs feinstein",110,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",111,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs feinstein",112,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,1,0,0,1
+"mrs feinstein",113,"Dianne","Feinstein","CA","D","Feinstein (CA)",83,"California",0,0,0,0,1
+"mrs fischer",113,"Deb","Fischer","NE","R","Fischer (NE)",84,"Nebraska",0,0,0,0,1
+"mr fitzgerald",106,"Peter","Fitzgerald","IL","R","Fitzgerald (IL)",85,"Illinois",0,0,0,0,0
+"mr fitzgerald",107,"Peter","Fitzgerald","IL","R","Fitzgerald (IL)",85,"Illinois",0,0,0,0,0
+"mr fitzgerald",108,"Peter","Fitzgerald","IL","R","Fitzgerald (IL)",85,"Illinois",1,0,0,0,0
+"mr flake",113,"Jeff","Flake","AZ","R","Flake (AZ)",86,"Arizona",0,0,0,0,0
+"mr ford",104,"Wendell H.","Ford","KY","D","Ford (KY)",87,"Kentucky",0,0,0,0,0
+"mr ford",105,"Wendell H.","Ford","KY","D","Ford (KY)",87,"Kentucky",1,0,0,0,0
+"mrs frahm",104,"Sheila","Frahm","KS","R","Frahm (KS)",88,"Kansas",0,0,1,1,1
+"mr franken",111,"Al","Franken","MN","D","Franken (MN)",89,"Minnesota",0,0,0,0,0
+"mr franken",112,"Al","Franken","MN","D","Franken (MN)",89,"Minnesota",0,0,0,0,0
+"mr franken",113,"Al","Franken","MN","D","Franken (MN)",89,"Minnesota",0,1,0,0,0
+"mr frist",104,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",0,0,0,0,0
+"mr frist",105,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",0,0,0,0,0
+"mr frist",106,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",0,1,0,0,0
+"mr frist",107,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",0,0,0,0,0
+"mr frist",108,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",0,0,0,0,0
+"mr frist",109,"Bill","Frist","TN","R","Frist (TN)",90,"Tennessee",1,0,0,0,0
+"mrs gillibrand",111,"Kirsten","Gillibrand","NY","D","Gillibrand (NY)",91,"New York",0,0,1,1,1
+"mrs gillibrand",112,"Kirsten","Gillibrand","NY","D","Gillibrand (NY)",91,"New York",0,1,0,0,1
+"mrs gillibrand",113,"Kirsten","Gillibrand","NY","D","Gillibrand (NY)",91,"New York",0,0,0,0,1
+"mr glenn",104,"John H., Jr.","Glenn","OH","D","Glenn (OH)",92,"Ohio",0,0,0,0,0
+"mr glenn",105,"John H., Jr.","Glenn","OH","D","Glenn (OH)",92,"Ohio",1,0,0,0,0
+"mr goodwin",111,"Carte P.","Goodwin","WV","D","Goodwin (WV)",93,"West Virginia",1,0,0,0,0
+"mr gorton",104,"Slade","Gorton","WA","R","Gorton (WA)",94,"Washington",0,0,0,0,0
+"mr gorton",105,"Slade","Gorton","WA","R","Gorton (WA)",94,"Washington",0,0,0,0,0
+"mr gorton",106,"Slade","Gorton","WA","R","Gorton (WA)",94,"Washington",0,1,0,0,0
+"mr graham",104,"Bob","Graham","FL","D","Graham (FL)",95,"Florida",0,0,0,0,0
+"mr graham",105,"Bob","Graham","FL","D","Graham (FL)",95,"Florida",0,1,0,0,0
+"mr graham",106,"Bob","Graham","FL","D","Graham (FL)",95,"Florida",0,0,0,0,0
+"mr graham",107,"Bob","Graham","FL","D","Graham (FL)",95,"Florida",0,0,0,0,0
+"mr graham of florida",108,"Bob","Graham","FL","D","Graham (FL)",95,"Florida",1,0,0,0,0
+"mr graham of south carolina",108,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,0,0,0,0
+"mr graham",109,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,0,0,0,0
+"mr graham",110,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,1,0,0,0
+"mr graham",111,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,0,0,0,0
+"mr graham",112,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,0,0,0,0
+"mr graham",113,"Lindsey","Graham","SC","R","Graham (SC)",96,"South Carolina",0,1,0,0,0
+"mr gramm",104,"Phil","Gramm","TX","R","Gramm (TX)",97,"Texas",0,1,0,0,0
+"mr gramm",105,"Phil","Gramm","TX","R","Gramm (TX)",97,"Texas",0,0,0,0,0
+"mr gramm",106,"Phil","Gramm","TX","R","Gramm (TX)",97,"Texas",0,0,0,0,0
+"mr gramm",107,"Phil","Gramm","TX","R","Gramm (TX)",97,"Texas",1,0,0,0,0
+"mr grams",104,"Rod","Grams","MN","R","Grams (MN)",98,"Minnesota",0,0,0,0,0
+"mr grams",105,"Rod","Grams","MN","R","Grams (MN)",98,"Minnesota",0,0,0,0,0
+"mr grams",106,"Rod","Grams","MN","R","Grams (MN)",98,"Minnesota",0,1,0,0,0
+"mr grassley",104,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",105,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,1,0,0,0
+"mr grassley",106,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",107,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",108,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,1,0,0,0
+"mr grassley",109,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",110,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",111,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,1,0,0,0
+"mr grassley",112,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr grassley",113,"Charles E.","Grassley","IA","R","Grassley (IA)",99,"Iowa",0,0,0,0,0
+"mr gregg",104,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,0,0,0,0
+"mr gregg",105,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,1,0,0,0
+"mr gregg",106,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,0,0,0,0
+"mr gregg",107,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,0,0,0,0
+"mr gregg",108,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,1,0,0,0
+"mr gregg",109,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,0,0,0,0
+"mr gregg",110,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",0,0,0,0,0
+"mr gregg",111,"Judd","Gregg","NH","R","Gregg (NH)",100,"New Hampshire",1,0,0,0,0
+"mrs hagan",111,"Kay","Hagan","NC","D","Hagan (NC)",101,"North Carolina",0,0,0,0,1
+"mrs hagan",112,"Kay","Hagan","NC","D","Hagan (NC)",101,"North Carolina",0,0,0,0,1
+"mrs hagan",113,"Kay","Hagan","NC","D","Hagan (NC)",101,"North Carolina",0,1,0,0,1
+"mr hagel",105,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",0,0,0,0,0
+"mr hagel",106,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",0,0,0,0,0
+"mr hagel",107,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",0,1,0,0,0
+"mr hagel",108,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",0,0,0,0,0
+"mr hagel",109,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",0,0,0,0,0
+"mr hagel",110,"Chuck","Hagel","NE","R","Hagel (NE)",102,"Nebraska",1,0,0,0,0
+"mr harkin",104,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,1,0,0,0
+"mr harkin",105,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",106,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",107,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,1,0,0,0
+"mr harkin",108,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",109,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",110,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,1,0,0,0
+"mr harkin",111,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",112,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",0,0,0,0,0
+"mr harkin",113,"Tom","Harkin","IA","D","Harkin (IA)",103,"Iowa",1,0,0,0,0
+"mr hatch",104,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",105,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",106,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,1,0,0,0
+"mr hatch",107,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",108,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",109,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,1,0,0,0
+"mr hatch",110,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",111,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatch",112,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,1,0,0,0
+"mr hatch",113,"Orrin G.","Hatch","UT","R","Hatch (UT)",104,"Utah",0,0,0,0,0
+"mr hatfield",104,"Mark O.","Hatfield","OR","R","Hatfield (OR)",105,"Oregon",1,0,0,0,0
+"mr heflin",104,"Howell T.","Heflin","AL","D","Heflin (AL)",106,"Alabama",1,0,0,0,0
+"mr heinrich",113,"Martin","Heinrich","NM","D","Heinrich (NM)",107,"New Mexico",0,0,0,0,0
+"ms heitkamp",113,"Heidi","Heitkamp","ND","D","Heitkamp (ND)",108,"North Dakota",0,0,0,0,1
+"mr heller",112,"Dean","Heller","NV","R","Heller (NV)",109,"Nevada",0,0,1,0,0
+"mr heller",113,"Dean","Heller","NV","R","Heller (NV)",109,"Nevada",0,0,0,0,0
+"mr helms",104,"Jesse","Helms","NC","R","Helms (NC)",110,"North Carolina",0,1,0,0,0
+"mr helms",105,"Jesse","Helms","NC","R","Helms (NC)",110,"North Carolina",0,0,0,0,0
+"mr helms",106,"Jesse","Helms","NC","R","Helms (NC)",110,"North Carolina",0,0,0,0,0
+"mr helms",107,"Jesse","Helms","NC","R","Helms (NC)",110,"North Carolina",1,0,0,0,0
+"ms hirono",113,"Mazie","Hirono","HI","D","Hirono (HI)",111,"Hawaii",0,0,0,0,1
+"mr hoeven",112,"John","Hoeven","ND","R","Hoeven (ND)",112,"North Dakota",0,0,0,0,0
+"mr hoeven",113,"John","Hoeven","ND","R","Hoeven (ND)",112,"North Dakota",0,0,0,0,0
+"mr hollings",104,"Ernest F.","Hollings","SC","D","Hollings (SC)",113,"South Carolina",0,0,0,0,0
+"mr holllings",105,"Ernest F.","Hollings","SC","D","Hollings (SC)",113,"South Carolina",0,1,0,0,0
+"mr hollings",106,"Ernest F.","Hollings","SC","D","Hollings (SC)",113,"South Carolina",0,0,0,0,0
+"mr hollings",107,"Ernest F.","Hollings","SC","D","Hollings (SC)",113,"South Carolina",0,0,0,0,0
+"mr hollings",108,"Ernest F.","Hollings","SC","D","Hollings (SC)",113,"South Carolina",1,0,0,0,0
+"mr hutchinson",105,"Tim","Hutchinson","AR","R","Hutchinson (AR)",114,"Arkansas",0,0,0,0,0
+"mr hutchinson",106,"Tim","Hutchinson","AR","R","Hutchinson (AR)",114,"Arkansas",0,0,0,0,0
+"mr hutchinson",107,"Tim","Hutchinson","AR","R","Hutchinson (AR)",114,"Arkansas",0,1,0,0,0
+"mrs hutchison",104,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",105,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",106,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,1,0,0,1
+"mrs hutchison",107,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",108,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",109,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,1,0,0,1
+"mr hutchison",110,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",111,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",0,0,0,0,1
+"mrs hutchison",112,"Kathryn Ann Bailey","Hutchison","TX","R","Hutchison (TX)",115,"Texas",1,0,0,0,1
+"mr inhofe",104,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,1,0,0,0
+"mr inhofe",105,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",106,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",107,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,1,0,0,0
+"mr inhofe",108,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",109,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",110,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,1,0,0,0
+"mr inhofe",111,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",112,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,0,0,0,0
+"mr inhofe",113,"James","Inhofe","OK","R","Inhofe (OK)",116,"Oklahoma",0,1,0,0,0
+"mr inouye",104,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr inouye",105,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,1,0,0,0
+"mr inouye",106,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr inouye",107,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr inouye",108,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,1,0,0,0
+"mr inouye",109,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr inouye",110,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr inouye",111,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,1,0,0,0
+"mr inouye",112,"Daniel K.","Inouye","HI","D","Inouye (HI)",117,"Hawaii",0,0,0,0,0
+"mr isakson",109,"Johnny","Isakson","GA","R","Isakson (GA)",118,"Georgia",0,0,0,0,0
+"mr isakson",110,"Johnny","Isakson","GA","R","Isakson (GA)",118,"Georgia",0,0,0,0,0
+"mr isakson",111,"Johnny","Isakson","GA","R","Isakson (GA)",118,"Georgia",0,1,0,0,0
+"mr isakson",112,"Johnny","Isakson","GA","R","Isakson (GA)",118,"Georgia",0,0,0,0,0
+"mr isakson",113,"Johnny","Isakson","GA","R","Isakson (GA)",118,"Georgia",0,0,0,0,0
+"mr jeffords",104,"Jim","Jeffords","VT","R","Jeffords (VT)",119,"Vermont",0,0,0,0,0
+"mr jeffords",105,"Jim","Jeffords","VT","R","Jeffords (VT)",119,"Vermont",0,0,0,0,0
+"mr jeffords",106,"Jim","Jeffords","VT","R","Jeffords (VT)",119,"Vermont",0,1,0,0,0
+"mr jeffords",107,"Jim","Jeffords","VT","I","Jeffords (VT)",119,"Vermont",0,0,0,0,0
+"mr jeffords",108,"Jim","Jeffords","VT","I","Jeffords (VT)",119,"Vermont",0,0,0,0,0
+"mr jeffords",109,"Jim","Jeffords","VT","I","Jeffords (VT)",119,"Vermont",1,0,0,0,0
+"mr johanns",111,"Mike","Johanns","NE","R","Johanns (NE)",120,"Nebraska",0,0,0,0,0
+"mr johanns",112,"Mike","Johanns","NE","R","Johanns (NE)",120,"Nebraska",0,0,0,0,0
+"mr johanns",113,"Mike","Johanns","NE","R","Johanns (NE)",120,"Nebraska",1,0,0,0,0
+"mr johnson of wisconsin",112,"Ron","Johnson","WI","R","Johnson (WI)",121,"Wisconsin",0,0,0,0,0
+"mr johnson of wisconsin",113,"Ron","Johnson","WI","R","Johnson (WI)",121,"Wisconsin",0,0,0,0,0
+"mr johnson",105,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson",106,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson",107,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,1,0,0,0
+"mr johnson",108,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson",109,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson",110,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,1,0,0,0
+"mr johnson",111,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson of south dakota",112,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",0,0,0,0,0
+"mr johnson of south dakota",113,"Tim","Johnson","SD","D","Johnson (SD)",122,"South Dakota",1,0,0,0,0
+"mr johnston",104,"J. Bennett, Jr.","Johnston","LA","D","Johnston (LA)",123,"Louisiana",1,0,0,0,0
+"mr kaine",113,"Tim","Kaine","VA","D","Kaine (VA)",124,"Virginia",0,0,0,0,0
+"mrs kassebaum",104,"Nancy L.","Kassebaum","KS","R","Kassebaum (KS)",125,"Kansas",1,0,0,0,1
+"mr kaufman",111,"Edwards","Kaufman","DE","D","Kaufman (DE)",126,"Delaware",0,0,0,0,0
+"mr kempthorne",104,"Dirk","Kempthorne","ID","R","Kempthorne (ID)",127,"Idaho",0,0,0,0,0
+"mr kempthorne",105,"Dirk","Kempthorne","ID","R","Kempthorne (ID)",127,"Idaho",1,0,0,0,0
+"mr kennedy",104,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kennedy",105,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kennedy",106,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,1,0,0,0
+"mr kennedy",107,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kennedy",108,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kennedy",109,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,1,0,0,0
+"mr kennedy",110,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kennedy",111,"Edward M.","Kennedy","MA","D","Kennedy (MA)",128,"Massachusetts",0,0,0,0,0
+"mr kerrey",104,"Bob","Kerrey","NE","D","Kerrey (NE)",129,"Nebraska",0,0,0,0,0
+"mr kerrey",105,"Bob","Kerrey","NE","D","Kerrey (NE)",129,"Nebraska",0,0,0,0,0
+"mr kerrey",106,"Bob","Kerrey","NE","D","Kerrey (NE)",129,"Nebraska",1,0,0,0,0
+"mr kerry",104,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,1,0,0,0
+"mr kerry",105,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr kerry",106,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr kerry",107,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,1,0,0,0
+"mr kerry",108,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr kerry",109,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr kerry",110,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,1,0,0,0
+"mr kerry",111,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr kerry",112,"John F.","Kerry","MA","D","Kerry (MA)",130,"Massachusetts",0,0,0,0,0
+"mr king",113,"Angus","King","ME","I","King (ME)",131,"Maine",0,0,0,0,0
+"mr kirk",112,"Mark","Kirk","IL","R","Kirk (IL)",132,"Illinois",0,0,0,0,0
+"mr kirk",113,"Mark","Kirk","IL","R","Kirk (IL)",132,"Illinois",0,0,0,0,0
+"mr kirk",111,"Paul G, Jr.","Kirk","MA","D","Kirk (MA)",133,"Massachusetts",0,0,0,0,0
+"ms klobuchar",110,"Amy","Klobuchar","MN","D","Klobuchar (MN)",134,"Minnesota",0,0,0,0,1
+"ms klobuchar",111,"Amy","Klobuchar","MN","D","Klobuchar (MN)",134,"Minnesota",0,0,0,0,1
+"ms klobuchar",112,"Amy","Klobuchar","MN","D","Klobuchar (MN)",134,"Minnesota",0,1,0,0,1
+"ms klobuchar",113,"Amy","Klobuchar","MN","D","Klobuchar (MN)",134,"Minnesota",0,0,0,0,1
+"mr kohl",104,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",105,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",106,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,1,0,0,0
+"mr kohl",107,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",108,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",109,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,1,0,0,0
+"mr kohl",110,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",111,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",0,0,0,0,0
+"mr kohl",112,"Herbert","Kohl","WI","D","Kohl (WI)",135,"Wisconsin",1,0,0,0,0
+"mr kyl",104,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",105,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",106,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,1,0,0,0
+"mr kyl",107,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",108,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",109,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,1,0,0,0
+"mr kyl",110,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",111,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",0,0,0,0,0
+"mr kyl",112,"Jon","Kyl","AZ","R","Kyl (AZ)",136,"Arizona",1,0,0,0,0
+"ms landrieu",105,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",106,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",107,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,1,0,0,1
+"ms landrieu",108,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",109,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",110,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,1,0,0,1
+"ms landrieu",111,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",112,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,0,0,0,1
+"ms landrieu",113,"Mary","Landrieu","LA","D","Landrieu (LA)",137,"Louisiana",0,1,0,0,1
+"mr lautenberg",104,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",105,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",106,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",1,0,0,0,0
+"mr lautenberg",108,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",109,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",110,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,1,0,0,0
+"mr lautenberg",111,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",112,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr lautenberg",113,"Frank","Lautenberg","NJ","D","Lautenberg (NJ)",138,"New Jersey",0,0,0,0,0
+"mr leahy",104,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",105,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,1,0,0,0
+"mr leahy",106,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",107,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",108,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,1,0,0,0
+"mr leahy",109,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",110,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",111,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,1,0,0,0
+"mr leahy",112,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr leahy",113,"Edward L.","Leahy","VT","D","Leahy (VT)",139,"Vermont",0,0,0,0,0
+"mr lee",112,"Mike","Lee","UT","R","Lee (UT)",140,"Utah",0,0,0,0,0
+"mr lee",113,"Mike","Lee","UT","R","Lee (UT)",140,"Utah",0,0,0,0,0
+"mr lemieux",111,"George","LeMieux","FL","R","LeMieux (FL)",141,"Florida",1,0,0,0,0
+"mr levin",104,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,1,0,0,0
+"mr levin",105,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",106,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",107,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,1,0,0,0
+"mr levin",108,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",109,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",110,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,1,0,0,0
+"mr levin",111,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",112,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",0,0,0,0,0
+"mr levin",113,"Carl M.","Levin","MI","D","Levin (MI)",142,"Michigan",1,0,0,0,0
+"mr lieberman",104,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",105,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",106,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,1,0,0,0
+"mr lieberman",107,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",108,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",109,"Joseph","Lieberman","CT","D","Lieberman (CT)",143,"Connecticut",0,1,0,0,0
+"mr lieberman",110,"Joseph","Lieberman","CT","I","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",111,"Joseph","Lieberman","CT","I","Lieberman (CT)",143,"Connecticut",0,0,0,0,0
+"mr lieberman",112,"Joseph","Lieberman","CT","I","Lieberman (CT)",143,"Connecticut",1,0,0,0,0
+"mrs lincoln",106,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,0,0,0,1
+"mrs lincoln",107,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,0,0,0,1
+"mrs lincoln",108,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,1,0,0,1
+"mrs lincoln",109,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,0,0,0,1
+"mrs lincoln",110,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,0,0,0,1
+"mrs lincoln",111,"Blanche L.","Lincoln","AR","D","Lincoln (AR)",144,"Arkansas",0,1,0,0,1
+"mr lott",104,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,0,0,0,0
+"mr lott",105,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,0,0,0,0
+"mr lott",106,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,1,0,0,0
+"mr lott",107,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,0,0,0,0
+"mr lott",108,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,0,0,0,0
+"mr lott",109,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,1,0,0,0
+"mr lott",110,"Trent","Lott","MS","R","Lott (MS)",145,"Mississippi",0,0,0,0,0
+"mr lugar",104,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",105,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",106,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,1,0,0,0
+"mr lugar",107,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",108,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",109,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,1,0,0,0
+"mr lugar",110,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",111,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,0,0,0,0
+"mr lugar",112,"Richard G.","Lugar","IN","R","Lugar (IN)",146,"Indiana",0,1,0,0,0
+"mr mack",104,"Connie","Mack","FL","R","Mack (FL)",147,"Florida",0,0,0,0,0
+"mr mack",105,"Connie","Mack","FL","R","Mack (FL)",147,"Florida",0,0,0,0,0
+"mr mack",106,"Connie","Mack","FL","R","Mack (FL)",147,"Florida",1,0,0,0,0
+"mr manchin",112,"Joe","Manchin","WV","D","Manchin (WV)",148,"West Virginia",0,1,0,0,0
+"mr manchin",113,"Joe","Manchin","WV","D","Manchin (WV)",148,"West Virginia",0,0,0,0,0
+"mr markey",113,"Edward J.","Markey","MA","D","Markey (MA)",149,"Massachusetts",0,1,0,0,0
+"mr martinez",109,"Mel","Martinez","FL","R","Martinez (FL)",150,"Florida",0,0,0,0,0
+"mr martinez",110,"Mel","Martinez","FL","R","Martinez (FL)",150,"Florida",0,0,0,0,0
+"mr martinez",111,"Mel","Martinez","FL","R","Martinez (FL)",150,"Florida",0,0,0,0,0
+"mr mccain",104,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",105,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,1,0,0,0
+"mr mccain",106,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",107,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",108,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,1,0,0,0
+"mr mccain",109,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",110,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",111,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,1,0,0,0
+"mr mccain",112,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mr mccain",113,"John","McCain","AZ","R","McCain (AZ)",151,"Arizona",0,0,0,0,0
+"mrs mccaskill",110,"Claire","McCaskill","MO","D","McCaskill (MO)",152,"Missouri",0,0,0,0,1
+"mrs mccaskill",111,"Claire","McCaskill","MO","D","McCaskill (MO)",152,"Missouri",0,0,0,0,1
+"mrs mccaskill",112,"Claire","McCaskill","MO","D","McCaskill (MO)",152,"Missouri",0,1,0,0,1
+"mrs mccaskill",113,"Claire","McCaskill","MO","D","McCaskill (MO)",152,"Missouri",0,0,0,0,1
+"mr mcconnell",104,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,1,0,0,0
+"mr mcconnell",105,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",106,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",107,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,1,0,0,0
+"mr mcconnell",108,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",109,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",110,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,1,0,0,0
+"mr mcconnell",111,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",112,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,0,0,0,0
+"mr mcconnell",113,"Mitch","McConnell","KY","R","McConnell (KY)",153,"Kentucky",0,1,0,0,0
+"mr menendez",109,"Robert","Menendez","NJ","D","Menendez (NJ)",154,"New Jersey",0,0,1,0,0
+"mr menendez",110,"Robert","Menendez","NJ","D","Menendez (NJ)",154,"New Jersey",0,0,0,0,0
+"mr menendez",111,"Robert","Menendez","NJ","D","Menendez (NJ)",154,"New Jersey",0,0,0,0,0
+"mr menendez",112,"Robert","Menendez","NJ","D","Menendez (NJ)",154,"New Jersey",0,1,0,0,0
+"mr menendez",113,"Robert","Menendez","NJ","D","Menendez (NJ)",154,"New Jersey",0,0,0,0,0
+"mr merkley",111,"Jeff","Merkley","OR","D","Merkley (OR)",155,"Oregon",0,0,0,0,0
+"mr merkley",112,"Jeff","Merkley","OR","D","Merkley (OR)",155,"Oregon",0,0,0,0,0
+"mr merkley",113,"Jeff","Merkley","OR","D","Merkley (OR)",155,"Oregon",0,1,0,0,0
+"ms mikulski",104,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",105,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,1,0,0,1
+"ms mikulski",106,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",107,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",108,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,1,0,0,1
+"ms mikulski",109,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",110,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",111,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,1,0,0,1
+"ms mikulski",112,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"ms mikulski",113,"Barbara","Mikulski","MD","D","Mikulski (MD)",156,"Maryland",0,0,0,0,1
+"mr miller",106,"Zell B.","Miller","GA","D","Miller (GA)",157,"Georgia",0,0,0,0,0
+"mr miller",107,"Zell B.","Miller","GA","D","Miller (GA)",157,"Georgia",0,0,0,0,0
+"mr miller",108,"Zell B.","Miller","GA","D","Miller (GA)",157,"Georgia",1,0,0,0,0
+"mr moran",112,"Jerry","Moran","KS","R","Moran (KS)",158,"Kansas",0,0,0,0,0
+"mr moran",113,"Jerry","Moran","KS","R","Moran (KS)",158,"Kansas",0,0,0,0,0
+"ms moseley-braun",104,"Carol","Moseley-Braun","IL","D","Moseley-Braun (IL)",159,"Illinois",0,0,0,0,1
+"ms moseley-braun",105,"Carol","Moseley-Braun","IL","D","Moseley-Braun (IL)",159,"Illinois",0,1,0,0,1
+"mr moynihan",104,"Daniel P.","Moynihan","NY","D","Moynihan (NY)",160,"New York",0,0,0,0,0
+"mr moynihan",105,"Daniel P.","Moynihan","NY","D","Moynihan (NY)",160,"New York",0,0,0,0,0
+"mr moynihan",106,"Daniel P.","Moynihan","NY","D","Moynihan (NY)",160,"New York",1,0,0,0,0
+"mr murkowski",104,"Frank","Murkowski","AK","R","Murkowski (AK)",161,"Alaska",0,0,0,0,0
+"mr murkowski",105,"Frank","Murkowski","AK","R","Murkowski (AK)",161,"Alaska",0,1,0,0,0
+"mr murkowski",106,"Frank","Murkowski","AK","R","Murkowski (AK)",161,"Alaska",0,0,0,0,0
+"mr murkowski",107,"Frank","Murkowski","AK","R","Murkowski (AK)",161,"Alaska",0,0,0,0,0
+"ms murkowski",108,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,0,1,0,1
+"ms murkowski",109,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,0,0,0,1
+"ms murkowski",110,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,0,0,0,1
+"ms murkowski",111,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,1,0,0,1
+"ms murkowski",112,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,0,0,0,1
+"ms murkowski",113,"Lisa","Murkowski","AK","R","Murkowski (AK)",162,"Alaska",0,0,0,0,1
+"mr murphy",113,"Chris","Murphy","CT","D","Murphy (CT)",163,"Connecticut",0,0,0,0,0
+"mrs murray",104,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",105,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,1,0,0,1
+"mrs murray",106,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",107,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",108,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,1,0,0,1
+"mrs murray",109,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",110,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",111,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,1,0,0,1
+"mrs murray",112,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mrs murray",113,"Patty","Murray","WA","D","Murray (WA)",164,"Washington",0,0,0,0,1
+"mr nelson of nebraska",107,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",0,0,0,0,0
+"mr nelson of nebraska",108,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",0,0,0,0,0
+"mr nelson of nebraska",109,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",0,1,0,0,0
+"mr nelson of nebraska",110,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",0,0,0,0,0
+"mr nelson of nebraska",111,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",0,0,0,0,0
+"mr nelson of nebraska",112,"Ben","Nelson","NE","D","Nelson (NE)",165,"Nebraska",1,0,0,0,0
+"mr nelson of florida",107,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,0,0,0,0
+"mr nelson of florida",108,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,0,0,0,0
+"mr nelson of florida",109,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,1,0,0,0
+"mr nelson of florida",110,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,0,0,0,0
+"mr nelson of florida",111,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,0,0,0,0
+"mr nelson of florida",112,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,1,0,0,0
+"mr nelson",113,"Bill","Nelson","FL","D","Nelson (FL)",166,"Florida",0,0,0,0,0
+"mr nickles",104,"Don","Nickles","OK","R","Nickles (OK)",167,"Oklahoma",0,0,0,0,0
+"mr nickles",105,"Don","Nickles","OK","R","Nickles (OK)",167,"Oklahoma",0,1,0,0,0
+"mr nickles",106,"Don","Nickles","OK","R","Nickles (OK)",167,"Oklahoma",0,0,0,0,0
+"mr nickles",107,"Don","Nickles","OK","R","Nickles (OK)",167,"Oklahoma",0,0,0,0,0
+"mr nickles",108,"Don","Nickles","OK","R","Nickles (OK)",167,"Oklahoma",1,0,0,0,0
+"mr nunn",104,"Samuel A.","Nunn","GA","D","Nunn (GA)",168,"Georgia",1,0,0,0,0
+"mr obama",109,"Barack","Obama","IL","D","Obama (IL)",169,"Illinois",0,0,0,0,0
+"mr obama",110,"Barack","Obama","IL","D","Obama (IL)",169,"Illinois",0,0,0,0,0
+"mr packwood",104,"Robert W.","Packwood","OR","R","Packwood (OR)",170,"Oregon",0,0,0,0,0
+"mr paul",112,"Rand","Paul","KY","R","Paul (KY)",171,"Kentucky",0,0,0,0,0
+"mr paul",113,"Rand","Paul","KY","R","Paul (KY)",171,"Kentucky",0,0,0,0,0
+"mr pell",104,"Claiborne","Pell","RI","D","Pell (RI)",172,"Rhode Island",1,0,0,0,0
+"mr portman",112,"Rob","Portman","OH","R","Portman (OH)",173,"Ohio",0,0,0,0,0
+"mr portman",113,"Rob","Portman","OH","R","Portman (OH)",173,"Ohio",0,0,0,0,0
+"mr pressler",104,"Larry","Pressler","SD","R","Pressler (SD)",174,"South Dakota",0,1,0,0,0
+"mr pryor",104,"David H.","Pryor","AR","D","Pryor (AR)",175,"Arkansas",1,0,0,0,0
+"mr pryor",108,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,0,0,0,0
+"mr pryor",109,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,0,0,0,0
+"mr pryor",110,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,1,0,0,0
+"mr pryor",111,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,0,0,0,0
+"mr pryor",112,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,0,0,0,0
+"mr pryor",113,"Mark","Pryor","AR","D","Pryor (AR)",176,"Arkansas",0,1,0,0,0
+"mr reed",105,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",106,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",107,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,1,0,0,0
+"mr reed",108,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",109,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",110,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,1,0,0,0
+"mr reed",111,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",112,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,0,0,0,0
+"mr reed",113,"Jack","Reed","RI","D","Reed (RI)",177,"Rhode Island",0,1,0,0,0
+"mr reid",104,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",105,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,1,0,0,0
+"mr reid",106,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",107,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",108,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,1,0,0,0
+"mr reid",109,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",110,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",111,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,1,0,0,0
+"mr reid",112,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr reid",113,"Harry","Reid","NV","D","Reid (NV)",178,"Nevada",0,0,0,0,0
+"mr risch",111,"Jim","Risch","ID","R","Risch (ID)",179,"Idaho",0,0,0,0,0
+"mr risch",112,"Jim","Risch","ID","R","Risch (ID)",179,"Idaho",0,0,0,0,0
+"mr risch",113,"Jim","Risch","ID","R","Risch (ID)",179,"Idaho",0,1,0,0,0
+"mr robb",104,"Charles","Robb","VA","D","Robb (VA)",180,"Virginia",0,0,0,0,0
+"mr robb",105,"Charles","Robb","VA","D","Robb (VA)",180,"Virginia",0,0,0,0,0
+"mr robb",106,"Charles","Robb","VA","D","Robb (VA)",180,"Virginia",0,1,0,0,0
+"mr roberts",105,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",106,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",107,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,1,0,0,0
+"mr roberts",108,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",109,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",110,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,1,0,0,0
+"mr roberts",111,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",112,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,0,0,0,0
+"mr roberts",113,"Pat","Roberts","KS","R","Roberts (KS)",181,"Kansas",0,1,0,0,0
+"mr rockefeller",104,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,1,0,0,0
+"mr rockefeller",105,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockfeller",106,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockefeller",107,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,1,0,0,0
+"mr rockefeller",108,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockefeller",109,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockefeller",110,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,1,0,0,0
+"mr rockefeller",111,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockefeller",112,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",0,0,0,0,0
+"mr rockefeller",113,"John D. IV","Rockefeller","WV","D","Rockefeller (WV)",182,"West Virginia",1,0,0,0,0
+"mr roth",104,"William V., Jr.","Roth","DE","R","Roth (DE)",183,"Delaware",0,0,0,0,0
+"mr roth",105,"William V., Jr.","Roth","DE","R","Roth (DE)",183,"Delaware",0,0,0,0,0
+"mr roth",106,"William V., Jr.","Roth","DE","R","Roth (DE)",183,"Delaware",0,1,0,0,0
+"mr rubio",112,"Marco","Rubio","FL","R","Rubio (FL)",184,"Florida",0,0,0,0,0
+"mr rubio",113,"Marco","Rubio","FL","R","Rubio (FL)",184,"Florida",0,0,0,0,0
+"mr salazar",109,"Ken","Salazar","CO","D","Salazar (CO)",185,"Colorado",0,0,0,0,0
+"mr salazar",110,"Ken","Salazar","CO","D","Salazar (CO)",185,"Colorado",0,0,0,0,0
+"mr salazar",111,"Ken","Salazar","CO","D","Salazar (CO)",185,"Colorado",0,0,0,0,0
+"mr sanders",110,"Bernie","Sanders","VT","I","Sanders (VT)",186,"Vermont",0,0,0,0,0
+"mr sanders",111,"Bernie","Sanders","VT","I","Sanders (VT)",186,"Vermont",0,0,0,0,0
+"mr sanders",112,"Bernie","Sanders","VT","I","Sanders (VT)",186,"Vermont",0,1,0,0,0
+"mr sanders",113,"Bernie","Sanders","VT","I","Sanders (VT)",186,"Vermont",0,0,0,0,0
+"mr santorum",104,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,0,0,0,0
+"mr santorum",105,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,0,0,0,0
+"ms santorum",106,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,1,0,0,0
+"mr santorum",107,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,0,0,0,0
+"mr santorum",108,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,0,0,0,0
+"mr santorum",109,"Rick","Santorum","PA","R","Santorum (PA)",187,"Pennsylvania",0,1,0,0,0
+"mr sarbanes",104,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",0,0,0,0,0
+"mr sarbanes",105,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",0,0,0,0,0
+"mr sarbanes",106,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",0,1,0,0,0
+"mr sarbanes",107,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",0,0,0,0,0
+"mr sarbanes",108,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",0,0,0,0,0
+"mr sarbanes",109,"Paul","Sarbanes","MD","D","Sarbanes (MD)",188,"Maryland",1,0,0,0,0
+"mr schatz",113,"Brian E.","Schatz","HI","D","Schatz (HI)",189,"Hawaii",0,0,1,0,0
+"mr schumer",106,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr schumer",107,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr schumer",108,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,1,0,0,0
+"mr schumer",109,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr schumer",110,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr schumer",111,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,1,0,0,0
+"mr schumer",112,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr schumer",113,"Charles","Schumer","NY","D","Schumer (NY)",190,"New York",0,0,0,0,0
+"mr scott",113,"Tim","Scott","SC","R","Scott (SC)",191,"South Carolina",0,0,1,0,0
+"mr sessions",105,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",106,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",107,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,1,0,0,0
+"mr sessions",108,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",109,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",110,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,1,0,0,0
+"mr sessions",111,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",112,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,0,0,0,0
+"mr sessions",113,"Jeff","Sessions","AL","R","Sessions (AL)",192,"Alabama",0,1,0,0,0
+"mrs shaheen",111,"Jeanne","Shaheen","NH","D","Shaheen (NH)",193,"New Hampshire",0,0,0,0,1
+"mrs shaheen",112,"Jeanne","Shaheen","NH","D","Shaheen (NH)",193,"New Hampshire",0,0,0,0,1
+"mrs shaheen",113,"Jeanne","Shaheen","NH","D","Shaheen (NH)",193,"New Hampshire",0,1,0,0,1
+"mr shelby",104,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",105,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,1,0,0,0
+"mr shelby",106,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",107,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",108,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,1,0,0,0
+"mr shelby",109,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",110,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",111,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,1,0,0,0
+"mr shelby",112,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr shelby",113,"Richard","Shelby","AL","R","Shelby (AL)",194,"Alabama",0,0,0,0,0
+"mr simon",104,"Paul","Simon","IL","D","Simon (IL)",195,"Illinois",1,0,0,0,0
+"mr simpson",104,"Alan K.","Simpson","WY","R","Simpson (WY)",196,"Wyoming",1,0,0,0,0
+"mr smith of oregon",105,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,0,0,0,0
+"mr smith of oregon",106,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,0,0,0,0
+"mr smith of oregon",107,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,1,0,0,0
+"mr smith",108,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,0,0,0,0
+"mr smith",109,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,0,0,0,0
+"mr smith",110,"Gordon","Smith","OR","R","Smith (OR)",197,"Oregon",0,1,0,0,0
+"mr smith",104,"Robert C.","Smith","NH","R","Smith (NH)",198,"New Hampshire",0,1,0,0,0
+"mr smith of new hampshire",105,"Robert C.","Smith","NH","R","Smith (NH)",198,"New Hampshire",0,0,0,0,0
+"mr smith of new hampshire",106,"Robert C.","Smith","NH","R","Smith (NH)",198,"New Hampshire",0,0,0,0,0
+"mr smith of new hampshire",107,"Robert C.","Smith","NH","R","Smith (NH)",198,"New Hampshire",0,1,0,0,0
+"ms snowe",104,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",105,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",106,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,1,0,0,1
+"ms snowe",107,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",108,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",109,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,1,0,0,1
+"ms snowe",110,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",111,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",0,0,0,0,1
+"ms snowe",112,"Olympia","Snowe","ME","R","Snowe (ME)",199,"Maine",1,0,0,0,1
+"mr specter",104,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,0,0,0,0
+"mr specter",105,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,1,0,0,0
+"mr specter",106,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,0,0,0,0
+"mr specter",107,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,0,0,0,0
+"mr specter",108,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,1,0,0,0
+"mr specter",109,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,0,0,0,0
+"mr specter",110,"Arlen","Specter","PA","R","Specter (PA)",200,"Pennsylvania",0,0,0,0,0
+"mr specter",111,"Arlen","Specter","PA","D","Specter (PA)",200,"Pennsylvania",0,1,0,0,0
+"ms stabenow",107,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,0,0,0,1
+"ms stabenow",108,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,0,0,0,1
+"ms stabenow",109,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,1,0,0,1
+"ms stabenow",110,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,0,0,0,1
+"ms stabenow",111,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,0,0,0,1
+"ms stabenow",112,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,1,0,0,1
+"ms stabenow",113,"Debbie","Stabenow","MI","D","Stabenow (MI)",201,"Michigan",0,0,0,0,1
+"mr stevens",104,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,1,0,0,0
+"mr stevens",105,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,0,0,0,0
+"mr stevens",106,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,0,0,0,0
+"mr stevens",107,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,1,0,0,0
+"mr stevens",108,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,0,0,0,0
+"mr stevens",109,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,0,0,0,0
+"mr stevens",110,"Ted","Stevens","AK","R","Stevens (AK)",202,"Alaska",0,1,0,0,0
+"mr sununu",108,"John","Sununu","NH","R","Sununu (NH)",203,"New Hampshire",0,0,0,0,0
+"mr sununu",109,"John","Sununu","NH","R","Sununu (NH)",203,"New Hampshire",0,0,0,0,0
+"mr sununu",110,"John","Sununu","NH","R","Sununu (NH)",203,"New Hampshire",0,1,0,0,0
+"mr talent",108,"James","Talent","MO","R","Talent (MO)",204,"Missouri",0,0,0,0,0
+"mr talent",109,"James","Talent","MO","R","Talent (MO)",204,"Missouri",0,1,0,0,0
+"mr tester",110,"John","Tester","MT","D","Tester (MT)",205,"Montana",0,0,0,0,0
+"mr tester",111,"John","Tester","MT","D","Tester (MT)",205,"Montana",0,0,0,0,0
+"mr tester",112,"John","Tester","MT","D","Tester (MT)",205,"Montana",0,1,0,0,0
+"mr tester",113,"John","Tester","MT","D","Tester (MT)",205,"Montana",0,0,0,0,0
+"mr thomas",104,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,0,0,0,0
+"mr thomas",105,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,0,0,0,0
+"mr thomas",106,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,1,0,0,0
+"mr thomas",107,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,0,0,0,0
+"mr thomas",108,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,0,0,0,0
+"mr thomas",109,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,1,0,0,0
+"mr thomas",110,"Craig","Thomas","WY","R","Thomas (WY)",206,"Wyoming",0,0,0,0,0
+"mr thompson",104,"Fred","Thompson","TN","R","Thompson (TN)",207,"Tennessee",0,1,0,0,0
+"mr thompson",105,"Fred","Thompson","TN","R","Thompson (TN)",207,"Tennessee",0,0,0,0,0
+"mr thompson",106,"Fred","Thompson","TN","R","Thompson (TN)",207,"Tennessee",0,0,0,0,0
+"mr thompson",107,"Fred","Thompson","TN","R","Thompson (TN)",207,"Tennessee",1,0,0,0,0
+"mr thune",109,"John","Thune","SD","R","Thune (SD)",208,"South Dakota",0,0,0,0,0
+"mr thune",110,"John","Thune","SD","R","Thune (SD)",208,"South Dakota",0,0,0,0,0
+"mr thune",111,"John","Thune","SD","R","Thune (SD)",208,"South Dakota",0,1,0,0,0
+"mr thune",112,"John","Thune","SD","R","Thune (SD)",208,"South Dakota",0,0,0,0,0
+"mr thune",113,"John","Thune","SD","R","Thune (SD)",208,"South Dakota",0,0,0,0,0
+"mr thurmond",104,"Strom","Thurmond","SC","R","Thurmond (SC)",209,"South Carolina",0,1,0,0,0
+"mr thurmond",105,"Strom","Thurmond","SC","R","Thurmond (SC)",209,"South Carolina",0,0,0,0,0
+"mr thurmond",106,"Strom","Thurmond","SC","R","Thurmond (SC)",209,"South Carolina",0,0,0,0,0
+"mr thurmond",107,"Strom","Thurmond","SC","R","Thurmond (SC)",209,"South Carolina",1,0,0,0,0
+"mr toomey",112,"Pat","Toomey","PA","R","Toomey (PA)",210,"Pennsylvania",0,0,0,0,0
+"mr toomey",113,"Pat","Toomey","PA","R","Toomey (PA)",210,"Pennsylvania",0,0,0,0,0
+"mr torricelli",105,"Robert","Torricelli","NJ","D","Torricelli (NJ)",211,"New Jersey",0,0,0,0,0
+"mr torricelli",106,"Robert","Torricelli","NJ","D","Torricelli (NJ)",211,"New Jersey",0,0,0,0,0
+"mr torricelli",107,"Robert","Torricelli","NJ","D","Torricelli (NJ)",211,"New Jersey",1,0,0,0,0
+"mr udall of colorado",111,"Mark","Udall","CO","D","Udall (CO)",212,"Colorado",0,0,0,0,0
+"mr udall of colorado",112,"Mark","Udall","CO","D","Udall (CO)",212,"Colorado",0,0,0,0,0
+"mr udall of colorado",113,"Mark","Udall","CO","D","Udall (CO)",212,"Colorado",0,1,0,0,0
+"mr udall of new mexico",111,"Tom","Udall","NM","D","Udall (NM)",213,"New Mexico",0,0,0,0,0
+"mr udall of new mexico",112,"Tom","Udall","NM","D","Udall (NM)",213,"New Mexico",0,0,0,0,0
+"mr udall of new mexico",113,"Tom","Udall","NM","D","Udall (NM)",213,"New Mexico",0,1,0,0,0
+"mr vitter",109,"David","Vitter","LA","R","Vitter (LA)",214,"Louisiana",0,0,0,0,0
+"mr vitter",110,"David","Vitter","LA","R","Vitter (LA)",214,"Louisiana",0,0,0,0,0
+"mr vitter",111,"David","Vitter","LA","R","Vitter (LA)",214,"Louisiana",0,1,0,0,0
+"mr vitter",112,"David","Vitter","LA","R","Vitter (LA)",214,"Louisiana",0,0,0,0,0
+"mr vitter",113,"David","Vitter","LA","R","Vitter (LA)",214,"Louisiana",0,0,0,0,0
+"mr voinovich",106,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",0,0,0,0,0
+"mr voinovich",107,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",0,0,0,0,0
+"mr voinovich",108,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",0,1,0,0,0
+"mr voinovich",109,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",0,0,0,0,0
+"mr voinovich",110,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",0,0,0,0,0
+"mr voinovich",111,"George","Voinovich","OH","R","Voinovich (OH)",215,"Ohio",1,0,0,0,0
+"mr walsh",113,"John","Walsh","MT","D","Walsh (MT)",216,"Montana",0,0,0,0,0
+"mr warner",104,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,1,0,0,0
+"mr warner",105,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,0,0,0,0
+"mr warner",106,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,0,0,0,0
+"mr warner",107,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,1,0,0,0
+"mr warner",108,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,0,0,0,0
+"mr warner",109,"John","Warner","VA","R","Warner (VA)",217,"Virginia",0,0,0,0,0
+"mr warner",110,"John","Warner","VA","R","Warner (VA)",217,"Virginia",1,0,0,0,0
+"mr warner",111,"Mark","Warner","VA","D","Warner (VA)",218,"Virginia",0,0,0,0,0
+"mr warner",112,"Mark","Warner","VA","D","Warner (VA)",218,"Virginia",0,0,0,0,0
+"mr warner",113,"Mark","Warner","VA","D","Warner (VA)",218,"Virginia",0,1,0,0,0
+"ms warren",113,"Elizabeth","Warren","MA","D","Warren (MA)",219,"Massachusetts",0,0,0,0,1
+"mr webb",110,"Jim","Webb","VA","D","Webb (VA)",220,"Virginia",0,0,0,0,0
+"mr webb",111,"Jim","Webb","VA","D","Webb (VA)",220,"Virginia",0,0,0,0,0
+"mr webb",112,"Jim","Webb","VA","D","Webb (VA)",220,"Virginia",1,0,0,0,0
+"mr wellstone",104,"Paul","Wellstone","MN","D","Wellstone (MN)",221,"Minnesota",0,1,0,0,0
+"mr wellstone",105,"Paul","Wellstone","MN","D","Wellstone (MN)",221,"Minnesota",0,0,0,0,0
+"mr wellstone",106,"Paul","Wellstone","MN","D","Wellstone (MN)",221,"Minnesota",0,0,0,0,0
+"mr wellstone",107,"Paul","Wellstone","MN","D","Wellstone (MN)",221,"Minnesota",0,1,0,0,0
+"mr whitehouse",110,"Sheldon","Whitehouse","RI","D","Whitehouse (RI)",222,"Rhode Island",0,0,0,0,0
+"mr whitehouse",111,"Sheldon","Whitehouse","RI","D","Whitehouse (RI)",222,"Rhode Island",0,0,0,0,0
+"mr whitehouse",112,"Sheldon","Whitehouse","RI","D","Whitehouse (RI)",222,"Rhode Island",0,1,0,0,0
+"mr whitehouse",113,"Sheldon","Whitehouse","RI","D","Whitehouse (RI)",222,"Rhode Island",0,0,0,0,0
+"mr wicker",110,"Roger F.","Wicker","MS","R","Wicker (MS)",223,"Mississippi",0,0,1,1,0
+"mr wicker",111,"Roger F.","Wicker","MS","R","Wicker (MS)",223,"Mississippi",0,0,0,0,0
+"mr wicker",112,"Roger F.","Wicker","MS","R","Wicker (MS)",223,"Mississippi",0,1,0,0,0
+"mr wicker",113,"Roger F.","Wicker","MS","R","Wicker (MS)",223,"Mississippi",0,0,0,0,0
+"mr wyden",104,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",105,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,1,0,0,0
+"mr wyden",106,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",107,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",108,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,1,0,0,0
+"mr wyden",109,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",110,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",111,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,1,0,0,0
+"mr wyden",112,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0
+"mr wyden",113,"Ron","Wyden","OR","D","Wyden (OR)",224,"Oregon",0,0,0,0,0

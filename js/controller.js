@@ -1,53 +1,47 @@
 "use strict";
 
 var global = function(){};
-function main(){
-	var mainWidth = 900;
-	var mainHeight = 900;
-	var barSvgHeight = 500;
-	var topBarHeight = 80;
-	var xPadding = 120;
-	var yPadding = 120;
-	var yBarPadding = 75;
-	var scatterWidth = mainWidth - xPadding; 
-	var scatterHeight = mainHeight - yPadding; 
+function controller(){
+	var _mainWidth = 900;
+	var _mainHeight = 900;
+	var _barSvgHeight = 700;
+	var _topBarHeight = 80;
+	var _xPadding = 120;
+	var _yPadding = 120;
+	var _yBarPadding = 75;
+	var _senatorData;
+	var _minifiedBarSvgHeight = 120;
 
-	var barWidth= mainWidth - xPadding; 
-	var barHeight = barSvgHeight - yPadding; 
+	var barWidth= _mainWidth - _xPadding; 
+	var barHeight = _barSvgHeight - _yPadding; 
 	var BAR_GRAPH = null;
-	var SCATTER_PLOT = null;
 	var yearButtons = new Array(10);
 	
 	//dynamically resizing the side bar.
-	d3.select("#sideBar1").style("height", (mainHeight/2) + "px");
+	d3.select("#sideBar1").style("height", (_mainHeight/2) + "px");
 	
-	//This is our primary SVG that will hold the graph
-	var scatterSvg = d3.select("#scatterCanvas").append("svg")
-		.style("height", mainHeight)
-		.style("width", "100%")
-		.style("height", "100%")
-		.attr("id", "scatterPlot")
-		.attr("viewBox", "0 0 " + mainWidth + " " + mainHeight)
-		.attr("preserveAspectRatio", "xMidYMid");
-
 	var barSvg = d3.select("#barCanvas").append("svg")
-		.style("height", barSvgHeight)
+		.style("height", _barSvgHeight)
 		.style("width", "100%")
 		.style("height", "100%")
-		.attr("id", "barCanvas")
-		.attr("viewBox", "0 0 " + mainWidth + " " + barSvgHeight)
+		.attr("id", "barSvg")
+		.attr("viewBox", "0 0 " + _mainWidth + " " + _barSvgHeight)
 		.attr("preserveAspectRatio", "xMidYMid");
 
 	//top bar contains buttons for loading different years of data and will contain later features
 	var topBar = d3.select("#topButtonsBar").append("svg")
-		.style("height", topBarHeight)
+		.style("height", _topBarHeight)
 		.style("width", "100%")
 		.attr("id", "topBar")
-		.attr("viewBox", "0 0 " + mainWidth + " " + topBarHeight)
+		.attr("viewBox", "0 0 " + _mainWidth + " " + _topBarHeight)
 		.attr("preserveAspectRatio", "xMidYMid");
 
+	var debatesSvg = d3.select("#debatesCanvas").append("svg").attr("id", "debatesSvg");
+
+	//--------------------------------------------------------------------------------------------------------------------
 	//Creates the year filter buttons for the top bar
 	//Configure the senator data into a format that can be properly bounded to and represented by the graph
+	//--------------------------------------------------------------------------------------------------------------------
 	function configureData(data){
 		var graphData = new Array(data.length);
 		var voteMin, voteMax, speechMin, speechMax;
@@ -76,8 +70,6 @@ function main(){
 					voteMin = data[i].votePos;	
 			}
 		}
-		console.log(speechMax);
-		console.log(speechMin);
 		speechMagnitude = speechMax - speechMin;
 		if(isRandom)
 			voteMagnitude = 1;
@@ -120,7 +112,9 @@ function main(){
 		return graphData;
 	}
 
+	//--------------------------------------------------------------------------------------------------------------------
 	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN function
+	//--------------------------------------------------------------------------------------------------------------------
 	function readDataCSV(year){
 		var fileName = !year ? "data/Wordshoal_and_RC_positions_normalized.csv" : "data/EstimatesSenate1"+year+".csv";
 		d3.csv(fileName, function(d){
@@ -138,37 +132,62 @@ function main(){
 			//	thetaCiub: +d.thetaciub	
 				};
 			},
-			function(error, senateData){
+			function(error, senatorData){
 
 				if(error) console.error(error);
+				_senatorData = configureData(senatorData);
 
-				var graphData = configureData(senateData);
-				//generate the graph if this is the first call.  Else, just redraw the points
-				if(!SCATTER_PLOT){
-					SCATTER_PLOT = new scatterPlot(xPadding * 2 / 3, mainHeight-(yPadding / 2) - 30, scatterWidth, scatterHeight, scatterSvg);
-					SCATTER_PLOT.setTitleY("Speech Position").setTitleX("Vote Position");
-					global.SCATTER_PLOT = SCATTER_PLOT;
-				}
-				//remove all of the previous svgs when loading a new year
-				else
-					SCATTER_PLOT.destroyAll();	
+				initMainGraph();
+				//minifyMainGraph();
 
-				if(!BAR_GRAPH){
-					BAR_GRAPH = new barGraph(xPadding * 2 / 3, barSvgHeight-(yPadding / 2) - 30, barWidth, barHeight, barSvg);
-					BAR_GRAPH.setTitle("Difference between Speech and Vote Positions").setTitleY("Delta").setTitleX("Senator");
-					global.BAR_GRAPH = BAR_GRAPH;
-				}
-				//remove all of the previous svgs when loading a new year
-				else
-					BAR_GRAPH.destroyAll();	
-				SCATTER_PLOT.setData(graphData);	
-				BAR_GRAPH.setData(graphData);	
-				SCATTER_PLOT.coupleMouseEvents("points",SCATTER_PLOT.x, SCATTER_PLOT.y);
-				BAR_GRAPH.coupleMouseEvents("bars", SCATTER_PLOT.x, SCATTER_PLOT.y);
 			});
 	}
 
+	//--------------------------------------------------------------------------------------------------------------------
+	//Draws the general level bar graph
+	//--------------------------------------------------------------------------------------------------------------------
+	function initMainGraph(){
+			var graphData = _senatorData; 
+
+			if(!BAR_GRAPH){
+				BAR_GRAPH = new barGraph(_xPadding * 2 / 3, _barSvgHeight-(_yPadding / 2) - 30, barWidth, barHeight, barSvg);
+				BAR_GRAPH.setTitle("Difference between Speech and Vote Positions").setTitleY("Delta").setTitleX("Senator");
+				global.BAR_GRAPH = BAR_GRAPH;
+			}
+			//remove all of the previous svgs when loading a new year
+			else
+				BAR_GRAPH.destroyAll();	
+
+			BAR_GRAPH.setData(graphData);	
+			BAR_GRAPH.coupleMouseEvents("bars", 0, 0, minifyMainGraph);
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------
+	//Minifies the main graph when moving into Senator view
+	//--------------------------------------------------------------------------------------------------------------------
+	function minifyMainGraph(){
+			var graphData = _senatorData; 
+
+			BAR_GRAPH.minify();
+
+			d3.select("#barSvg")
+				.style("height", _minifiedBarSvgHeight)
+				.attr("viewBox", "0 0 " + _mainWidth + " " + _minifiedBarSvgHeight)
+
+			d3.select("#debatesSvg")
+				.style("height", _mainHeight - _minifiedBarSvgHeight)
+				.style("width", "100%")
+				.attr("id", "topBar")
+				.attr("viewBox", "0 0 " + _mainWidth + " " + (_mainHeight - _minifiedBarSvgHeight))
+				.attr("preserveAspectRatio", "xMidYMid");
+
+			BAR_GRAPH.coupleMouseEvents("bars", 0, 0, minifyMainGraph);
+
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------
 	//draws the timeline at the top.
+	//--------------------------------------------------------------------------------------------------------------------
 	function createYearButtons(){
 		var yearButtonData = new Array(10);
 		var i = 0;
@@ -178,30 +197,50 @@ function main(){
 		timeline(yearButtonData, 0, 60, topBar, readYearCSV());
 	}
 	
+	//--------------------------------------------------------------------------------------------------------------------
 	//closure that returns an individual function for each button on the timeline, so that year's click feature loads the proper data
+	//--------------------------------------------------------------------------------------------------------------------
 	function readYearCSV(){
 		var readYearCSVClosure = function(d, i){
 			readDataCSV(d.val);
 		}
 		return readYearCSVClosure;
 	}
-
+	//--------------------------------------------------------------------------------------------------------------------
 	//filters results on selecting different states
+	//--------------------------------------------------------------------------------------------------------------------
+	function setViewLevel(viewLevelStr){
+
+		if(viewLevelStr == "general"){
+			initMainGraph()
+		}
+		else if(viewLevelStr == "senator"){
+			//minify the bar graph
+
+
+		}
+		else{
+			console.error("Improper view level set: " + viewLevelStr);
+		}
+
+	}
+	//--------------------------------------------------------------------------------------------------------------------
+	//filters results on selecting different states
+	//--------------------------------------------------------------------------------------------------------------------
 	function changeState(){
 		global.activeStateFilter = "";
-		SCATTER_PLOT.updateFilter();
 		BAR_GRAPH.updateFilter();
 	}
+
 	global.activeStateFilter = "None";
 	createStateList("stateDropDown");
 	createYearButtons();
 	readDataCSV();
 }
 
-main();
+controller();
 
 function changeState(value){
 	global.activeStateFilter = value;
-	global.SCATTER_PLOT.updateFilter(value);
 	global.BAR_GRAPH.updateFilter(value);
 }

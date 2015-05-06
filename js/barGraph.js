@@ -2,6 +2,8 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function barGraph(x, y, width, height, svg){
 	barGraph.superClass.constructor.call(this, x, y, width, height, svg);
+	this.minified = false;
+	this.minifiedHeight = 120;
 	this.baseCSSClass = "barBar";
 	this.datumSvgs = "bars";
 	this.yMax = 3.0;
@@ -50,9 +52,26 @@ barGraph.prototype.setYAttr = function (){
 		//	console.log(this.mapXValToGraph(this.data[i].x));
 		count++;
 	}
-	this.draw()
+	if(this.minified)
+		this.drawMinified();
+	else
+		this.draw();
 		//setTimeout(this.draw(), 5000);
 
+}
+
+barGraph.prototype.minify = function(){
+	//squash in the y direction
+	this.minified = true;
+	this.yLen = 3;
+	this.height = this.minifiedHeight;
+	this.y = this.minifiedHeight;
+
+	//destroy previous svg elements
+	this.destroyAll();
+
+	//redraw without labels
+	this.setYAttr();		
 }
 	
 barGraph.prototype.draw = function(){	
@@ -66,6 +85,14 @@ barGraph.prototype.draw = function(){
 	//Label the x axis for senators, but no need to draw the actual axis, as it isn't a measurement
 	this.drawXAxisLabel();
 	this.drawTitle();
+}
+
+barGraph.prototype.drawMinified = function(){
+	this.mouseOver = elementMouseOverClosure(this.x, this.y);
+	this.mouseOut = elementMouseOutClosure();
+
+	this.drawBars();
+	this.drawYAxis();
 }
 
 //------------------------------------------------------------------------------------------------------
