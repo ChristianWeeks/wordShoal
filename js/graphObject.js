@@ -227,11 +227,11 @@ graphObject.prototype.drawYAxis = function(){
 
 
 //Couples the mousevents for the scatterplot and the bargraph, so they can effect eachother
-graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, minifyFunc){
+graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, setViewLevelFunc){
 
 	this.mouseOver = elementMouseOverClosure(x, y);
 	this.mouseOut = elementMouseOutClosure();
-	this.mouseClick = elementMouseClickClosure(minifyFunc);
+	this.mouseClick = elementMouseClickClosure(setViewLevelFunc);
 
 	this.svgElements[elementStr]
 		.on("mouseover", this.mouseOver)
@@ -270,7 +270,7 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 
 			//fill in the information bar at the side
 			var sideBarTop = d3.select("#sideBar1").attr("class", d.cssClass +"Box sideBox");
-			document.getElementById("sideBar1").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office</h3><h3>" + d.party + "</h3>" + "<h3>IMAGE GOES HERE</h3>";
+			document.getElementById("sideBar1").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office</h3><h3>" + d.party + "</h3><br/>Total Debates:" + d.data.debateIDs.length + "</h3>";
 			document.getElementById("category").innerHTML = "<h3>Vote:<br/>Speech:</h3>"; 
 			document.getElementById("value").innerHTML = "<h3>" + d.xVal.toFixed(2) + "<br/>" + d.yVal.toFixed(2) + "</h3>";
 			document.getElementById("percent").innerHTML = "<h3>" + Math.floor(100*d.data.votePercent) + "<br/>" + Math.floor(100*d.data.speechPercent) + "</h3>";
@@ -293,17 +293,16 @@ function elementMouseOutClosure(){
 }
 
 //clicks will change the granularity to the senator level, add a small box to the side bar with senator information, and scrunch the top
-function elementMouseClickClosure(minifyFunc){
+function elementMouseClickClosure(setViewLevel){
 
 	var elementMouseClick = function(d, i){
-		minifyFunc();
-		global.currentSenator = d.name;
-		document.getElementById("senatorViewBox").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office<br/>" + d.party + "</h3>";
+		global.currentSenator = d.data;
+		setViewLevel("senator");	
+		document.getElementById("senatorViewBox").innerHTML = "<h2>" + d.title + "</h2><h3>Years in Office<br/>" + d.party + "<br/>Total Debates:" + d.data.debateIDs.length + "</h3>";
 		document.getElementById("sideBar1").innerHTML = "";
 		document.getElementById("category").innerHTML = "";
 		document.getElementById("value").innerHTML = "";
 		document.getElementById("percent").innerHTML = "";
-		setViewLevel("garbage");
 
 
 	}
