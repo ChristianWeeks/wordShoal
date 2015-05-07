@@ -335,10 +335,10 @@ function controller(){
 		for(i = 0; i < debateNumCap; i++){
 			var currDebate = _debateData[senator.debateIDs[i]];
 			htmlStr += "<tr class='row'>" +
-							"<td class='col-md-1 ID'>" + i + "</td>" + 
-							"<td class='col-md-3 TITLE'>" + currDebate.title + "</td>" +
-							"<td class='col-md-2 DATE'>" + currDebate.date + "</td>" + 
-							"<td class='col-md-6 SCORE' id='debateCanvas" + i + "'></td>" +
+							"<td class='col-md-1 td ID'>" + i + "</td>" + 
+							"<td class='col-md-3 td TITLE'>" + currDebate.title + "</td>" +
+							"<td class='col-md-2 td DATE'>" + currDebate.date + "</td>" + 
+							"<td class='col-md-6 td SCORE' id='debateCanvas" + i + "'></td>" +
 						"</tr>";	
 		}
 		htmlStr += "</tbody></table>";
