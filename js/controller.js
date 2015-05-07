@@ -323,13 +323,11 @@ function controller(){
 		var htmlStr = "";
 		var debateSvgHeight = 50;
 		var tickLength = 8;
-		htmlStr += "<button class='sort' data-sort='ID'>Sort By ID</button>" + 
-			"<button class='sort' data-sort='TITLE'>Sort By Title</button>" + 
-			"<button class='sort' data-sort='DATE'>Sort By Date</button>" + 
-			"<div class='row'><div class='col-md-1'><h3>ID</h3></div>" +
-			"<div class='col-md-3'><h3>Title</h3></div>" +
-			"<div class='col-md-2'><h3>Date</h3></div>" + 
-			"<div class='col-md-6'><h3>Idealized Scores</h3></div>" +
+		htmlStr +=  
+			"<div class='row'><div class='col-md-1'><button class='sort' data-sort='ID'><h3>ID</h3></button></div>" +
+			"<div class='col-md-3'><button class='sort' data-sort='TITLE'><h3>Title</h3></button></div>" +
+			"<div class='col-md-2'><button class='sort' data-sort='DATE'><h3>Date</h3></button></div>" + 
+			"<div class='col-md-6'><h3>Idealized Scores</h3></div></div>" +
 			"<table><tbody class='list'>";
 		//create a table displaying the debates this senator has participated in
 		for(i = 0; i < debateNumCap; i++){
