@@ -323,16 +323,25 @@ function controller(){
 		var htmlStr = "";
 		var debateSvgHeight = 50;
 		var tickLength = 8;
+		htmlStr += "<button class='sort' data-sort='ID'>Sort By ID</button>" + 
+			"<button class='sort' data-sort='TITLE'>Sort By Title</button>" + 
+			"<button class='sort' data-sort='DATE'>Sort By Date</button>" + 
+			"<div class='row'><div class='col-md-1'><h3>ID</h3></div>" +
+			"<div class='col-md-3'><h3>Title</h3></div>" +
+			"<div class='col-md-2'><h3>Date</h3></div>" + 
+			"<div class='col-md-6'><h3>Idealized Scores</h3></div>" +
+			"<table><tbody class='list'>";
 		//create a table displaying the debates this senator has participated in
 		for(i = 0; i < debateNumCap; i++){
 			var currDebate = _debateData[senator.debateIDs[i]];
-			htmlStr += "<div class='row debateTableCell'>" +
-							"<div class='col-md-1'>" + i + "</div>" + 
-							"<div class='col-md-3'>" + currDebate.title + "</div>" +
-							"<div class='col-md-2'>" + currDebate.date + "</div>" + 
-							"<div class='col-md-6' id='debateCanvas" + i + "'></div>" +
-						"</div>";	
+			htmlStr += "<tr class='row'>" +
+							"<td class='col-md-1 ID'>" + i + "</td>" + 
+							"<td class='col-md-3 TITLE'>" + currDebate.title + "</td>" +
+							"<td class='col-md-2 DATE'>" + currDebate.date + "</td>" + 
+							"<td class='col-md-6 SCORE' id='debateCanvas" + i + "'></td>" +
+						"</tr>";	
 		}
+		htmlStr += "</tbody></table>";
 		document.getElementById("debatesCanvas").innerHTML = htmlStr; 
 		for(i = 0; i < debateNumCap; i++){
 			//create the svg
@@ -369,6 +378,13 @@ function controller(){
 				.attr("r", 10)
 				.attr("cx", String(randomPos) + "%")
 				.attr("cy", debateSvgHeight/2);
+
+
+			//instantiate the list for sorting
+			var options = {
+				valueNames: [ 'ID', 'TITLE', 'DATE', 'SCORE']
+			}
+			var userList = new List('debatesCanvas', options);
 		}
 	}
 
