@@ -2,7 +2,8 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function scatterPlot(x, y, width, height, svg){
 	scatterPlot.superClass.constructor.call(this, x, y, width, height, svg);
-	console.log(this.x);
+	this.mainSvg = svg;
+	this.miniSvg = null;
 	this.baseCSSClass = "scatterPoint";
 	this.fadeCSSClass = "fadeOut";
 	this.datumSvgs = "points";
@@ -10,6 +11,9 @@ function scatterPlot(x, y, width, height, svg){
 	this.xMin = -3;
 	this.yMax = 3;
 	this.yMin = -3;
+	this.minified = false;
+	this.minifiedSize = 200;
+	this.pointRadius = 8;
 	this.svgPoints = [];
 }
 extend(scatterPlot, graphObject);
@@ -48,7 +52,43 @@ scatterPlot.prototype.setYAttr = function (){
 			"svgLabel": null,
 		};
 	}
-	this.draw()
+	if(this.minified)
+		this.drawMinified();
+	else
+		this.draw()
+}
+
+scatterPlot.prototype.minify = function(minifiedSize){
+	this.minified = true;
+	this.xLen = 3;
+	this.yLen = 3;
+	this.minifiedSize = minifiedSize
+
+
+	this.miniSvg = d3.select("#scatterMiniSvg");
+	this.svgPointer = this.miniSvg;
+	this.pointRadius = 3;
+	this.height = this.minifiedSize;
+	this.width = this.minifiedSize;
+	this.y = this.minifiedSize - 22;
+	this.x = 40;
+	this.destroyAll();
+	this.mapXValToGraph(this.xMin)
+    
+	console.log(this.yMin);
+	console.log(this.mapYValToGraph(this.yMin));
+	this.setYAttr();       
+                           
+}
+
+scatterPlot.prototype.drawMinified = function(){
+
+	this.drawCenterLine();
+	this.drawPoints();
+
+	this.drawYAxis();
+	this.drawXAxis();
+
 }
 	
 scatterPlot.prototype.draw = function(){
@@ -60,7 +100,6 @@ scatterPlot.prototype.draw = function(){
 
 	this.drawYAxisLabel();
 	this.drawXAxisLabel();
-	this.drawAxesLegends();
 	this.drawYAxis();
 	this.drawXAxis();
 	this.drawTitle();
@@ -73,6 +112,7 @@ scatterPlot.prototype.draw = function(){
 
 //Creates the points 
 scatterPlot.prototype.drawPoints= function(){
+	var rad = this.pointRadius
 	 this.svgElements["points"] = this.svgPointer.selectAll("Points")
 		.data(this.currentlyViewedData)
 		.enter()
@@ -89,7 +129,7 @@ scatterPlot.prototype.drawPoints= function(){
 			   	d.svgPoint = this;
 				return d.x;},
 			cy: function(d) {return d.y;},
-			r: 8,//function(d) {return d.r;},
+			r: rad,//function(d) {return d.r;},
 		});
 //		.on("mouseover", this.mouseOver)
 //		.on("mouseout", this.mouseOut);

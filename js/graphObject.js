@@ -20,6 +20,7 @@ var graphObject = function(x, y, width, newHeight, svg){
 	this.topPadding = 30 
 	this.currentlyViewedData = null;
 
+	this.minified = false;
 	this.yAttr = false;
 
 	//pointer to all data that is currently being graphed
@@ -262,11 +263,40 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
 			//draw lines extending to x and y axes
 			var barKey = "#" + d.name + "Bar";
+			var pointKey = "#" + d.name + "Point";
+			var barKey = "#" + d.name + "Bar";
+			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
+			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
+			d.svgXTrace = d3.select("#scatterPlot").append("line").attr({
+				x1: traceX,
+				y1: traceY,
+				x2: traceX,
+				y2: graphY,
+				class: d.cssClass
+			})
+			.style("opacity", 0)
+			.style("stroke-width", "0px");
+			d.svgYTrace = d3.select("#scatterPlot").append("line").attr({
+				x1: traceX,
+				y1: traceY,
+				x2: graphX,
+				y2: traceY,
+				class: d.cssClass,
+			})
+			.style("opacity", 0)
+			.style("stroke-width", "0px");
+
+			
+			d3.select(pointKey).moveToFront();
+			d3.select(pointKey).transition()
+				.attr("r", 15)
+				.attr("class", function(d){return d.cssClass + " mOver"});
 			//highlight the nodes
 			d3.select(barKey).moveToFront();
 			d3.select(barKey).transition()
 				.attr("class", function(d){return d.cssClass + " mOverBar"});
-		
+			d.svgXTrace.transition().style("opacity",1).style("stroke-width", "3px");
+			d.svgYTrace.transition().style("opacity",1).style("stroke-width", "3px");
 
 			//fill in the information bar at the side
 			var sideBarTop = d3.select("#sideBar1").attr("class", d.cssClass +"Box sideBox");
@@ -284,9 +314,23 @@ function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs){
 function elementMouseOutClosure(){
 	var elementMouseOut = function(d, i){
 		if(d.data.datum.state == global.activeStateFilter || global.activeStateFilter == "None"){
+			var rad;
+			if(global.minified)
+				rad = 3;
+			else
+				rad = 8;
+
+			var pointKey = "#" + d.name + "Point";
 			var barKey = "#" + d.name + "Bar";
+			d3.select(pointKey).transition()
+				.attr("r", rad)
+				.attr("class", function(d){return d.cssClass});
 			d3.select(barKey).transition()
 				.attr("class", function(d){return d.cssClass});
+			d.svgXTrace.transition().style("opacity",0);
+			d.svgYTrace.transition().style("opacity",0);
+			d.svgXTrace.remove();
+			d.svgYTrace.remove();
 		}	
 	}
 	return elementMouseOut;

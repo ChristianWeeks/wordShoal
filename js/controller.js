@@ -19,6 +19,8 @@ function controller(){
 	var _debateData;
 
 	var _BAR_GRAPH = null;
+	var _SCATTER_PLOT = null;
+	global.minified = false;
 	
 	//dynamically resizing the side bar.
 	d3.select("#sideBar1").style("height", (_mainHeight/2) + "px");
@@ -30,6 +32,16 @@ function controller(){
 		.attr("id", "barSvg")
 		.attr("viewBox", "0 0 " + _mainWidth + " " + _barSvgHeight)
 		.attr("preserveAspectRatio", "xMidYMid");
+	var _scatterSvg = d3.select("#scatterCanvas").append("svg")
+		.style("height", _mainHeight)
+		.style("width", "100%")
+		.style("height", "100%")
+		.attr("id", "scatterPlot")
+		.attr("viewBox", "0 0 " + _mainWidth + " " + _mainHeight)
+		.attr("preserveAspectRatio", "xMidYMid");
+
+	var _scatterMiniSvg = d3.select("#scatterMiniCanvas").append("svg")
+		.attr("id", "scatterMiniSvg");
 
 	//top bar contains buttons for loading different years of data and will contain later features
 	var _topBar = d3.select("#topButtonsBar").append("svg")
@@ -204,6 +216,14 @@ function controller(){
 	//--------------------------------------------------------------------------------------------------------------------
 	function initMainGraph(){
 			var graphData = _senatorData; 
+			if(!_SCATTER_PLOT){
+					_SCATTER_PLOT = new scatterPlot(_xPadding * 2 / 3, _mainHeight-(_yPadding / 2) - 30, 700, 700, _scatterSvg);
+					_SCATTER_PLOT.setTitleY("Speech Position").setTitleX("Vote Position");
+					global._SCATTER_PLOT = _SCATTER_PLOT;
+				}
+				//remove all of the previous svgs when loading a new year
+			else
+				_SCATTER_PLOT.destroyAll();	
 
 			if(!_BAR_GRAPH){
 				_BAR_GRAPH = new barGraph(_xPadding * 2 / 3, _barSvgHeight-(_yPadding / 2) - 30, _barWidth, _barHeight, _barSvg);
@@ -215,7 +235,9 @@ function controller(){
 				_BAR_GRAPH.destroyAll();	
 
 			_BAR_GRAPH.setData(graphData);	
+			_SCATTER_PLOT.setData(graphData);
 			_BAR_GRAPH.coupleMouseEvents("bars", 0, 0, setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents("points", 0, 0, setViewLevel);
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------
@@ -223,8 +245,18 @@ function controller(){
 	//--------------------------------------------------------------------------------------------------------------------
 	function minifyMainGraph(){
 			var graphData = _senatorData; 
-
+			var minifiedScatterSize = 250;
+			global.minified = true;
 			_BAR_GRAPH.minify();
+			var miniScatter = d3.select("#scatterMiniSvg")
+				.style("height", minifiedScatterSize)
+				.style("width", minifiedScatterSize)
+				.attr("viewBox", "0 0 " + (minifiedScatterSize + 50) + " " + (minifiedScatterSize+ 45))
+				.attr("preserveAspectRatio", "xMidYMid");
+
+			_scatterSvg.style("height", 0)
+
+			_SCATTER_PLOT.minify(minifiedScatterSize);
 
 			d3.select("#barSvg")
 				.style("height", _minifiedBarSvgHeight)
@@ -238,6 +270,7 @@ function controller(){
 				.attr("preserveAspectRatio", "xMidYMid");
 
 			_BAR_GRAPH.coupleMouseEvents("bars", 0, 0, setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents("points", 0, 0, setViewLevel);
 
 	}
 

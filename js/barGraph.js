@@ -2,7 +2,6 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function barGraph(x, y, width, height, svg){
 	barGraph.superClass.constructor.call(this, x, y, width, height, svg);
-	this.minified = false;
 	this.minifiedHeight = 120;
 	this.baseCSSClass = "barBar";
 	this.datumSvgs = "bars";
