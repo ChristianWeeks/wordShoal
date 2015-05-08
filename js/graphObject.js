@@ -1,13 +1,17 @@
 "use strict";
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 
-var graphObject = function(x, y, width, newHeight, svg){
+var graphObject = function(){
 	//standard graph values
-	this.x = x;
-	this.y = y;
-	this.width = width;
-	this.height = newHeight;
-	this.svgPointer = svg;
+	this.x = 0;
+	this.y = 0;
+	this.canvasWidth = 900;
+	this.canvasHeight= 900;
+	this.xPadding = 60;
+	this.yPadding = 50;
+	this.width = 0;
+	this.height = 0;
+	this.canvasPtr = null;
 	this.x_step;
 	this.y_step;
 	//yLen is the number of steps on the y axis, including 0
@@ -19,6 +23,7 @@ var graphObject = function(x, y, width, newHeight, svg){
 	this.xMin = 0;
 	this.topPadding = 30 
 	this.currentlyViewedData = null;
+//	this.canvasPtr = null;
 
 	this.minified = false;
 	this.yAttr = false;
@@ -28,6 +33,26 @@ var graphObject = function(x, y, width, newHeight, svg){
 
 	//initializing all svg containers
 	this.svgElements = {};
+}
+
+graphObject.prototype.initCanvas = function(divID, canvasID){
+
+	if(this.canvasPtr == null){
+		this.canvasPtr = d3.select("#" + divID).append("svg");
+	}
+	this.x = this.xPadding;
+	this.y = this.canvasHeight - this.yPadding;
+
+	this.width = this.canvasWidth - this.xPadding;
+	this.height = this.canvasHeight - 2*this.yPadding;
+
+	this.canvasID = canvasID;
+	this.canvasPtr.style("height", this.canvasHeight)
+		.style("width", "100%")
+		.attr("id", "100%")
+		.attr("viewBox", "0 0 " + this.canvasWidth + " " + this.canvasHeight)
+		.attr("preserveAspectRatio", "xMidYMid");
+
 }
 
 //maps from canvas space to graph space
@@ -101,7 +126,7 @@ graphObject.prototype.destroyElement = function(svgElement){
 
 //Creates the labels for the axes and the main title
 graphObject.prototype.drawTitle = function(){
-	this.svgElements["title"] = this.svgPointer.append("text")
+	this.svgElements["title"] = this.canvasPtr.append("text")
 		.attr("class", "axisTitle")
 		.style("font-size", 40)
 		.attr("text-anchor", "middle")
@@ -114,7 +139,7 @@ graphObject.prototype.drawTitle = function(){
 
 //label for the y axis
 graphObject.prototype.drawYAxisLabel = function(){
-	this.svgElements["yAxisLabel"] = this.svgPointer.append("text")
+	this.svgElements["yAxisLabel"] = this.canvasPtr.append("text")
 		.attr("class", "axisTitle")
 		.attr("text-anchor", "middle")
 		.attr({
@@ -127,7 +152,7 @@ graphObject.prototype.drawYAxisLabel = function(){
 
 //label for the x axis
 graphObject.prototype.drawXAxisLabel = function(){
-	this.svgElements["xAxisLabel"] = this.svgPointer.append("text")
+	this.svgElements["xAxisLabel"] = this.canvasPtr.append("text")
 		.attr("class", "axisTitle")
 		.attr("text-anchor", "middle")
 		.attr("alignment-baseline", "middle")
@@ -140,7 +165,7 @@ graphObject.prototype.drawXAxisLabel = function(){
 
 //creates the black lines that make the x and y axes
 graphObject.prototype.drawXAxis = function() {
-	 this.svgElements["x_axis"] = this.svgPointer.append("line")
+	 this.svgElements["x_axis"] = this.canvasPtr.append("line")
 		.attr({
 			x1: this.x,
 			y1: this.y,
@@ -150,7 +175,7 @@ graphObject.prototype.drawXAxis = function() {
 		});
 	//Creates the tick marks for the x-axis based on the total number of x values.  Does not create vertical grid lines.
 	//Drawing the tick marks and labels for the x axis
-	 this.svgElements["xTickMarks"] = this.svgPointer.selectAll("xTickMarksBar")
+	 this.svgElements["xTickMarks"] = this.canvasPtr.selectAll("xTickMarksBar")
 		.data(this.xAxisData)
 		.enter()
 		.append("line")
@@ -162,7 +187,7 @@ graphObject.prototype.drawXAxis = function() {
 			stroke: '#000'
 		});
 
-	 this.svgElements["xTickLabels"] = this.svgPointer.selectAll("xDataLabel")
+	 this.svgElements["xTickLabels"] = this.canvasPtr.selectAll("xDataLabel")
 		.data(this.xAxisData)
 		.enter()
 		.append("text")
@@ -182,7 +207,7 @@ graphObject.prototype.drawXAxis = function() {
 
 graphObject.prototype.drawYAxis = function(){
 	//drawing the tick marks, labels, and grid lines for the Y axis	
-	 this.svgElements["yTickMarks"] = this.svgPointer.selectAll("yTickMarks")
+	 this.svgElements["yTickMarks"] = this.canvasPtr.selectAll("yTickMarks")
 		.data(this.yAxisData)
 		.enter()
 		.append("line")
@@ -193,7 +218,7 @@ graphObject.prototype.drawYAxis = function(){
 			x2: this.x - 10,
 			stroke: '#000'
 		})
-	 this.svgElements["yGridLines"] = this.svgPointer.selectAll("yGridLines")
+	 this.svgElements["yGridLines"] = this.canvasPtr.selectAll("yGridLines")
 		.data(this.yAxisData)
 		.enter()
 		.append("line")
@@ -204,7 +229,7 @@ graphObject.prototype.drawYAxis = function(){
 			x2: this.x + this.width,
 			stroke: '#DDD'
 		});
-	 this.svgElements["yTickLabels"] = this.svgPointer.selectAll("yTickLabels")
+	 this.svgElements["yTickLabels"] = this.canvasPtr.selectAll("yTickLabels")
 		.data(this.yAxisData)
 		.enter()
 		.append("text")
@@ -216,7 +241,7 @@ graphObject.prototype.drawYAxis = function(){
 			y: function(d){ return d.loc}
 		})
 		.text(function(d){ return d.value;});
-	 this.svgElements["y_axis"] = this.svgPointer.append("line")
+	 this.svgElements["y_axis"] = this.canvasPtr.append("line")
 		.attr({
 			x1: this.x,
 			y1: this.y,

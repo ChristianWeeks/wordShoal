@@ -99,7 +99,7 @@ barGraph.prototype.drawMinified = function(){
 //------------------------------------------------------------------------------------------------------
 //Creates the the bars in the bar graph view
 barGraph.prototype.drawBars = function(){
-	 this.svgElements["bars"] = this.svgPointer.selectAll("Bars")
+	 this.svgElements["bars"] = this.canvasPtr.selectAll("Bars")
 		.data(this.currentlyViewedData)
 		.enter()
 		.append("rect")	

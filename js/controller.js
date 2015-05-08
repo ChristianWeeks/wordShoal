@@ -25,20 +25,6 @@ function controller(){
 	//dynamically resizing the side bar.
 	d3.select("#sideBar1").style("height", (_mainHeight/2) + "px");
 	
-	var _barSvg = d3.select("#barCanvas").append("svg")
-		.style("height", _barSvgHeight)
-		.style("width", "100%")
-		.style("height", "100%")
-		.attr("id", "barSvg")
-		.attr("viewBox", "0 0 " + _mainWidth + " " + _barSvgHeight)
-		.attr("preserveAspectRatio", "xMidYMid");
-	var _scatterSvg = d3.select("#scatterCanvas").append("svg")
-		.style("height", _mainHeight)
-		.style("width", "100%")
-		.style("height", "100%")
-		.attr("id", "scatterPlot")
-		.attr("viewBox", "0 0 " + _mainWidth + " " + _mainHeight)
-		.attr("preserveAspectRatio", "xMidYMid");
 
 	var _scatterMiniSvg = d3.select("#scatterMiniCanvas").append("svg")
 		.attr("id", "scatterMiniSvg");
@@ -216,23 +202,29 @@ function controller(){
 	//--------------------------------------------------------------------------------------------------------------------
 	function initMainGraph(){
 			var graphData = _senatorData; 
-			if(!_SCATTER_PLOT){
-					_SCATTER_PLOT = new scatterPlot(_xPadding * 2 / 3, _mainHeight-(_yPadding / 2) - 30, 700, 700, _scatterSvg);
-					_SCATTER_PLOT.setTitleY("Speech Position").setTitleX("Vote Position");
-					global._SCATTER_PLOT = _SCATTER_PLOT;
-				}
-				//remove all of the previous svgs when loading a new year
-			else
-				_SCATTER_PLOT.destroyAll();	
-
 			if(!_BAR_GRAPH){
-				_BAR_GRAPH = new barGraph(_xPadding * 2 / 3, _barSvgHeight-(_yPadding / 2) - 30, _barWidth, _barHeight, _barSvg);
+				_BAR_GRAPH = new barGraph();
 				_BAR_GRAPH.setTitle("Difference between Speech and Vote Positions").setTitleY("Delta").setTitleX("Senator");
+				_BAR_GRAPH.canvasHeight = 700;
+				_BAR_GRAPH.initCanvas("barCanvas", "barSvg");
 				global._BAR_GRAPH = _BAR_GRAPH;
 			}
 			//remove all of the previous svgs when loading a new year
 			else
 				_BAR_GRAPH.destroyAll();	
+
+			if(!_SCATTER_PLOT){
+				_SCATTER_PLOT = new scatterPlot();
+				_SCATTER_PLOT.setTitleY("Speech Position").setTitleX("Vote Position");
+				_SCATTER_PLOT.canvasWidth = 700;
+				_SCATTER_PLOT.canvasHeight = 700;
+				_SCATTER_PLOT.initCanvas("scatterCanvas", "scatterPlot");
+				global._SCATTER_PLOT = _SCATTER_PLOT;
+			}
+				//remove all of the previous svgs when loading a new year
+			else
+				_SCATTER_PLOT.destroyAll();	
+
 
 			_BAR_GRAPH.setData(graphData);	
 			_SCATTER_PLOT.setData(graphData);

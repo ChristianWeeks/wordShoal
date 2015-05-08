@@ -66,7 +66,7 @@ scatterPlot.prototype.minify = function(minifiedSize){
 
 
 	this.miniSvg = d3.select("#scatterMiniSvg");
-	this.svgPointer = this.miniSvg;
+	this.canvasPtr = this.miniSvg;
 	this.pointRadius = 3;
 	this.height = this.minifiedSize;
 	this.width = this.minifiedSize;
@@ -113,7 +113,7 @@ scatterPlot.prototype.draw = function(){
 //Creates the points 
 scatterPlot.prototype.drawPoints= function(){
 	var rad = this.pointRadius
-	 this.svgElements["points"] = this.svgPointer.selectAll("Points")
+	 this.svgElements["points"] = this.canvasPtr.selectAll("Points")
 		.data(this.currentlyViewedData)
 		.enter()
 		.append("circle")	
@@ -166,7 +166,7 @@ scatterPlot.prototype.drawAxesLegends = function() {
 		align: "horizontal"},
 	];
 
-	this.svgElements["axesLegends"] = this.svgPointer.selectAll("axesLegend")
+	this.svgElements["axesLegends"] = this.canvasPtr.selectAll("axesLegend")
 		.data(textData)
 		.enter()
 		.append("text")
@@ -189,7 +189,7 @@ scatterPlot.prototype.drawAxesLegends = function() {
 }
 
 scatterPlot.prototype.drawCenterLine = function() {
-	this.svgElements["centerLine"] = this.svgPointer
+	this.svgElements["centerLine"] = this.canvasPtr
 		.append("line")
 		.attr("x1", this.mapXValToGraph(this.xMin))
 		.attr("y1", this.mapYValToGraph(this.yMin))
