@@ -3,16 +3,7 @@
 var global = function() {};
 function controller() {
 	//graph size variables
-	var _mainWidth = 900;
 	var _mainHeight = 900;
-	var _barSvgHeight = 700;
-	var _topBarHeight = 80;
-	var _xPadding = 120;
-	var _yPadding = 120;
-	var _yBarPadding = 75;
-	var _barWidth = _mainWidth - _xPadding;
-	var _barHeight = _barSvgHeight - _yPadding;
-	var _minifiedBarSvgHeight = 120;
 
 	//data stored from reading in CSV files
 	var _senatorData;
@@ -32,7 +23,7 @@ function controller() {
 	function configureSenatorData(data) {
 		var graphData = new Array(data.length);
 		var voteMin, voteMax, speechMin, speechMax;
-		var voteMagnitude, speechMagnitude;
+		var speechMagnitude;
 		var isRandom = 0;
 		voteMin = voteMax = speechMin = speechMax = 0;
 
@@ -58,15 +49,10 @@ function controller() {
 			}
 		}
 		speechMagnitude = speechMax - speechMin;
-		if (isRandom)
-			voteMagnitude = 1;
-		else
-			voteMagnitude = voteMax - voteMin;
 
-		var normalVote, normalSpeech;
+		var normalSpeech;
 
 		for (var i = 0; i < data.length; i++) {
-			normalVote = (data[i].votePos - voteMin) / voteMagnitude,
 			normalSpeech = (data[i].speechPos - speechMin) / speechMagnitude,
 			graphData[i] = {
 				//store all of the imported datum for display purposes

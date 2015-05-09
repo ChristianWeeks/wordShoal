@@ -16,8 +16,6 @@ barGraph.prototype.setYAttr = function() {
 	this.destroyAll();
 	//add 1 to the length so that the final value isn't on the very edge of the graph
 	var count = 0;
-	//calculating the maximum value in the new set
-	var queueIndex = 0;
 
 	this.setAxes();
 	this.firstTimeData = null;
@@ -61,7 +59,7 @@ barGraph.prototype.setYAttr = function() {
 
 barGraph.prototype.minify = function() {
 	//squash in the y direction
-	d3.select('#'+ this.canvasID)
+	d3.select('#' + this.canvasID)
 		.style('height', this.minifiedHeight)
 		.attr('viewBox', '0 0 ' + this.canvasWidth + ' ' + this.minifiedHeight);
 	this.minified = true;
