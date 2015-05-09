@@ -2,8 +2,8 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function scatterPlot(x, y, width, height, svg){
 	scatterPlot.superClass.constructor.call(this, x, y, width, height, svg);
-	this.mainSvg = svg;
-	this.miniSvg = null;
+	this.mainSvg = this.canvasPtr;
+	this.miniCanvasPtr = null;
 	this.baseCSSClass = "scatterPoint";
 	this.fadeCSSClass = "fadeOut";
 	this.datumSvgs = "points";
@@ -59,24 +59,38 @@ scatterPlot.prototype.setYAttr = function (){
 }
 
 scatterPlot.prototype.minify = function(minifiedSize){
+
 	this.minified = true;
 	this.xLen = 3;
 	this.yLen = 3;
 	this.minifiedSize = minifiedSize
 
 
-	this.miniSvg = d3.select("#scatterMiniSvg");
-	this.canvasPtr = this.miniSvg;
-	this.pointRadius = 3;
-	this.height = this.minifiedSize;
-	this.width = this.minifiedSize;
-	this.y = this.minifiedSize - 22;
-	this.x = 40;
+	//create the new mini plot
+	if(!this.miniCanvasPtr){
+	   this.miniCanvasPtr	= d3.select("#scatterMiniCanvas").append("svg")
+			.attr("id", "scatterMiniSvg");
+	}
+	this.miniCanvasPtr
+		.style("height", this.minifiedSize)
+		.style("width", this.minifiedSize)
+		.attr("viewBox", "0 0 " + (this.minifiedSize + 50) + " " + (this.minifiedSize+ 45))
+		.attr("preserveAspectRatio", "xMidYMid");
+		
+	this.mainSvg = this.canvasPtr;
+	this.canvasPtr		= this.miniCanvasPtr;
+	this.pointRadius	= 3;
+	this.height			= this.minifiedSize;
+	this.width			= this.minifiedSize;
+	this.y				= this.minifiedSize - 22;
+	this.x				= 40;
+	//Destroy the large graph
 	this.destroyAll();
+	this.mainSvg.style("height", 0)
+		console.log(this.mainSvg);
+
 	this.mapXValToGraph(this.xMin)
     
-	console.log(this.yMin);
-	console.log(this.mapYValToGraph(this.yMin));
 	this.setYAttr();       
                            
 }
@@ -100,6 +114,7 @@ scatterPlot.prototype.draw = function(){
 
 	this.drawYAxisLabel();
 	this.drawXAxisLabel();
+	this.drawAxesLegends();
 	this.drawYAxis();
 	this.drawXAxis();
 	this.drawTitle();
