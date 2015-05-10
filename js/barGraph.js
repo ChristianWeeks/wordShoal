@@ -1,12 +1,12 @@
 'use strict';
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
-function barGraph(x, y, width, height, svg) {
-	barGraph.superClass.constructor.call(this, x, y, width, height, svg);
-	this.minifiedHeight = 120;
+function barGraph(argv) {
+	barGraph.superClass.constructor.call(this, argv);
+	this.minifiedHeight = argv.minifiedHeight || 120;
 	this.baseCSSClass = 'barBar';
 	this.datumSvgs = 'bars';
-	this.yMax = 3.0;
-	this.yMin = -3.0;
+	this.yMax = argv.yMax || 3.0;
+	this.yMin = argv.yMin || -3.0;
 }
 extend(barGraph, graphObject);
 

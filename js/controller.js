@@ -175,11 +175,10 @@ function controller() {
 	function initMainGraph() {
 			var graphData = _senatorData;
 			if (!_BAR_GRAPH) {
-				_BAR_GRAPH = new barGraph({
-					canvasHeight: 700,
-					title: 'Difference Between Speech and Vote Positions',
-					titleY: 'Delta',
-					titleX: 'Senator'
+				_BAR_GRAPH = new histogram({
+					title: 'Senator Speech Score Distribution',
+					titleY: 'Number of Senators',
+					titleX: 'Speech Score'
 				});
 
 				_BAR_GRAPH.initCanvas('barCanvas', 'barSvg');
@@ -191,8 +190,7 @@ function controller() {
 
 			if (!_SCATTER_PLOT) {
 				_SCATTER_PLOT = new scatterPlot({
-					canvasWidth: 700,
-					canvasHeight: 700,
+					title: 'Senatorial Speech vs. Voting Habits',
 					titleY: 'Speech Position',
 					titleX: 'Vote Position',
 				});
@@ -206,8 +204,8 @@ function controller() {
 
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
-			_BAR_GRAPH.coupleMouseEvents('bars', 0, 0, setViewLevel);
-			_SCATTER_PLOT.coupleMouseEvents('points', 0, 0, setViewLevel);
+			_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents('points', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------

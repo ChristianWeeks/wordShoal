@@ -4,8 +4,8 @@
 var graphObject = function(argv) {
 
 	//graph formatting values
-	this.canvasWidth	= argv.canvasWidth || 900;
-	this.canvasHeight	= argv.canvasHeight || 900;
+	this.canvasWidth	= argv.canvasWidth || 600;
+	this.canvasHeight	= argv.canvasHeight || 600;
 	this.topPadding	= argv.topPadding || 40;
 	this.botPadding = argv.botPadding || 80; 
 	this.leftPadding	= argv.leftPadding || 80;
@@ -18,6 +18,9 @@ var graphObject = function(argv) {
 	this.title	= argv.title || 'Main Title';
 	this.titleY	= argv.titleY || 'Y Axis Title';
 	this.titleX	= argv.titleX || 'X Axis Title';
+	this.titleFontSize = argv.titleFontSize || 25;
+	this.xtickFontSize = argv.tickFontSize || 15;
+
 	//yLen is the number of tick-mark steps on the y axis, including 0
 	this.yLen	= 7;
 	this.xLen	= 5;
@@ -125,7 +128,7 @@ graphObject.prototype.destroyElement = function(svgElement) {
 graphObject.prototype.drawTitle = function() {
 	this.svgElements['title'] = this.canvasPtr.append('text')
 		.attr('class', 'axisTitle')
-		.style('font-size', 40)
+		.style('font-size', this.titleFontSize)
 		.attr('text-anchor', 'middle')
 		.attr({
 			x: this.x + this.width / 2,
@@ -190,6 +193,7 @@ graphObject.prototype.drawXAxis = function() {
 		.append('text')
 		.attr('id', 'xDataLabel')
 		.attr('text-anchor', 'end')
+		.style('font-size', this.xTickFontSize) 
 		.style('opacity', 1)
 		.attr('transform', function(d) {
 			d.svgLabel = this;
@@ -280,7 +284,7 @@ graphObject.prototype.updateFilter = function(filterStr) {
 //Closure needed to have multiple svg-elements activate (highlight) when any one of them is highlighted
 //Ex. Mousing over the label, line plot, or color legend for any single computer / user will cause the label to increase its font
 //and the line to turn black and increase its stroke width.
-function elementMouseOverClosure(graphX, graphY, barSvgs, pointSvgs) {
+function elementMouseOverClosure(graphX, graphY) {
 	var elementMouseOver = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
 			//draw lines extending to x and y axes

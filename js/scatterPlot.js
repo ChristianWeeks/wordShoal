@@ -1,19 +1,19 @@
 'use strict';
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
-function scatterPlot(x, y, width, height, svg) {
-	scatterPlot.superClass.constructor.call(this, x, y, width, height, svg);
+function scatterPlot(argv) {
+	scatterPlot.superClass.constructor.call(this, argv);
 	this.mainSvg = this.canvasPtr;
 	this.miniCanvasPtr = null;
 	this.baseCSSClass = 'scatterPoint';
 	this.fadeCSSClass = 'fadeOut';
 	this.datumSvgs = 'points';
-	this.xMax = 3;
-	this.xMin = -3;
-	this.yMax = 3;
-	this.yMin = -3;
+	this.xMax = argv.xMax || 3;
+	this.xMin = argv.xMin || -3;
+	this.yMax = argv.yMax || 3;
+	this.yMin = argv.yMin || -3;
 	this.minified = false;
-	this.minifiedSize = 200;
-	this.pointRadius = 8;
+	this.minifiedSize = argv.minifiedSize || 200;
+	this.pointRadius = argv.pointRadius || 6;
 	this.svgPoints = [];
 }
 extend(scatterPlot, graphObject);

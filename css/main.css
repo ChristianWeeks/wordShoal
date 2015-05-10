@@ -47,7 +47,7 @@ html {
 	opacity: 1.0;
 }
 .barBar{
-	stroke-width: 2px;
+	stroke-width: 0px;
 	opacity: 1.0;
 }
 
@@ -55,6 +55,14 @@ html {
 .c_dem{
 	fill: #AAF;
 	stroke: #22F;
+}
+.c_demBar{
+	fill: #66F;
+	stroke: #22F;
+}
+.c_repBar{
+	fill: #F66;
+	stroke: #F22; 
 }
 .c_ind{
 	fill: #CAC;
@@ -70,8 +78,7 @@ html {
 	stroke-width: 5;
 }
 .mOverBar{
-	stroke-width: 5;
-	stroke: #000;
+	stroke-width: 2;
 }
 
 .fadeOut{
@@ -95,7 +102,7 @@ html {
 .axisTitle{
 	fill: #000;
 	stroke-weight: "bold";
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .button.active{
