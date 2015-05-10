@@ -6,13 +6,14 @@ var graphObject = function(argv) {
 	//graph formatting values
 	this.canvasWidth	= argv.canvasWidth || 900;
 	this.canvasHeight	= argv.canvasHeight || 900;
-	this.topPadding	= argv.topPadding || 30;
-	this.xPadding	= argv.xPadding || 60;
-	this.yPadding	= argv.yPadding || 50;
-	this.width	= argv.width || this.canvasWidth - this.xPadding;
-	this.height	= argv.height || this.canvasHeight - 2 * this.yPadding;
-	this.x	= argv.x || this.xPadding;
-	this.y	= argv.y || (this.canvasHeight - this.yPadding);
+	this.topPadding	= argv.topPadding || 40;
+	this.botPadding = argv.botPadding || 80; 
+	this.leftPadding	= argv.leftPadding || 80;
+	this.rightPadding	= argv.rightPadding || 50;
+	this.width	= argv.width || this.canvasWidth - (this.leftPadding + this.rightPadding);
+	this.height	= argv.height || this.canvasHeight - (this.topPadding + this.botPadding);
+	this.x	= argv.x || this.leftPadding;
+	this.y	= argv.y || (this.canvasHeight - this.botPadding);
 
 	this.title	= argv.title || 'Main Title';
 	this.titleY	= argv.titleY || 'Y Axis Title';
@@ -50,6 +51,11 @@ graphObject.prototype.initCanvas = function(divID, canvasID) {
 	this.canvasPtr.style('height', this.canvasHeight)
 		.style('width', '100%')
 		.style('height', '100%')
+		//.style('background', '#FFDDDD')
+		.style('border-style', 'solid')
+		.style('border-width', 1)
+		.style('border-radius', '5px')
+		.style('border-color', '#CCC')
 		.attr('id', canvasID)
 		.attr('viewBox', '0 0 ' + this.canvasWidth + ' ' + this.canvasHeight)
 		.attr('preserveAspectRatio', 'xMidYMid');
@@ -72,12 +78,16 @@ graphObject.prototype.setAxes = function() {
 	this.yAxisData = new Array(this.yLen);
 	this.y_val_step = (this.yMax - this.yMin) / (this.yLen - 1);
 	for (var i = 0; i < this.yLen; i++) {
-		this.yAxisData[i] = {'value': ((i * this.y_val_step + this.yMin).toFixed(2)), 'loc': this.mapYValToGraph(i * this.y_val_step + this.yMin)};
+		this.yAxisData[i] = {
+			'value': ((i * this.y_val_step + this.yMin).toFixed(2)),
+		   	'loc': this.mapYValToGraph(i * this.y_val_step + this.yMin)};
 	}
 	this.xAxisData = new Array(this.xLen);
 	this.x_val_step = (this.xMax - this.xMin) / (this.xLen - 1);
 	for (var i = 0; i < this.xLen; i++) {
-		this.xAxisData[i] = {'value': ((i * this.x_val_step + this.xMin).toFixed(2)), 'x': this.mapXValToGraph(i * this.x_val_step + this.xMin), 'y': this.y};
+		this.xAxisData[i] = {
+			'value': ((i * this.x_val_step + this.xMin).toFixed(2)),
+		   	'x': this.mapXValToGraph(i * this.x_val_step + this.xMin), 'y': this.y};
 	}
 	return this;
 };
@@ -142,10 +152,10 @@ graphObject.prototype.drawXAxisLabel = function() {
 	this.svgElements['xAxisLabel'] = this.canvasPtr.append('text')
 		.attr('class', 'axisTitle')
 		.attr('text-anchor', 'middle')
-		.attr('alignment-baseline', 'middle')
+		.attr('alignment-baseline', 'baseline')
 		.attr({
 			x: this.x + this.width / 2,
-			y: this.y + this.yPadding / 2
+			y: this.canvasHeight - 5
 		})
 		.text(this.titleX);
 };

@@ -195,7 +195,6 @@ function controller() {
 					canvasHeight: 700,
 					titleY: 'Speech Position',
 					titleX: 'Vote Position',
-					yPadding: 75
 				});
 				_SCATTER_PLOT.initCanvas('scatterCanvas', 'scatterPlot');
 				global._SCATTER_PLOT = _SCATTER_PLOT;
