@@ -2,6 +2,12 @@ html {
 	font-family: Helvetica;
 }
 
+.simpleBorder{
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 5px;
+		border-color: #CCC;
+}
 :root {
 	repC1: #DAA;
 	repC2: #F22;

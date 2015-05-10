@@ -54,7 +54,6 @@ histogram.prototype.setYAttr = function() {
 			this.yMax = this.histogram_d[k].length
 		}
 	}
-console.log(this.histogram_r);
 
 	this.setAxes();
 

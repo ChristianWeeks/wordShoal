@@ -54,39 +54,39 @@ scatterPlot.prototype.setYAttr = function() {
 };
 
 scatterPlot.prototype.minify = function(minifiedSize) {
+	if(!this.minified){
+		this.minified = true;
+		this.xLen = 3;
+		this.yLen = 3;
+		this.minifiedSize = minifiedSize;
 
-	this.minified = true;
-	this.xLen = 3;
-	this.yLen = 3;
-	this.minifiedSize = minifiedSize;
 
+		//create the new mini plot
+		if (!this.miniCanvasPtr) {
+		   this.miniCanvasPtr	= d3.select('#scatterMiniCanvas').append('svg')
+				.attr('id', 'scatterMiniSvg');
+		}
+		this.miniCanvasPtr
+			.style('height', this.minifiedSize)
+			.style('width', this.minifiedSize)
+			.attr('viewBox', '0 0 ' + (this.minifiedSize + 50) + ' ' + (this.minifiedSize + 45))
+			.attr('preserveAspectRatio', 'xMidYMid');
 
-	//create the new mini plot
-	if (!this.miniCanvasPtr) {
-	   this.miniCanvasPtr	= d3.select('#scatterMiniCanvas').append('svg')
-			.attr('id', 'scatterMiniSvg');
+		this.mainSvg = this.canvasPtr;
+		this.canvasPtr	= this.miniCanvasPtr;
+		this.pointRadius	= 3;
+		this.height	= this.minifiedSize;
+		this.width	= this.minifiedSize;
+		this.y	= this.minifiedSize;
+		this.x	= 40;
+		//Destroy the large graph
+		this.destroyAll();
+		this.mainSvg.style('height', 0);
+
+		this.mapXValToGraph(this.xMin);
+
+		this.setYAttr();
 	}
-	this.miniCanvasPtr
-		.style('height', this.minifiedSize)
-		.style('width', this.minifiedSize)
-		.attr('viewBox', '0 0 ' + (this.minifiedSize + 50) + ' ' + (this.minifiedSize + 45))
-		.attr('preserveAspectRatio', 'xMidYMid');
-
-	this.mainSvg = this.canvasPtr;
-	this.canvasPtr	= this.miniCanvasPtr;
-	this.pointRadius	= 3;
-	this.height	= this.minifiedSize;
-	this.width	= this.minifiedSize;
-	this.y	= this.minifiedSize - 22;
-	this.x	= 40;
-	//Destroy the large graph
-	this.destroyAll();
-	this.mainSvg.style('height', 0);
-		console.log(this.mainSvg);
-
-	this.mapXValToGraph(this.xMin);
-
-	this.setYAttr();
 
 };
 
@@ -193,7 +193,6 @@ scatterPlot.prototype.drawAxesLegends = function() {
 			},
 			id: 'axesLegend'})
 		.text(function(d) {return d.text});
-	console.log('HELLO');
 
 	return this;
 };

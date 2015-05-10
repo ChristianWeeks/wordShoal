@@ -204,7 +204,7 @@ function controller() {
 
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
-			_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
+			//_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('points', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
 	}
 
@@ -218,7 +218,7 @@ function controller() {
 			_BAR_GRAPH.minify();
 			_SCATTER_PLOT.minify(250);
 
-			_BAR_GRAPH.coupleMouseEvents('bars', 0, 0, setViewLevel);
+			//_BAR_GRAPH.coupleMouseEvents('bars', 0, 0, setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('points', 0, 0, setViewLevel);
 	}
 
@@ -342,7 +342,8 @@ function controller() {
 	//--------------------------------------------------------------------------------------------------------------------
 	function changeState() {
 		global.activeStateFilter = '';
-		_BAR_GRAPH.updateFilter();
+	//	_BAR_GRAPH.updateFilter();
+		_SCATTER_PLOT.updateFilter();
 	}
 
 	global.activeStateFilter = 'None';
@@ -355,5 +356,6 @@ controller();
 
 function changeState(value) {
 	global.activeStateFilter = value;
-	global._BAR_GRAPH.updateFilter(value);
+//	global._BAR_GRAPH.updateFilter(value);
+	global._SCATTER_PLOT.updateFilter(value);
 }

@@ -270,7 +270,6 @@ graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, setViewLeve
 graphObject.prototype.updateFilter = function(filterStr) {
 	this.svgElements[this.datumSvgs].transition()
 		.attr('class', function(d) {
-			console.log(d.data.datum.state);
 			if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
 				d3.select(this).moveToFront();
 				return d.cssClass;
@@ -327,9 +326,9 @@ function elementMouseOverClosure(graphX, graphY) {
 			//fill in the information bar at the side
 			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box sideBox');
 			document.getElementById('sideBar1').innerHTML = '<h2>' + d.title + '</h2><h3>Years in Office</h3><h3>' + d.party + '</h3><br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
-			document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
-			document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
-			document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
+			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
+			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
+			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
 		}
 		//	+"<h2>Personal information</h2><h2>Wikipedia Link</h2><p>???Vote History???</p><p>???Speech History???</p>";
 	};
@@ -344,7 +343,7 @@ function elementMouseOutClosure() {
 			if (global.minified)
 				rad = 3;
 			else
-				rad = 8;
+				rad = 6;
 
 			var pointKey = '#' + d.name + 'Point';
 			var barKey = '#' + d.name + 'Bar';
@@ -370,9 +369,9 @@ function elementMouseClickClosure(setViewLevel) {
 		setViewLevel('senator');
 		document.getElementById('senatorViewBox').innerHTML = '<h2>' + d.title + '</h2><h3>Years in Office<br/>' + d.party + '<br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
 		document.getElementById('sideBar1').innerHTML = '';
-		document.getElementById('category').innerHTML = '';
-		document.getElementById('value').innerHTML = '';
-		document.getElementById('percent').innerHTML = '';
+	//	document.getElementById('category').innerHTML = '';
+	//	document.getElementById('value').innerHTML = '';
+	//	document.getElementById('percent').innerHTML = '';
 
 
 	};
