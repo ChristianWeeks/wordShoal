@@ -30,7 +30,7 @@ histogram.prototype.setYAttr = function() {
 		.bins(this.bins)
 		.value(function(d){
 			if(d.id ==  'R'){
-				return d.y
+				return d.x;
 			}
 		})(this.data);
 
@@ -39,7 +39,7 @@ histogram.prototype.setYAttr = function() {
 		.bins(this.bins)
 		.value(function(d){
 			if(d.id ==  'D'){
-				return d.y
+				return d.x;
 			}
 		})(this.data);
 	
