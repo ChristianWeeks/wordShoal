@@ -62,9 +62,9 @@ function controller() {
 				id: data[i].party,
 				//----------------------------------------------------------------------------------------------------------------------
 				//temporary random() while votePos is being calculated for all years
-				x: data[i].votePos,
+				x: data[i].speechPos,
 				//----------------------------------------------------------------------------------------------------------------------
-				y: data[i].speechPos,
+				y: data[i].votePos,
 				delta: data[i].speechPos - data[i].votePos,
 				r: 5,
 				shape: 'circle',
@@ -191,8 +191,8 @@ function controller() {
 			if (!_SCATTER_PLOT) {
 				_SCATTER_PLOT = new scatterPlot({
 					title: 'Senatorial Speech vs. Voting Habits',
-					titleY: 'Speech Position',
-					titleX: 'Vote Position',
+					titleY: 'Vote Position',
+					titleX: 'Speech Position',
 				});
 				_SCATTER_PLOT.initCanvas('scatterCanvas', 'scatterPlot');
 				global._SCATTER_PLOT = _SCATTER_PLOT;
