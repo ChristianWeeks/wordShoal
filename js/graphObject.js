@@ -288,7 +288,7 @@ function elementMouseOverClosure(graphX, graphY) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
 			//draw lines extending to x and y axes
 			var barKey = '#' + d.name + 'Bar';
-			var pointKey = '#' + d.name + 'Point';
+			var pointKey = '#' + d.name + d.ndx + 'Point';
 			var barKey = '#' + d.name + 'Bar';
 			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
 			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
@@ -317,9 +317,9 @@ function elementMouseOverClosure(graphX, graphY) {
 				.attr('r', 15)
 				.attr('class', function(d) {return d.cssClass + ' mOver'});
 			//highlight the nodes
-			d3.select(barKey).moveToFront();
-			d3.select(barKey).transition()
-				.attr('class', function(d) {return d.cssClass + ' mOverBar'});
+	//		d3.select(barKey).moveToFront();
+	//		d3.select(barKey).transition()
+	//			.attr('class', function(d) {return d.cssClass + ' mOverBar'});
 			d.svgXTrace.transition().style('opacity', 1).style('stroke-width', '3px');
 			d.svgYTrace.transition().style('opacity', 1).style('stroke-width', '3px');
 
@@ -345,13 +345,13 @@ function elementMouseOutClosure() {
 			else
 				rad = 6;
 
-			var pointKey = '#' + d.name + 'Point';
+			var pointKey = '#' + d.name + d.ndx + 'Point';
 			var barKey = '#' + d.name + 'Bar';
 			d3.select(pointKey).transition()
 				.attr('r', rad)
 				.attr('class', function(d) {return d.cssClass});
-			d3.select(barKey).transition()
-				.attr('class', function(d) {return d.cssClass});
+	//		d3.select(barKey).transition()
+	//			.attr('class', function(d) {return d.cssClass});
 			d.svgXTrace.transition().style('opacity', 0);
 			d.svgYTrace.transition().style('opacity', 0);
 			d.svgXTrace.remove();

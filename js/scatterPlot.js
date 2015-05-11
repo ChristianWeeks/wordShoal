@@ -34,8 +34,9 @@ scatterPlot.prototype.setYAttr = function() {
 
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
 		this.currentlyViewedData[i] = {
+			'ndx': i,
 			'data': this.data[i],
-			'id': nameSubStr + 'Point',
+			'id': nameSubStr + i + 'Point',
 			'title': this.data[i].name,
 			'party': this.data[i].id,
 			'name': nameSubStr,
