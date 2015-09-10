@@ -17,6 +17,37 @@ function controller() {
 	d3.select('#sideBar1').style('height', (_mainHeight / 2) + 'px');
 
 	//--------------------------------------------------------------------------------------------------------------------
+	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN function
+	//--------------------------------------------------------------------------------------------------------------------
+	function readSenatorCSV(year) {
+		var fileName = !year ? 'data/US_Senate_104-113_senator_data.csv' : 'data/EstimatesSenate1' + year + '.csv';
+		d3.csv(fileName, function(d) {
+			return {
+				//NOTE: The original CSV file headers contain periods in them (e.g., theta.est).
+                speakerID: d.speakerID,
+				name: d.name ? d.name : d['speaker.name'],
+				speakerStr: d.speaker,
+				state: d.state,
+				party: d.party,
+				v: +d['vote.score'],
+				s: +d['speech.score'],
+				votePos: +d['vote.score.normalized'],
+				speechPos: +d['speech.score.normalized']
+			//	thetaCilb: +d.thetacilb,
+			//	thetaCiub: +d.thetaciub
+				};
+			},
+			function(error, senatorData) {
+
+				if (error) console.error(error);
+
+				_senatorData = configureSenatorData(senatorData);
+
+				//now that senators are read in, read in the debate data
+				readDebateCSV();
+			});
+	}
+	//--------------------------------------------------------------------------------------------------------------------
 	//Creates the year filter buttons for the top bar
 	//Configure the senator data into a format that can be properly bounded to and represented by the graph
 	//--------------------------------------------------------------------------------------------------------------------
@@ -25,35 +56,8 @@ function controller() {
 		var voteMin, voteMax, speechMin, speechMax;
 		var speechMagnitude;
 		var isRandom = 0;
-		voteMin = voteMax = speechMin = speechMax = 0;
-
-		//First we find the magnitude to normalize all the values between 0 and 1.
-		for (var i = 0; i < data.length; i++) {
-			//calculating the max and mins
-			if (data[i].speechPos > speechMax)
-				speechMax = data[i].speechPos;
-			if (data[i].speechPos < speechMin)
-				speechMin = data[i].speechPos;
-			//----------------------------------------------------------------------------------------------------------------------
-			//temporary random() while votePos is being calculated for all years
-			if (!data[i].votePos) {
-				data[i].votePos = Math.random();
-				isRandom = 1;
-			}
-			else {
-			//----------------------------------------------------------------------------------------------------------------------
-				if (data[i].votePos > voteMax)
-					voteMax = data[i].votePos;
-				if (data[i].votePos < voteMin)
-					voteMin = data[i].votePos;
-			}
-		}
-		speechMagnitude = speechMax - speechMin;
-
-		var normalSpeech;
 
 		for (var i = 0; i < data.length; i++) {
-			normalSpeech = (data[i].speechPos - speechMin) / speechMagnitude,
 			graphData[i] = {
 				//store all of the imported datum for display purposes
 				datum: data[i],
@@ -86,88 +90,76 @@ function controller() {
 		return graphData;
 	}
 
-	function configureDebateData(data) {
-		var debateData = new Array();
-
-		for (var i = 0; i < data.length; i++) {
-			var debateCell = {};
-			//if this debate is not yet in the table, put it in
-			if (!debateData[data[i].debateID]) {
-				debateCell = data[i];
-				debateCell.speakers = new Array(data[i].speakerCount);
-				debateCell.speakers[0] = data[i].speaker;
-				debateData.push(debateCell);
-			}
-			//if the debate is in the table, add only the new speaker
-			else {
-
-				debateData[data[i].debateID].speakers.push(data[i].speaker);
-			}
-			//link the speaker and debateIDs
-			var k = 0;
-			for (k = 0; k < _senatorData.length; k++) {
-				if (_senatorData[k].name == data[i].speaker) {
-					_senatorData[k].debateIDs.push(data[i].debateID);
-					break;
-				}
-			}
-
-		}
-		return debateData;
-	}
-
 	//--------------------------------------------------------------------------------------------------------------------
-	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN function
-	//--------------------------------------------------------------------------------------------------------------------
-	function readSenatorCSV(year) {
-		var fileName = !year ? 'data/Wordshoal_and_RC_positions_normalized.csv' : 'data/EstimatesSenate1' + year + '.csv';
-		d3.csv(fileName, function(d) {
-			return {
-				//NOTE: The original CSV file headers contain periods in them (e.g., theta.est).
-				name: d.name ? d.name : d['member.name'],
-				speaker: d.speaker,
-				state: d.state,
-				party: d.party,
-				v: +d['ideal.est'],
-				s: +d['theta.est'],
-				votePos: +d['ideal.est.z'],
-				speechPos: +d['theta.est.z']
-			//	thetaCilb: +d.thetacilb,
-			//	thetaCiub: +d.thetaciub
-				};
-			},
-			function(error, senatorData) {
-
-				if (error) console.error(error);
-
-				_senatorData = configureSenatorData(senatorData);
-
-				//now that senators are read in, read in the debate data
-				readDebateCSV();
-
-
-			});
-	}
-
+	//read in our debate data
+    //--------------------------------------------------------------------------------------------------------------------
 	function readDebateCSV() {
-		var fileName = 'data/table_debateSpeaker_data.csv';
+		var fileName = 'data/US_Senate_104-113_debate_data.csv';
 		d3.csv(fileName, function(d) {
 			return {
 				debateID: d.debateID - 1,
+                speakerID: d.speakerID,
 				speakerCount: +d.speakersN,
-				congress: +d.congress,
 				title: d.title,
 				date: d.date,
-				speaker: d['speaker.name']
+                //Speaker score denotes the speech score for this entry's senator in this debate
+                speakerScore: +d["speaker.score"],
+                //Debate score denotes the importance / controversiality of this debate
+                debateScore: +d["debate.score"] 
 			};
 		},
 		function(error, debateData) {
 			if (error) console.error(error);
 			_debateData = configureDebateData(debateData);
 			initMainGraph();
-
 		});
+	}
 
+	//--------------------------------------------------------------------------------------------------------------------
+	//Now configure it for our purposes
+    //--------------------------------------------------------------------------------------------------------------------
+	function configureDebateData(data) {
+
+		var debateData = new Array();
+        var speakerIndex;
+        console.log(_senatorData[0]);
+		for (var i = 0; i < data.length; i++) {
+			var debateCell = {};
+			//if this debate is not yet in the table, put it in
+			if (!debateData[data[i].debateID]) {
+				debateCell = data[i];
+                debateCell.speakerIndexCounter = 0;
+
+                //Speakers and their scores will match indices in their respective arrays
+				debateCell.speakerIDs = new Array(data[i].speakerCount);
+                debateCell.speakerScores = new Array(data[i].speakerCount);
+
+				debateCell.speakerIDs[0] = data[i].speakerID;
+                debateCell.speakerScores[0] = data[i].speakerScore;
+				debateData[data[i].debateID] = debateCell;
+                debateCell.speakerIndexCounter = 1;
+			}
+
+			//if the debate is in the table, add the new speaker and his score to that debate's lists
+			else {
+				debateData[data[i].debateID].speakerIDs[debateData[data[i].debateID].speakerIndexCounter] = data[i].speakerID;
+				debateData[data[i].debateID].speakerScores[debateData[data[i].debateID].speakerIndexCounter] = data[i].speakerScore;
+				debateData[data[i].debateID].speakerIndexCounter++;
+			}
+            speakerIndex = debateData[data[i].debateID].speakerScores.length - 1;
+			//link the speaker and debateIDs
+			var k = 0;
+            //for every senator
+			for (k = 0; k < _senatorData.length; k++) {
+                //if the senator is the same as the current debate data's senator, then link them
+				if (_senatorData[k].datum.speakerID == data[i].speakerID) {
+					_senatorData[k].debateIDs.push(data[i].debateID);
+                   // _senatorData[k].
+					break;
+				}
+			}
+		}
+		return debateData;
 	}
 	//--------------------------------------------------------------------------------------------------------------------
 	//Draws the general level bar graph
@@ -191,8 +183,8 @@ function controller() {
 			if (!_SCATTER_PLOT) {
 				_SCATTER_PLOT = new scatterPlot({
 					title: 'Senatorial Speech vs. Voting Habits',
-					titleY: 'Vote Position',
-					titleX: 'Speech Position',
+					titleY: 'Vote Score',
+					titleX: 'Speech Score',
 				});
 				_SCATTER_PLOT.initCanvas('scatterCanvas', 'scatterPlot');
 				global._SCATTER_PLOT = _SCATTER_PLOT;
@@ -200,7 +192,6 @@ function controller() {
 				//remove all of the previous svgs when loading a new year
 			else
 				_SCATTER_PLOT.destroyAll();
-
 
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
@@ -257,27 +248,28 @@ function controller() {
 
 			//populate the debates window
 			populateDebateWindow(global.currentSenator);
-
 		}
 		else {
 			console.error('Improper view level set: ' + viewLevelStr);
 		}
-
 	}
 
 	function populateDebateWindow(senator) {
-		var debateNumCap = 20;
+		var debateNumCap = 10;
 		var i = 0;
 		var htmlStr = '';
 		var debateSvgHeight = 50;
 		var tickLength = 8;
+
+        //This is our table header 
 		htmlStr +=
 			"<div class='row'><div class='col-md-1'><button class='sort' data-sort='ID'><h3>ID</h3></button></div>" +
 			"<div class='col-md-3'><button class='sort' data-sort='TITLE'><h3>Title</h3></button></div>" +
 			"<div class='col-md-2'><button class='sort' data-sort='DATE'><h3>Date</h3></button></div>" +
 			"<div class='col-md-6'><h3>Idealized Scores</h3></div></div>" +
 			"<table><tbody class='list'>";
-		//create a table displaying the debates this senator has participated in
+
+		//Populate the table with the debates this senator has participated in
 		for (i = 0; i < debateNumCap; i++) {
 			var currDebate = _debateData[senator.debateIDs[i]];
 			htmlStr += "<tr class='row'>" +
@@ -288,8 +280,13 @@ function controller() {
 						'</tr>';
 		}
 		htmlStr += '</tbody></table>';
+
+        //debatesCanvas is in our main index.html file
 		document.getElementById('debatesCanvas').innerHTML = htmlStr;
+
+        //create the svg canvases for each debate entry in our table
 		for (i = 0; i < debateNumCap; i++) {
+            var currDebate = _debateData[senator.debateIDs[i]];
 			//create the svg
 			d3.select('#debateCanvas' + i).append('svg')
 				.attr('width', '100%')
@@ -304,27 +301,57 @@ function controller() {
 				.attr('y1', debateSvgHeight / 2)
 				.attr('y2', debateSvgHeight / 2);
 			var j;
-
-
-			for (j = 0; j < _debateData[senator.debateIDs[i]].speakerCount; j++) {
+            console.log(currDebate.title);
+            //go through all the speakers in this debate and draw their positions
+			for (j = 0; j < _debateData[senator.debateIDs[i]].speakerIDs.length; j++) {
 				var randomPos = Math.floor(Math.random() * 100);
-				//drawing the (temporarily) random positions representing senators calculated scores per debate
-				d3.select('#debateSvg' + i).append('line')
-					.attr('stroke-width', 2)
-					.attr('stroke', 'black')
-					.attr('x1', String(randomPos) + '%')
-					.attr('x2', String(randomPos) + '%')
-					.attr('y1', debateSvgHeight / 2 - tickLength)
-					.attr('y2', debateSvgHeight / 2 + tickLength);
 
+                //Access that debate's data and draw each senator's score on the number line
+
+                var speakerIndex = -1;
+                for(var k = 0; k < currDebate.speakerIDs.length; k++){
+                    if (currDebate.speakerIDs[k] == senator.datum.speakerID){
+                        speakerIndex = k;
+                        break;
+                    }
+                }
+                var x = currDebate.speakerScores[j];
+                console.log(currDebate);
+                if(speakerIndex == -1){
+                    console.err("Error: No matching ID for speaker " + senator.datum.speakerID + " in debate " + currDebate.debateID);
+                }
+                else{
+                    console.log("xbefore: " + x);
+                    x = x + 3.0;
+                    x = x*100.0;
+                    x = x/6.0;
+                    //convert the value from [-3.0, 3.0] to [0.0, 100.0]
+                    x = Math.floor(x);
+                    console.log("J" + j);
+                    console.log(x)
+                    //if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
+                    if(j == speakerIndex){
+                        d3.select('#debateSvg' + i).append('circle')
+                            .attr('class', 'c_rep scatterPoint')
+                            .attr('r', 7)
+                            .attr('cx', String(x) + '%')
+                            .attr('cy', debateSvgHeight / 2)
+                            .attr('id', 'primarySenator' + j);
+                    }
+                    else{ 
+                        var xStr = String(x) + '%';
+                        d3.select('#debateSvg' + i).append('line')
+                            .attr('stroke-width', 2)
+                            .attr('stroke', 'black')
+                            .attr('x1', xStr)
+                            .attr('x2', xStr)
+                            .attr('y1', debateSvgHeight / 2 - tickLength)
+                            .attr('y2', debateSvgHeight / 2 + tickLength);
+                    }
+                    
+                }
 			}
-			var randomPos = Math.floor(Math.random() * 100);
-			d3.select('#debateSvg' + i).append('circle')
-				.attr('class', 'c_rep scatterPoint')
-				.attr('r', 10)
-				.attr('cx', String(randomPos) + '%')
-				.attr('cy', debateSvgHeight / 2);
-
+            d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();
 
 			//instantiate the list for sorting
 			var options = {
@@ -349,6 +376,9 @@ function controller() {
 	global.activeStateFilter = 'None';
 	createStateList('stateDropDown');
 	createYearButtons();
+	//--------------------------------------------------------------------------------------------------------------------
+	//BEGIN OUR PROGRAM
+	//--------------------------------------------------------------------------------------------------------------------
 	readSenatorCSV();
 }
 

@@ -7,7 +7,7 @@ function histogram(argv) {
 	this.datumSvgs = 'bars';
 	this.yMax = argv.yMax || 3.0;
 	this.yMin = argv.yMin || 0;
-	this.bins = argv.bins || 40;
+	this.bins = argv.bins || 24;
 	this.xTickFontSize = 10;
 }
 extend(histogram, graphObject);

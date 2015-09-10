@@ -311,7 +311,6 @@ function elementMouseOverClosure(graphX, graphY) {
 			.style('opacity', 0)
 			.style('stroke-width', '0px');
 
-
 			d3.select(pointKey).moveToFront();
 			d3.select(pointKey).transition()
 				.attr('r', 15)
@@ -372,9 +371,6 @@ function elementMouseClickClosure(setViewLevel) {
 	//	document.getElementById('category').innerHTML = '';
 	//	document.getElementById('value').innerHTML = '';
 	//	document.getElementById('percent').innerHTML = '';
-
-
 	};
 	return elementMouseClick;
-
 }
