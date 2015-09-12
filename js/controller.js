@@ -6,7 +6,10 @@ function controller() {
 	var _mainHeight = 900;
 
 	//data stored from reading in CSV files
+    var _senatorMap = {};
 	var _senatorData;
+
+    var _debateMap = {};
 	var _debateData;
 
 	var _BAR_GRAPH = null;
@@ -64,16 +67,14 @@ function controller() {
 				//store data directly relevant to the graph in the first level
 				name: data[i].name,
 				id: data[i].party,
-				//----------------------------------------------------------------------------------------------------------------------
-				//temporary random() while votePos is being calculated for all years
 				x: data[i].speechPos,
-				//----------------------------------------------------------------------------------------------------------------------
 				y: data[i].votePos,
 				delta: data[i].speechPos - data[i].votePos,
 				r: 5,
 				shape: 'circle',
 				debateIDs: new Array()
 			};
+            _senatorMap[graphData[i].datum.speakerID] = graphData[i];
 		}
 		//sort array to get vote ranking / percentage
 		graphData.sort(function(a, b) {return a.x - b.x});
@@ -125,40 +126,50 @@ function controller() {
         console.log(_senatorData[0]);
 		for (var i = 0; i < data.length; i++) {
 			var debateCell = {};
+
 			//if this debate is not yet in the table, put it in
 			if (!debateData[data[i].debateID]) {
 				debateCell = data[i];
                 debateCell.speakerIndexCounter = 0;
 
                 //Speakers and their scores will match indices in their respective arrays
-				debateCell.speakerIDs = new Array(data[i].speakerCount);
-                debateCell.speakerScores = new Array(data[i].speakerCount);
+				debateCell.speakerIDs = new Array();
+                debateCell.speakerScores = new Array();
 
-				debateCell.speakerIDs[0] = data[i].speakerID;
-                debateCell.speakerScores[0] = data[i].speakerScore;
+				debateCell.speakerIDs.push(data[i].speakerID);
+                debateCell.speakerScores.push(data[i].speakerScore);
 				debateData[data[i].debateID] = debateCell;
                 debateCell.speakerIndexCounter = 1;
+                _debateMap[debateCell.debateID] = debateCell;
 			}
 
 			//if the debate is in the table, add the new speaker and his score to that debate's lists
 			else {
-				debateData[data[i].debateID].speakerIDs[debateData[data[i].debateID].speakerIndexCounter] = data[i].speakerID;
-				debateData[data[i].debateID].speakerScores[debateData[data[i].debateID].speakerIndexCounter] = data[i].speakerScore;
+                //indexing hell!!!
+				debateData[data[i].debateID].speakerIDs.push(data[i].speakerID);
+				debateData[data[i].debateID].speakerScores.push(data[i].speakerScore);
 				debateData[data[i].debateID].speakerIndexCounter++;
 			}
             speakerIndex = debateData[data[i].debateID].speakerScores.length - 1;
 			//link the speaker and debateIDs
 			var k = 0;
             //for every senator
-			for (k = 0; k < _senatorData.length; k++) {
+//			for (k = 0; k < _senatorData.length; k++) {
+                //link the debate with the senators
+                _senatorMap[data[i].speakerID].debateIDs.push(data[i].debateID);
                 //if the senator is the same as the current debate data's senator, then link them
-				if (_senatorData[k].datum.speakerID == data[i].speakerID) {
+
+/*				if (_senatorData[k].datum.speakerID == data[i].speakerID) {
 					_senatorData[k].debateIDs.push(data[i].debateID);
                    // _senatorData[k].
 					break;
 				}
-			}
+			}*/
+
 		}
+        console.log(debateData);
+        console.log(_senatorData);
+        console.log(_senatorMap);
 		return debateData;
 	}
 	//--------------------------------------------------------------------------------------------------------------------
@@ -255,17 +266,19 @@ function controller() {
 	}
 
 	function populateDebateWindow(senator) {
-		var debateNumCap = 10;
+		var debateNumCap = 100;
+        if(debateNumCap > senator.debateIDs.length)
+            debateNumCap = senator.debateIDs.length;
 		var i = 0;
 		var htmlStr = '';
 		var debateSvgHeight = 50;
 		var tickLength = 8;
-
         //This is our table header 
 		htmlStr +=
 			"<div class='row'><div class='col-md-1'><button class='sort' data-sort='ID'><h3>ID</h3></button></div>" +
 			"<div class='col-md-3'><button class='sort' data-sort='TITLE'><h3>Title</h3></button></div>" +
-			"<div class='col-md-2'><button class='sort' data-sort='DATE'><h3>Date</h3></button></div>" +
+			"<div class='col-md-1'><button class='sort' data-sort='DATE'><h3>Date</h3></button></div>" +
+			"<div class='col-md-1'><button class='sort' data-sort='DSCORE'><h3>DScore</h3></button></div>" +
 			"<div class='col-md-6'><h3>Idealized Scores</h3></div></div>" +
 			"<table><tbody class='list'>";
 
@@ -275,7 +288,8 @@ function controller() {
 			htmlStr += "<tr class='row'>" +
 							"<td class='col-md-1 td ID'>" + i + '</td>' +
 							"<td class='col-md-3 td TITLE'>" + currDebate.title + '</td>' +
-							"<td class='col-md-2 td DATE'>" + currDebate.date + '</td>' +
+							"<td class='col-md-1 td DATE'>" + currDebate.date + '</td>' +
+							"<td class='col-md-1 td DSCORE'>" + currDebate.debateScore.toFixed(3) + '</td>' +
 							"<td class='col-md-6 td SCORE' id='debateCanvas" + i + "'></td>" +
 						'</tr>';
 		}
@@ -287,6 +301,7 @@ function controller() {
         //create the svg canvases for each debate entry in our table
 		for (i = 0; i < debateNumCap; i++) {
             var currDebate = _debateData[senator.debateIDs[i]];
+            var tickColor;
 			//create the svg
 			d3.select('#debateCanvas' + i).append('svg')
 				.attr('width', '100%')
@@ -300,14 +315,18 @@ function controller() {
 				.attr('x2', '100%')
 				.attr('y1', debateSvgHeight / 2)
 				.attr('y2', debateSvgHeight / 2);
-			var j;
-            console.log(currDebate.title);
+
             //go through all the speakers in this debate and draw their positions
-			for (j = 0; j < _debateData[senator.debateIDs[i]].speakerIDs.length; j++) {
-				var randomPos = Math.floor(Math.random() * 100);
+			for (var j = 0; j < currDebate.speakerIDs.length; j++) {
 
+                //determine party for the tick's color
+                if(_senatorMap[currDebate.speakerIDs[j]].datum.party == 'R')
+                    tickColor = '#F66';
+                else if(_senatorMap[currDebate.speakerIDs[j]].datum.party == 'D')
+                    tickColor = '#66F';
+                else
+                    tickColor = '#CAC';
                 //Access that debate's data and draw each senator's score on the number line
-
                 var speakerIndex = -1;
                 for(var k = 0; k < currDebate.speakerIDs.length; k++){
                     if (currDebate.speakerIDs[k] == senator.datum.speakerID){
@@ -316,19 +335,15 @@ function controller() {
                     }
                 }
                 var x = currDebate.speakerScores[j];
-                console.log(currDebate);
                 if(speakerIndex == -1){
                     console.err("Error: No matching ID for speaker " + senator.datum.speakerID + " in debate " + currDebate.debateID);
                 }
                 else{
-                    console.log("xbefore: " + x);
+                    //convert the value from [-3.0, 3.0] to [0.0, 100.0]
                     x = x + 3.0;
                     x = x*100.0;
                     x = x/6.0;
-                    //convert the value from [-3.0, 3.0] to [0.0, 100.0]
                     x = Math.floor(x);
-                    console.log("J" + j);
-                    console.log(x)
                     //if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
                     if(j == speakerIndex){
                         d3.select('#debateSvg' + i).append('circle')
@@ -342,7 +357,7 @@ function controller() {
                         var xStr = String(x) + '%';
                         d3.select('#debateSvg' + i).append('line')
                             .attr('stroke-width', 2)
-                            .attr('stroke', 'black')
+                            .attr('stroke', tickColor)
                             .attr('x1', xStr)
                             .attr('x2', xStr)
                             .attr('y1', debateSvgHeight / 2 - tickLength)
@@ -355,7 +370,7 @@ function controller() {
 
 			//instantiate the list for sorting
 			var options = {
-				valueNames: ['ID', 'TITLE', 'DATE', 'SCORE']
+				valueNames: ['ID', 'TITLE', 'DATE', 'SCORE', 'DSCORE']
 			};
 			var userList = new List('debatesCanvas', options);
 		}
