@@ -328,8 +328,16 @@ function elementMouseOverClosure(graphX, graphY) {
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
 			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
+
+			//Highlight all tickmarks on currently active debates
+			var senatorPointer = d.data;
+			var tick;
+			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
+				d3.select(senatorPointer.activeDebateTicks[j])[0][0].style('stroke-width', 5); 
+			}
+			//move to front
+			//increase stroke
 		}
-		//	+"<h2>Personal information</h2><h2>Wikipedia Link</h2><p>???Vote History???</p><p>???Speech History???</p>";
 	};
 	return elementMouseOver;
 }
@@ -355,6 +363,12 @@ function elementMouseOutClosure() {
 			d.svgYTrace.transition().style('opacity', 0);
 			d.svgXTrace.remove();
 			d.svgYTrace.remove();
+
+			//unhighlight all tickmarks on currently active debates
+			var senatorPointer = d.data;
+			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
+				d3.select(senatorPointer.activeDebateTicks[j])[0][0].attr('stroke-width', 2); 
+			}
 		}
 	};
 	return elementMouseOut;
@@ -364,6 +378,10 @@ function elementMouseOutClosure() {
 function elementMouseClickClosure(setViewLevel) {
 
 	var elementMouseClick = function(d, i) {
+		//wipe the old senator's stored debate tick SVG pointers
+		if(global.currentSenator){
+			global.currentSenator.activeDebateTicks.length = 0;
+		}
 		global.currentSenator = d.data;
 		setViewLevel('senator');
 		document.getElementById('senatorViewBox').innerHTML = '<h2>' + d.title + '</h2><h3>Years in Office<br/>' + d.party + '<br/>Total Debates:' + d.data.debateIDs.length + '</h3>';

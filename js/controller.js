@@ -35,7 +35,7 @@ function controller() {
 				v: +d['vote.score'],
 				s: +d['speech.score'],
 				votePos: +d['vote.score.normalized'],
-				speechPos: +d['speech.score.normalized']
+				speechPos: +d['speech.score.normalized'],
 			//	thetaCilb: +d.thetacilb,
 			//	thetaCiub: +d.thetaciub
 				};
@@ -72,7 +72,8 @@ function controller() {
 				delta: data[i].speechPos - data[i].votePos,
 				r: 5,
 				shape: 'circle',
-				debateIDs: new Array()
+				debateIDs: new Array(),
+				activeDebateTicks: new Array()
 			};
             _senatorMap[graphData[i].datum.speakerID] = graphData[i];
 		}
@@ -123,7 +124,6 @@ function controller() {
 
 		var debateData = new Array();
         var speakerIndex;
-        console.log(_senatorData[0]);
 		for (var i = 0; i < data.length; i++) {
 			var debateCell = {};
 
@@ -145,7 +145,6 @@ function controller() {
 
 			//if the debate is in the table, add the new speaker and his score to that debate's lists
 			else {
-                //indexing hell!!!
 				debateData[data[i].debateID].speakerIDs.push(data[i].speakerID);
 				debateData[data[i].debateID].speakerScores.push(data[i].speakerScore);
 				debateData[data[i].debateID].speakerIndexCounter++;
@@ -167,9 +166,6 @@ function controller() {
 			}*/
 
 		}
-        console.log(debateData);
-        console.log(_senatorData);
-        console.log(_senatorMap);
 		return debateData;
 	}
 	//--------------------------------------------------------------------------------------------------------------------
@@ -266,7 +262,7 @@ function controller() {
 	}
 
 	function populateDebateWindow(senator) {
-		var debateNumCap = 100;
+		var debateNumCap = 5;
         if(debateNumCap > senator.debateIDs.length)
             debateNumCap = senator.debateIDs.length;
 		var i = 0;
@@ -303,13 +299,22 @@ function controller() {
             var currDebate = _debateData[senator.debateIDs[i]];
             var tickColor;
 			//create the svg
+			if(i == 0){
+				d3.select('body').append('svg')
+					.style('width', 500)
+					.style('height', 500)
+					.attr('id', 'debateSvg0');
+			}
+			else{
 			d3.select('#debateCanvas' + i).append('svg')
 				.attr('width', '100%')
 				.attr('height', debateSvgHeight)
 				.attr('id', 'debateSvg' + i);
+			}
 			//draw the main line
 			d3.select('#debateSvg' + i).append('line')
-				.attr('stroke-width', 2)
+				.attr('id', 'debateLine' + i)
+				.attr('stroke-width', 5)
 				.attr('stroke', 'black')
 				.attr('x1', 0)
 				.attr('x2', '100%')
@@ -319,10 +324,11 @@ function controller() {
             //go through all the speakers in this debate and draw their positions
 			for (var j = 0; j < currDebate.speakerIDs.length; j++) {
 
+				var currSenator = _senatorMap[currDebate.speakerIDs[j]];
                 //determine party for the tick's color
-                if(_senatorMap[currDebate.speakerIDs[j]].datum.party == 'R')
+                if(currSenator.datum.party == 'R')
                     tickColor = '#F66';
-                else if(_senatorMap[currDebate.speakerIDs[j]].datum.party == 'D')
+                else if(currSenator.datum.party == 'D')
                     tickColor = '#66F';
                 else
                     tickColor = '#CAC';
@@ -335,6 +341,8 @@ function controller() {
                     }
                 }
                 var x = currDebate.speakerScores[j];
+				var tickMark;
+				var tempData = [{'1': 1}, {'2': 2}, {'3' :3}];
                 if(speakerIndex == -1){
                     console.err("Error: No matching ID for speaker " + senator.datum.speakerID + " in debate " + currDebate.debateID);
                 }
@@ -346,27 +354,39 @@ function controller() {
                     x = Math.floor(x);
                     //if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
                     if(j == speakerIndex){
-                        d3.select('#debateSvg' + i).append('circle')
-                            .attr('class', 'c_rep scatterPoint')
+                        tickMark = d3.select('#debateSvg' + i).selectAll('TEMPNULL').data(tempData).enter().append('circle')
+                            .attr('class', 'c_rep')
+							.style('stroke-width', 5)
                             .attr('r', 7)
                             .attr('cx', String(x) + '%')
                             .attr('cy', debateSvgHeight / 2)
                             .attr('id', 'primarySenator' + j);
+							//.on('mouseover', 4);
+							tickMark.on('mouseover', function(d) { console.log(this);
+								d3.select(this).style('stroke-width', 5);
+								return this;
+							})
+							.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2)});
                     }
                     else{ 
                         var xStr = String(x) + '%';
-                        d3.select('#debateSvg' + i).append('line')
-                            .attr('stroke-width', 2)
-                            .attr('stroke', tickColor)
+                        tickMark = d3.select('#debateSvg' + i).append('line')
+                            .style('stroke-width', 2)
+                            .style('stroke', tickColor)
                             .attr('x1', xStr)
                             .attr('x2', xStr)
                             .attr('y1', debateSvgHeight / 2 - tickLength)
-                            .attr('y2', debateSvgHeight / 2 + tickLength);
+                            .attr('y2', debateSvgHeight / 2 + tickLength)	
+							.on('mouseover', function(d) { console.log(this);d3.select(this).style('stroke-width', 5)})
+							.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2)});
                     }
-                    
+						currSenator.activeDebateTicks.push(tickMark);
+		//	d3.select(currSenator.activeDebateTicks[0])[0][0].attr('stroke-width', 5);//.attr('stroke', 5); 
                 }
 			}
             d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();
+            d3.select('#debateLine0').moveToFront();
+            d3.select('#debateSvg0').moveToFront();
 
 			//instantiate the list for sorting
 			var options = {
