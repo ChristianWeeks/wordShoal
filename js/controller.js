@@ -20,7 +20,8 @@ function controller() {
 	d3.select('#sideBar1').style('height', (_mainHeight / 2) + 'px');
 
 	//--------------------------------------------------------------------------------------------------------------------
-	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN function
+	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN 
+	//function
 	//--------------------------------------------------------------------------------------------------------------------
 	function readSenatorCSV(year) {
 		var fileName = !year ? 'data/US_Senate_104-113_senator_data.csv' : 'data/EstimatesSenate1' + year + '.csv';
@@ -271,12 +272,12 @@ function controller() {
 		var tickLength = 8;
         //This is our table header 
 		htmlStr +=
-			"<div class='row'><div class='col-md-1'><button class='sort' data-sort='ID'><h3>ID</h3></button></div>" +
-			"<div class='col-md-3'><button class='sort' data-sort='TITLE'><h3>Title</h3></button></div>" +
-			"<div class='col-md-1'><button class='sort' data-sort='DATE'><h3>Date</h3></button></div>" +
-			"<div class='col-md-1'><button class='sort' data-sort='DSCORE'><h3>DScore</h3></button></div>" +
+			"<div class='row'><div class='col-md-1'><h3>ID</h3></div>" +
+			"<div class='col-md-3'><h3>Title</h3></div>" +
+			"<div class='col-md-1'><h3>Date</h3></div>" +
+			"<div class='col-md-1'><h3>DScore</h3></div>" +
 			"<div class='col-md-6'><h3>Idealized Scores</h3></div></div>" +
-			"<table><tbody class='list'>";
+			"<table><tbody>";
 
 		//Populate the table with the debates this senator has participated in
 		for (i = 0; i < debateNumCap; i++) {
@@ -314,7 +315,7 @@ function controller() {
 			//draw the main line
 			d3.select('#debateSvg' + i).append('line')
 				.attr('id', 'debateLine' + i)
-				.attr('stroke-width', 5)
+				.attr('stroke-width', 2)
 				.attr('stroke', 'black')
 				.attr('x1', 0)
 				.attr('x2', '100%')
@@ -389,10 +390,6 @@ function controller() {
             d3.select('#debateSvg0').moveToFront();
 
 			//instantiate the list for sorting
-			var options = {
-				valueNames: ['ID', 'TITLE', 'DATE', 'SCORE', 'DSCORE']
-			};
-			var userList = new List('debatesCanvas', options);
 		}
 	}
 
