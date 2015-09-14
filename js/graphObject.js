@@ -333,7 +333,9 @@ function elementMouseOverClosure(graphX, graphY) {
 			var senatorPointer = d.data;
 			var tick;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j])[0][0].style('stroke-width', 5); 
+				d3.select(senatorPointer.activeDebateTicks[j])[0][0]
+					.style('stroke-width', 5)
+					.moveToFront(); 
 			}
 			//move to front
 			//increase stroke
@@ -367,7 +369,7 @@ function elementMouseOutClosure() {
 			//unhighlight all tickmarks on currently active debates
 			var senatorPointer = d.data;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j])[0][0].attr('stroke-width', 2); 
+				d3.select(senatorPointer.activeDebateTicks[j])[0][0].style('stroke-width', 2); 
 			}
 		}
 	};

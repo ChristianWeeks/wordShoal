@@ -14,6 +14,7 @@ function controller() {
 
 	var _BAR_GRAPH = null;
 	var _SCATTER_PLOT = null;
+	var _DEBATE_TABLE = null;
 	global.minified = false;
 
 	//dynamically resizing the side bar.
@@ -201,6 +202,19 @@ function controller() {
 			else
 				_SCATTER_PLOT.destroyAll();
 
+			if(!_DEBATE_TABLE){
+				
+				_DEBATE_TABLE = new debateTable({
+								'debateData': _debateData,
+								'senatorData':_senatorData,
+								'senatorMap':_senatorMap,
+								'debateMap' :_debateMap});
+			}
+			global.senatorData = _senatorData;
+			global.debateData = _debateData;
+			global.senatorMap = _senatorMap;
+			global.debateMap = _debateMap;
+
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
 			//_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
@@ -255,7 +269,8 @@ function controller() {
 			minifyMainGraph();
 
 			//populate the debates window
-			populateDebateWindow(global.currentSenator);
+			_DEBATE_TABLE.update({'senator' : global.currentSenator});
+			_DEBATE_TABLE.createDebateTable();
 		}
 		else {
 			console.error('Improper view level set: ' + viewLevelStr);
@@ -299,19 +314,10 @@ function controller() {
 		for (i = 0; i < debateNumCap; i++) {
             var currDebate = _debateData[senator.debateIDs[i]];
             var tickColor;
-			//create the svg
-			if(i == 0){
-				d3.select('body').append('svg')
-					.style('width', 500)
-					.style('height', 500)
-					.attr('id', 'debateSvg0');
-			}
-			else{
 			d3.select('#debateCanvas' + i).append('svg')
 				.attr('width', '100%')
 				.attr('height', debateSvgHeight)
-				.attr('id', 'debateSvg' + i);
-			}
+				.attr('id', 'debateSvg' + i);	
 			//draw the main line
 			d3.select('#debateSvg' + i).append('line')
 				.attr('id', 'debateLine' + i)
