@@ -33,13 +33,14 @@ scatterPlot.prototype.setYAttr = function() {
 			cssClass = 'c_ind';
 
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
+		this.data[i].nameSubStr = nameSubStr
+		this.data[i].scatterNdx = i;
+		this.data[i].cssClass = cssClass;
 		this.currentlyViewedData[i] = {
-			'ndx': i,
 			'data': this.data[i],
 			'id': nameSubStr + i + 'Point',
 			'title': this.data[i].name,
 			'party': this.data[i].id,
-			'name': nameSubStr,
 			'xVal': this.data[i].x,
 			'yVal': this.data[i].y,
 			'y': this.mapYValToGraph(this.data[i].y),

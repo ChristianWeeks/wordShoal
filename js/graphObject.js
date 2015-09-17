@@ -260,6 +260,7 @@ graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, setViewLeve
 	this.mouseOut = elementMouseOutClosure();
 	this.mouseClick = elementMouseClickClosure(setViewLevelFunc);
 
+
 	this.svgElements[elementStr]
 		.on('mouseover', this.mouseOver)
 		.on('mouseout', this.mouseOut)
@@ -287,9 +288,9 @@ function elementMouseOverClosure(graphX, graphY) {
 	var elementMouseOver = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
 			//draw lines extending to x and y axes
-			var barKey = '#' + d.name + 'Bar';
-			var pointKey = '#' + d.name + d.ndx + 'Point';
-			var barKey = '#' + d.name + 'Bar';
+			var barKey = '#' + d.data.nameSubStr + 'Bar';
+			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
+			var barKey = '#' + d.data.nameSubStr + 'Bar';
 			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
 			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
 			d.svgXTrace = d3.select('#scatterPlot').append('line').attr({
@@ -324,7 +325,7 @@ function elementMouseOverClosure(graphX, graphY) {
 
 			//fill in the information bar at the side
 			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box sideBox');
-			document.getElementById('sideBar1').innerHTML = '<h2>' + d.title + '</h2><h3>Years in Office</h3><h3>' + d.party + '</h3><br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
+			document.getElementById('sideBar1').innerHTML = '<h2>' + d.data.name + '</h2><h3>Years in Office</h3><h3>' + d.data.id + '</h3><br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
 			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
@@ -333,9 +334,14 @@ function elementMouseOverClosure(graphX, graphY) {
 			var senatorPointer = d.data;
 			var tick;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j])[0][0]
+				d3.select(senatorPointer.activeDebateTicks[j]).transition()
 					.style('stroke-width', 5)
-					.moveToFront(); 
+					.attr('y1', function(d){
+						d3.select('#debateSvg' + d.debateSvgNdx).transition()
+							.style('border-color', d.strokeC);
+						
+						return d.y1 - 8;}) 
+					.attr('y2', function(d){return d.y2 + 8;});
 			}
 			//move to front
 			//increase stroke
@@ -354,8 +360,8 @@ function elementMouseOutClosure() {
 			else
 				rad = 6;
 
-			var pointKey = '#' + d.name + d.ndx + 'Point';
-			var barKey = '#' + d.name + 'Bar';
+			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
+			var barKey = '#' + d.data.nameSubStr + 'Bar';
 			d3.select(pointKey).transition()
 				.attr('r', rad)
 				.attr('class', function(d) {return d.cssClass});
@@ -369,7 +375,13 @@ function elementMouseOutClosure() {
 			//unhighlight all tickmarks on currently active debates
 			var senatorPointer = d.data;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j])[0][0].style('stroke-width', 2); 
+				d3.select(senatorPointer.activeDebateTicks[j]).transition()
+					.style('stroke-width', 2)
+					.attr('y1', function(d){	
+						d3.select('#debateSvg' + d.debateSvgNdx).transition()
+							.style('border-color', 'white');
+						return d.y1;}) 
+					.attr('y2', function(d){return d.y2;});
 			}
 		}
 	};
@@ -386,7 +398,7 @@ function elementMouseClickClosure(setViewLevel) {
 		}
 		global.currentSenator = d.data;
 		setViewLevel('senator');
-		document.getElementById('senatorViewBox').innerHTML = '<h2>' + d.title + '</h2><h3>Years in Office<br/>' + d.party + '<br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
+		document.getElementById('senatorViewBox').innerHTML = '<h2>' + d.data.name + '</h2><h3>Years in Office<br/>' + d.data.id + '<br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
 		document.getElementById('sideBar1').innerHTML = '';
 	//	document.getElementById('category').innerHTML = '';
 	//	document.getElementById('value').innerHTML = '';

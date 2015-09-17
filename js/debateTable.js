@@ -5,7 +5,12 @@ var debateTable = function(argv) {
 	this._senatorDataPtr = argv.senatorData;
 	this._senatorMapPtr = argv.senatorMap;
 	this._debateMapPtr = argv.debateMap;
+
+	this.mouseOver = argv.mouseOver;
+	this.mouseOut = argv.mouseOut;
+	this.mouseClick = argv.mouseClick;
 	this.svgElements = {};
+	this.svgElements.debateLineTicks = new Array();
 
 
 }
@@ -84,7 +89,11 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 	d3.select(debateCanvas).append('svg')
 		.attr('width', '100%')
 		.attr('height', debateSvgHeight)
-		.attr('id', 'debateSvg' + i);	
+		.attr('id', 'debateSvg' + i)
+		.style('border-style', 'solid')
+		.style('border-color', 'white')
+		.style('border-radius', '5px')
+		.style('border-width', '1px');
 	//draw the main line
 	d3.select('#debateSvg' + i).append('line')
 		.attr('id', 'debateLine' + i)
@@ -94,6 +103,8 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		.attr('x2', '100%')
 		.attr('y1', debateSvgHeight / 2)
 		.attr('y2', debateSvgHeight / 2);
+
+	var debateLineData = new Array();
 
 	for (var j = 0; j < debate.speakerIDs.length; j++) {
 
@@ -114,43 +125,66 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 			}
 		}
 		var x = debate.speakerScores[j];
+		//convert the value from [-3.0, 3.0] to [0.0, 100.0]
+		x = Math.floor((x + 3.0)*100.0/6.0);
 		var tickMark;
-		if(speakerIndex == -1){
-			console.err("Error: No matching ID for speaker " + this.mainSenator.datum.speakerID + " in debate " + debate.debateID);
+		var xStr = String(x) + '%';
+		var speakerLineLen = 0;
+		var speakerLineW = 0;
+		if(j == speakerIndex){
+			speakerLineLen = 15;
+			speakerLineW = 1;
 		}
-		else{
-			//convert the value from [-3.0, 3.0] to [0.0, 100.0]
-			x = (x + 3.0);
-			x = x*100.0;
-			x = x/6.0;
-			x = Math.floor(x);
-			//if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
-			if(j == speakerIndex){
-				tickMark = d3.select('#debateSvg' + i).append('circle')
-					.attr('class', 'c_rep')
-					.style('stroke-width', 5)
-					.attr('r', 7)
-					.attr('cx', String(x) + '%')
-					.attr('cy', debateSvgHeight / 2)
-					.attr('id', 'primarySenator' + j)
-					.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
-					.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
-			}
-			else{ 
-				var xStr = String(x) + '%';
-				tickMark = d3.select('#debateSvg' + i).append('line')
-					.style('stroke-width', 2)
-					.style('stroke', tickColor)
-					.attr('x1', xStr)
-					.attr('x2', xStr)
-					.attr('y1', debateSvgHeight / 2 - tickLength)
-					.attr('y2', debateSvgHeight / 2 + tickLength)	
-					.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
-					.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
-			}
-				currSenator.activeDebateTicks.push(tickMark);
+		debateLineData[j] = {
+			data: currSenator,
+			x: xStr,
+			y1: debateSvgHeight / 2 - tickLength - speakerLineLen,
+			y2: debateSvgHeight / 2 + tickLength + speakerLineLen,
+			strokeW: 2 + speakerLineW,
+			strokeC: tickColor,
+			debateSvgNdx: i
+		};	
+		//if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
+		/*if(j == speakerIndex){
+			tickMark = d3.select('#debateSvg' + i).append('circle')
+				.attr('class', 'c_rep')
+				.style('stroke-width', 5)
+				.attr('r', 7)
+				.attr('cx', String(x) + '%')
+				.attr('cy', debateSvgHeight / 2)
+				.attr('id', 'primarySenator' + j)
+				.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
+				.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
+		}
+		else{ 
+			var xStr = String(x) + '%';
+			tickMark = d3.select('#debateSvg' + i)
+				.append('line')
+				.style('stroke-width', 2)
+				.style('stroke', tickColor)
+				.attr('x1', xStr)
+				.attr('x2', xStr)
+				.attr('y1', debateSvgHeight / 2 - tickLength)
+				.attr('y2', debateSvgHeight / 2 + tickLength)	
+				.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
+				.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
+		}*/
+		var debateLineTicks = d3.select('#debateSvg' + i).selectAll('ticks').data(debateLineData).enter()
+			.append('line')
+			.style('stroke-width', function(d){
+				d.data.activeDebateTicks.push(this);
+				return d.strokeW;})
+			.style('stroke', function(d){return d.strokeC;})
+			.attr('x1', function(d){return d.x;})
+			.attr('x2', function(d){return d.x;})
+			.attr('y1', function(d){return d.y1;})
+			.attr('y2', function(d){return d.y2;})
+			.on('mouseover', this.mouseOver)
+			.on('mouseout', this.mouseOut)
+			.on('click', this.mouseClick);
 	//	d3.select(currSenator.activeDebateTicks[0])[0][0].attr('stroke-width', 5);//.attr('stroke', 5); 
-		}
+		
+		
 	}
 	d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();
 }

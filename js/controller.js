@@ -202,14 +202,6 @@ function controller() {
 			else
 				_SCATTER_PLOT.destroyAll();
 
-			if(!_DEBATE_TABLE){
-				
-				_DEBATE_TABLE = new debateTable({
-								'debateData': _debateData,
-								'senatorData':_senatorData,
-								'senatorMap':_senatorMap,
-								'debateMap' :_debateMap});
-			}
 			global.senatorData = _senatorData;
 			global.debateData = _debateData;
 			global.senatorMap = _senatorMap;
@@ -219,6 +211,17 @@ function controller() {
 			_SCATTER_PLOT.setData(graphData);
 			//_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('points', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
+			if(!_DEBATE_TABLE){
+				
+				_DEBATE_TABLE = new debateTable({
+								'debateData': _debateData,
+								'senatorData':_senatorData,
+								'senatorMap':_senatorMap,
+								'debateMap' :_debateMap,
+								'mouseOver' :_SCATTER_PLOT.mouseOver,
+								'mouseOut' :_SCATTER_PLOT.mouseOut,
+								'mouseClick' :_SCATTER_PLOT.mouseClick});
+			}
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------
@@ -276,131 +279,6 @@ function controller() {
 			console.error('Improper view level set: ' + viewLevelStr);
 		}
 	}
-
-	function populateDebateWindow(senator) {
-		var debateNumCap = 5;
-        if(debateNumCap > senator.debateIDs.length)
-            debateNumCap = senator.debateIDs.length;
-		var i = 0;
-		var htmlStr = '';
-		var debateSvgHeight = 50;
-		var tickLength = 8;
-        //This is our table header 
-		htmlStr +=
-			"<div class='row'><div class='col-md-1'><h3>ID</h3></div>" +
-			"<div class='col-md-3'><h3>Title</h3></div>" +
-			"<div class='col-md-1'><h3>Date</h3></div>" +
-			"<div class='col-md-1'><h3>DScore</h3></div>" +
-			"<div class='col-md-6'><h3>Idealized Scores</h3></div></div>" +
-			"<table><tbody>";
-
-		//Populate the table with the debates this senator has participated in
-		for (i = 0; i < debateNumCap; i++) {
-			var currDebate = _debateData[senator.debateIDs[i]];
-			htmlStr += "<tr class='row'>" +
-							"<td class='col-md-1 td ID'>" + i + '</td>' +
-							"<td class='col-md-3 td TITLE'>" + currDebate.title + '</td>' +
-							"<td class='col-md-1 td DATE'>" + currDebate.date + '</td>' +
-							"<td class='col-md-1 td DSCORE'>" + currDebate.debateScore.toFixed(3) + '</td>' +
-							"<td class='col-md-6 td SCORE' id='debateCanvas" + i + "'></td>" +
-						'</tr>';
-		}
-		htmlStr += '</tbody></table>';
-
-        //debatesCanvas is in our main index.html file
-		document.getElementById('debatesCanvas').innerHTML = htmlStr;
-
-        //create the svg canvases for each debate entry in our table
-		for (i = 0; i < debateNumCap; i++) {
-            var currDebate = _debateData[senator.debateIDs[i]];
-            var tickColor;
-			d3.select('#debateCanvas' + i).append('svg')
-				.attr('width', '100%')
-				.attr('height', debateSvgHeight)
-				.attr('id', 'debateSvg' + i);	
-			//draw the main line
-			d3.select('#debateSvg' + i).append('line')
-				.attr('id', 'debateLine' + i)
-				.attr('stroke-width', 2)
-				.attr('stroke', 'black')
-				.attr('x1', 0)
-				.attr('x2', '100%')
-				.attr('y1', debateSvgHeight / 2)
-				.attr('y2', debateSvgHeight / 2);
-
-            //go through all the speakers in this debate and draw their positions
-			for (var j = 0; j < currDebate.speakerIDs.length; j++) {
-
-				var currSenator = _senatorMap[currDebate.speakerIDs[j]];
-                //determine party for the tick's color
-                if(currSenator.datum.party == 'R')
-                    tickColor = '#F66';
-                else if(currSenator.datum.party == 'D')
-                    tickColor = '#66F';
-                else
-                    tickColor = '#CAC';
-                //Access that debate's data and draw each senator's score on the number line
-                var speakerIndex = -1;
-                for(var k = 0; k < currDebate.speakerIDs.length; k++){
-                    if (currDebate.speakerIDs[k] == senator.datum.speakerID){
-                        speakerIndex = k;
-                        break;
-                    }
-                }
-                var x = currDebate.speakerScores[j];
-				var tickMark;
-				var tempData = [{'1': 1}, {'2': 2}, {'3' :3}];
-                if(speakerIndex == -1){
-                    console.err("Error: No matching ID for speaker " + senator.datum.speakerID + " in debate " + currDebate.debateID);
-                }
-                else{
-                    //convert the value from [-3.0, 3.0] to [0.0, 100.0]
-                    x = x + 3.0;
-                    x = x*100.0;
-                    x = x/6.0;
-                    x = Math.floor(x);
-                    //if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
-                    if(j == speakerIndex){
-                        tickMark = d3.select('#debateSvg' + i).selectAll('TEMPNULL').data(tempData).enter().append('circle')
-                            .attr('class', 'c_rep')
-							.style('stroke-width', 5)
-                            .attr('r', 7)
-                            .attr('cx', String(x) + '%')
-                            .attr('cy', debateSvgHeight / 2)
-                            .attr('id', 'primarySenator' + j);
-							//.on('mouseover', 4);
-							tickMark.on('mouseover', function(d) { console.log(this);
-								d3.select(this).style('stroke-width', 5);
-								return this;
-							})
-							.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2)});
-                    }
-                    else{ 
-                        var xStr = String(x) + '%';
-                        tickMark = d3.select('#debateSvg' + i).append('line')
-                            .style('stroke-width', 2)
-                            .style('stroke', tickColor)
-                            .attr('x1', xStr)
-                            .attr('x2', xStr)
-                            .attr('y1', debateSvgHeight / 2 - tickLength)
-                            .attr('y2', debateSvgHeight / 2 + tickLength)	
-							.on('mouseover', function(d) { console.log(this);d3.select(this).style('stroke-width', 5)})
-							.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2)});
-                    }
-						currSenator.activeDebateTicks.push(tickMark);
-		//	d3.select(currSenator.activeDebateTicks[0])[0][0].attr('stroke-width', 5);//.attr('stroke', 5); 
-                }
-			}
-            d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();
-            d3.select('#debateLine0').moveToFront();
-            d3.select('#debateSvg0').moveToFront();
-
-			//instantiate the list for sorting
-		}
-	}
-
-
-
 
 	//--------------------------------------------------------------------------------------------------------------------
 	//filters results on selecting different states
