@@ -46,8 +46,8 @@ debateTable.prototype.increaseTableSize = function(){
 	//don't redraw columns
 	var i = this.drawnRows;
 	for(i; i < this.debateNumCap; i++){
-		var htmlStr = this.debateToHtml(i);
-		document.getElementById('tableBody').innerHTML += htmlStr;
+		var row = this.debateToHtml(i);
+		document.getElementById('tableBody').appendChild(row);
 	}
 	//populate new debate lines
 	for(i = this.drawnRows; i < this.debateNumCap; i++){
@@ -57,17 +57,17 @@ debateTable.prototype.increaseTableSize = function(){
 		this.drawnRows +=1;
 	}
 }
-
 debateTable.prototype.debateToHtml = function(i){
 	var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
-	var htmlStr = "<tr class='row' id='debateRow" + i + "'>" +
-					//"<td class='col-md-1 td'>" + i + '</td>' +
+	var row = document.createElement('tr');
+	row.id = 'debateRow' + i;
+	row.className = 'row';
+	row.innerHTML = //"<td class='col-md-1 td'>" + i + '</td>' +
 					"<td class='col-md-3 td'>" + currDebate.title + '</td>' +
 					"<td class='col-md-1 td'>" + currDebate.date + '</td>' +
 					"<td class='col-md-1 td'>" + currDebate.debateScore.toFixed(3) + '</td>' +
-					"<td class='col-md-7 td' id='debateCanvas" + i + "'></td>" +
-				'</tr>';
-	return htmlStr;
+					"<td class='col-md-7 td' id='debateCanvas" + i + "'></td></tr>";
+	return row;
 }
 
 //------------------------------------------------------------------------------------------------------------
@@ -90,15 +90,17 @@ debateTable.prototype.createDebateTable = function(){
 		"<div class='col-md-6' id='tableScoresHead'><h3 style='text-align:center'>Idealized Scores</h3></div></div>" +
 		"<table><tbody id='tableBody'>";
 
-	//Populate the table with the debates this senator has participated in
-	for (i = 0; i < this.debateNumCap; i++) {
-		htmlStr += this.debateToHtml(i);
-	}
 	htmlStr +="</tbody></table></div>";
 	htmlStr += "<button id='paginateButton' class='pageButton simpleBorder' align='center'>Show More Results</button>";
 	//debatesCanvas is in our main index.html file
 	document.getElementById('debatesCanvas').innerHTML = htmlStr;
 	document.getElementById('paginateButton').onclick = this.incrementTableClosure();
+
+	//Populate the table with the debates this senator has participated in
+	for (i = 0; i < this.debateNumCap; i++) {
+		var row = this.debateToHtml(i);
+		document.getElementById('tableBody').appendChild(row);
+	}
 
 	for(i = 0; i < this.debateNumCap; i++){
 		var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
