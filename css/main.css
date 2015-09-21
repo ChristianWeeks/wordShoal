@@ -22,6 +22,24 @@ html {
 	border: solid 1px #ddd;
 }
 
+.pageButton{
+	margin: 20px;
+	height: 40px;
+	width: 140px;
+	color: #555;
+	background: #FFF;
+	position:relative;
+	left:50%;
+  	transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+.pageButton:hover{
+	  background: #FAA;
+	  color: #000;
+	  border-color: #666;
+}
+
 .sideBox{
 	border-radius: 10px;
 }

@@ -18,6 +18,7 @@ var debateTable = function(argv) {
 debateTable.prototype.update = function(argv){
 	this.mainSenator = argv.senator;
 	this.debateNumCap = argv.debateNumCap || 10;
+	this.drawnRows = 0;
 	if(this.debateNumCap > this.mainSenator.debateIDs.length)
 		this.debateNumCap = senator.debateIDs.length;
 }
@@ -35,6 +36,39 @@ debateTable.prototype.sortBy = function(sortAttr){
 	});
 
 }
+debateTable.prototype.increaseTableSize = function(){
+	var totalDebates = this.mainSenator.debateIDs.length;
+	if(this.debateNumCap + 10 > totalDebates)
+		this.debateNumCap = totalDebates;
+	else
+		this.debateNumCap += 10;
+
+	//don't redraw columns
+	var i = this.drawnRows;
+	for(i; i < this.debateNumCap; i++){
+		var htmlStr = this.debateToHtml(i);
+		document.getElementById('tableBody').innerHTML += htmlStr;
+	}
+	//populate new debate lines
+	for(i = this.drawnRows; i < this.debateNumCap; i++){
+		var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
+		var debateCanvas = "#debateCanvas" + i;
+		this.populateDebateLine(currDebate, debateCanvas, i);
+		this.drawnRows +=1;
+	}
+}
+
+debateTable.prototype.debateToHtml = function(i){
+	var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
+	var htmlStr = "<tr class='row' id='debateRow" + i + "'>" +
+					//"<td class='col-md-1 td'>" + i + '</td>' +
+					"<td class='col-md-3 td'>" + currDebate.title + '</td>' +
+					"<td class='col-md-1 td'>" + currDebate.date + '</td>' +
+					"<td class='col-md-1 td'>" + currDebate.debateScore.toFixed(3) + '</td>' +
+					"<td class='col-md-7 td' id='debateCanvas" + i + "'></td>" +
+				'</tr>';
+	return htmlStr;
+}
 
 //------------------------------------------------------------------------------------------------------------
 //Creates the skeleton of our table and the svg canvases which will be populated with debate info
@@ -46,7 +80,7 @@ debateTable.prototype.createDebateTable = function(){
 	var htmlStr = '';
 	//This is our table header 
 	htmlStr +=
-		"<div class='row'>" +
+		"<div id='debateTable'><div class='row'>" +
 		//"<div class='col-md-1' id='tableIDHead'><h3>ID</h3></div>" +
 		"<div class='col-md-3'>" +
 			"<div class='col-md-6'><h3>Title</h3></div>" +
@@ -54,32 +88,36 @@ debateTable.prototype.createDebateTable = function(){
 		"<div class='col-md-1' id='tableDateHead'><h3>Date</h3></div>" +
 		"<div class='col-md-1' id='tableDScoreHead'><h3>DScore</h3></div>" +
 		"<div class='col-md-6' id='tableScoresHead'><h3 style='text-align:center'>Idealized Scores</h3></div></div>" +
-		"<table><tbody>";
+		"<table><tbody id='tableBody'>";
 
 	//Populate the table with the debates this senator has participated in
 	for (i = 0; i < this.debateNumCap; i++) {
-		var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
-		htmlStr += "<tr class='row'>" +
-						//"<td class='col-md-1 td'>" + i + '</td>' +
-						"<td class='col-md-3 td'>" + currDebate.title + '</td>' +
-						"<td class='col-md-1 td'>" + currDebate.date + '</td>' +
-						"<td class='col-md-1 td'>" + currDebate.debateScore.toFixed(3) + '</td>' +
-						"<td class='col-md-7 td' id='debateCanvas" + i + "'></td>" +
-					'</tr>';
+		htmlStr += this.debateToHtml(i);
 	}
-	htmlStr +="</tbody></table>";
+	htmlStr +="</tbody></table></div>";
+	htmlStr += "<button id='paginateButton' class='pageButton simpleBorder' align='center'>Show More Results</button>";
 	//debatesCanvas is in our main index.html file
 	document.getElementById('debatesCanvas').innerHTML = htmlStr;
+	document.getElementById('paginateButton').onclick = this.incrementTableClosure();
 
 	for(i = 0; i < this.debateNumCap; i++){
 		var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
 		var debateCanvas = "#debateCanvas" + i;
 		this.populateDebateLine(currDebate, debateCanvas, i);
-
+		this.drawnRows +=1;
 	}
-
+	//create the pagination button
 	this.createSortButtons();
 }
+
+debateTable.prototype.incrementTableClosure = function(){
+	var parentClass = this;
+	var buttonClosure = function(){
+		parentClass.increaseTableSize();
+	}
+	return buttonClosure;
+}
+		
 
 debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 
