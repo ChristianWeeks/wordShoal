@@ -231,10 +231,57 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 
 //this creates all of the clickable sorting buttons
 debateTable.prototype.createSortButtons = function(){
-	//this.svgElements['dateSortCanvas'] =
-	//	d3.select
-	var dateSortCanvas = d3.select('#tableTitleSort').append('svg')
-		.attr('width', 25)
-		.attr('height', 50)
-		.style('background', 'red');
+
+    function buttonMouseOver(d, i) {
+        d3.select(this).transition().style('stroke', '#555')
+            .style('fill', '#faa');
+    }
+    function buttonMouseOut(d, i) {
+        d3.select(this).transition().style('stroke', '#aaa')
+            .style('fill', '#fff');
+    }
+    function createSortButton(canvas, ascPtr, descPtr){
+
+        var ascPathData = [ {'x': 1, 'y': canvHeight/2 - 2}, {'x': canvWidth - 1, 'y': canvHeight/2 - 2},
+                            {'x': canvWidth/2, 'y': 1}, {'x': 1, 'y': canvHeight/2 - 2},{'x': canvWidth - 1, 'y': canvHeight/2 - 2}];
+
+        var descPathData = [ {'x': 1, 'y': canvHeight/2 + 2}, {'x': canvWidth - 1, 'y': canvHeight/2 + 2},
+                            {'x': canvWidth/2, 'y': canvHeight - 1}, {'x': 1, 'y': canvHeight/2 + 2},{'x': canvWidth - 1, 'y': canvHeight/2 + 2}];
+
+        var ascPtr = canvas.append('path')
+            .style('stroke', '#aaa')
+            .style('stroke-width', 2)
+            .style('stroke-radius', 2)
+            .style('fill', 'white')
+            .attr('d', lineFunction(ascPathData)) 
+            .on('mouseover', buttonMouseOver)
+            .on('mouseout', buttonMouseOut);
+        var descPtr = canvas.append('path')
+            .style('stroke', '#aaa')
+            .style('stroke-width', 2)
+            .style('stroke-radius', 2)
+            .style('fill', 'white')
+            .attr('d', lineFunction(descPathData))
+            .on('mouseover', buttonMouseOver)
+            .on('mouseout', buttonMouseOut);
+    }
+
+    var canvWidth = 20;
+    var canvHeight = 40;
+    var lineFunction = d3.svg.line()
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; })
+        .interpolate("linear");
+
+        
+	var titleSortCanvas = d3.select('#tableTitleSort').append('svg')
+		.attr('width', canvWidth)
+		.attr('height', canvHeight);
+    var dateSortcanvas = d3.select('#tableDateSort').append('svg')
+		.attr('width', canvWidth)
+		.attr('height', canvHeight);
+
+    createSortButton(titleSortCanvas, this.dateAscButton, this.dateDescButton);
+    createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
 }
+
