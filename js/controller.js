@@ -273,6 +273,7 @@ function controller() {
 
 			//populate the debates window
 			_DEBATE_TABLE.update({'senator' : global.currentSenator});
+			_DEBATE_TABLE.sortBy('debateScore', 'descending');
 			_DEBATE_TABLE.createDebateTable();
 		}
 		else {

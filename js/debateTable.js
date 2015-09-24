@@ -11,8 +11,6 @@ var debateTable = function(argv) {
 	this.mouseClick = argv.mouseClick;
 	this.svgElements = {};
 	this.svgElements.debateLineTicks = new Array();
-
-
 }
 
 debateTable.prototype.update = function(argv){
@@ -23,19 +21,44 @@ debateTable.prototype.update = function(argv){
 		this.debateNumCap = senator.debateIDs.length;
 }
 
-
 //------------------------------------------------------------------------------------------------------------
 //This sorts the currently active senator's debateID's according to an attribute
 //and then redraws accordingly
 //------------------------------------------------------------------------------------------------------------
-debateTable.prototype.sortBy = function(sortAttr){
-	this.mainSenator.debateIDs.sort(
-	function(a, b){
+debateTable.prototype.sortBy = function(sortAttr, type){
+
+	var ascendingSort = function(a, b){
+		return global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? -1 
+		: global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? 1 : 0;
+	};
+
+	var descendingSort = function(a, b){
 		return global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? -1 
 		: global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? 1 : 0;
-	});
+	};
+	var sortFunc;
+	if(type == 'ascending')
+		sortFunc = ascendingSort;
+	else
+		sortFunc = descendingSort;
 
+	this.mainSenator.debateIDs.sort(sortFunc);
 }
+
+debateTable.prototype.sortButtonClosure = function(sortAttr, type){
+	var parentCl = this;
+	var sortFunc = function(){
+		document.getElementById('tableBody').innerHTML = '';
+		parentCl.sortBy(sortAttr, type);
+		parentCl.fillTable();
+	}
+	return sortFunc;
+}
+
+
+//------------------------------------------------------------------------------------------------------------
+//Increases the amount of table rows drawn by 10
+//------------------------------------------------------------------------------------------------------------
 debateTable.prototype.increaseTableSize = function(){
 	var totalDebates = this.mainSenator.debateIDs.length;
 	if(this.debateNumCap + 10 > totalDebates)
@@ -57,6 +80,10 @@ debateTable.prototype.increaseTableSize = function(){
 		this.drawnRows +=1;
 	}
 }
+
+//------------------------------------------------------------------------------------------------------------
+//Creates html for the table rows
+//------------------------------------------------------------------------------------------------------------
 debateTable.prototype.debateToHtml = function(i){
 	var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
 	var row = document.createElement('tr');
@@ -70,23 +97,27 @@ debateTable.prototype.debateToHtml = function(i){
 	return row;
 }
 
-//------------------------------------------------------------------------------------------------------------
-//Creates the skeleton of our table and the svg canvases which will be populated with debate info
-//------------------------------------------------------------------------------------------------------------
-debateTable.prototype.createDebateTable = function(){
 
-	this.sortBy('debateScore');
+//------------------------------------------------------------------------------------------------------------
+//Creates the skeleton of our table 
+//------------------------------------------------------------------------------------------------------------
+debateTable.prototype.createDebateTable= function(){
+
 	var i = 0;
 	var htmlStr = '';
 	//This is our table header 
 	htmlStr +=
-		"<div id='debateTable'><div class='row'>" +
+		"<div id='debateTable'><div class='row tableHeader nopad'>" +
 		//"<div class='col-md-1' id='tableIDHead'><h3>ID</h3></div>" +
 		"<div class='col-md-3'>" +
-			"<div class='col-md-6'><h3>Title</h3></div>" +
-			"<div class='col-md-6' id='tableTitleSort'></div></div>" +
-		"<div class='col-md-1' id='tableDateHead'><h3>Date</h3></div>" +
-		"<div class='col-md-1' id='tableDScoreHead'><h3>DScore</h3></div>" +
+			"<div class='col-md-6 nopad'>Title</div>" +
+			"<div class='col-md-6 nopad' id='tableTitleSort'></div></div>" +
+		"<div class='col-md-1 nopad' id='tableDateHead'>" +
+			"<div class='col-md-9 nopad'>Date</div>" +
+			"<div class='col-md-3 nopad' id='tableDateSort'></div></div>" +
+		"<div class='col-md-1 nopad' id='tableDScoreHead'>" +
+			"<div class='col-md-9 nopad'>Score</div>" +
+			"<div class='col-md-3 nopad' id='tableDScoreSort'></div></div>" +
 		"<div class='col-md-6' id='tableScoresHead'><h3 style='text-align:center'>Idealized Scores</h3></div></div>" +
 		"<table><tbody id='tableBody'>";
 
@@ -94,8 +125,15 @@ debateTable.prototype.createDebateTable = function(){
 	htmlStr += "<button id='paginateButton' class='pageButton simpleBorder' align='center'>Show More Results</button>";
 	//debatesCanvas is in our main index.html file
 	document.getElementById('debatesCanvas').innerHTML = htmlStr;
+	//create the pagination button
 	document.getElementById('paginateButton').onclick = this.incrementTableClosure();
+	this.fillTable();
+	//create the sorting buttons
+	this.createSortButtons();
+}
 
+debateTable.prototype.fillTable = function(){
+	var i = 0;
 	//Populate the table with the debates this senator has participated in
 	for (i = 0; i < this.debateNumCap; i++) {
 		var row = this.debateToHtml(i);
@@ -108,8 +146,6 @@ debateTable.prototype.createDebateTable = function(){
 		this.populateDebateLine(currDebate, debateCanvas, i);
 		this.drawnRows +=1;
 	}
-	//create the pagination button
-	this.createSortButtons();
 }
 
 debateTable.prototype.incrementTableClosure = function(){
@@ -240,13 +276,15 @@ debateTable.prototype.createSortButtons = function(){
         d3.select(this).transition().style('stroke', '#aaa')
             .style('fill', '#fff');
     }
-    function createSortButton(canvas, ascPtr, descPtr){
+    function createSortButton(canvas){
 
         var ascPathData = [ {'x': 1, 'y': canvHeight/2 - 2}, {'x': canvWidth - 1, 'y': canvHeight/2 - 2},
-                            {'x': canvWidth/2, 'y': 1}, {'x': 1, 'y': canvHeight/2 - 2},{'x': canvWidth - 1, 'y': canvHeight/2 - 2}];
+                            {'x': canvWidth/2, 'y': 1}, {'x': 1, 'y': canvHeight/2 - 2},
+							{'x': canvWidth - 1, 'y': canvHeight/2 - 2}];
 
         var descPathData = [ {'x': 1, 'y': canvHeight/2 + 2}, {'x': canvWidth - 1, 'y': canvHeight/2 + 2},
-                            {'x': canvWidth/2, 'y': canvHeight - 1}, {'x': 1, 'y': canvHeight/2 + 2},{'x': canvWidth - 1, 'y': canvHeight/2 + 2}];
+                            {'x': canvWidth/2, 'y': canvHeight - 1}, {'x': 1, 'y': canvHeight/2 + 2},
+							{'x': canvWidth - 1, 'y': canvHeight/2 + 2}];
 
         var ascPtr = canvas.append('path')
             .style('stroke', '#aaa')
@@ -264,6 +302,7 @@ debateTable.prototype.createSortButtons = function(){
             .attr('d', lineFunction(descPathData))
             .on('mouseover', buttonMouseOver)
             .on('mouseout', buttonMouseOut);
+		return {'ascending': ascPtr, 'descending': descPtr};
     }
 
     var canvWidth = 20;
@@ -272,16 +311,36 @@ debateTable.prototype.createSortButtons = function(){
         .x(function(d) { return d.x; })
         .y(function(d) { return d.y; })
         .interpolate("linear");
-
-        
+ 
 	var titleSortCanvas = d3.select('#tableTitleSort').append('svg')
 		.attr('width', canvWidth)
 		.attr('height', canvHeight);
-    var dateSortcanvas = d3.select('#tableDateSort').append('svg')
+    var dateSortCanvas = d3.select('#tableDateSort').append('svg')
+		.attr('width', canvWidth)
+		.attr('height', canvHeight);
+    var dScoreSortCanvas = d3.select('#tableDScoreSort').append('svg')
 		.attr('width', canvWidth)
 		.attr('height', canvHeight);
 
-    createSortButton(titleSortCanvas, this.dateAscButton, this.dateDescButton);
-    createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
+	this.titleDescButton = 0;
+	var sortObj;
+    sortObj = createSortButton(titleSortCanvas, this.titleAscButton, this.titleDescButton);
+	this.titleAscButton = sortObj.ascending;
+	this.titleDescButton = sortObj.descending;
+	this.titleAscButton.on('click', this.sortButtonClosure('title', 'ascending'));
+	this.titleDescButton.on('click', this.sortButtonClosure('title', 'descending'));
+
+    sortObj = createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
+	this.dateAscButton = sortObj.ascending;
+	this.dateDescButton = sortObj.descending;
+	this.dateAscButton.on('click', this.sortButtonClosure('date', 'ascending'));
+	this.dateDescButton.on('click', this.sortButtonClosure('date', 'descending'));
+
+    sortObj = createSortButton(dScoreSortCanvas, this.dScoreAscButton, this.dScoreDescButton);
+	this.dScoreAscButton = sortObj.ascending;
+	this.dScoreDescButton = sortObj.descending;
+	this.dScoreAscButton.on('click', this.sortButtonClosure('debateScore', 'ascending'));
+	this.dScoreDescButton.on('click', this.sortButtonClosure('debateScore', 'descending'));
+    //createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
 }
 

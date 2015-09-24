@@ -22,6 +22,16 @@ html {
 	border: solid 1px #ddd;
 }
 
+h3{
+}
+.tableHeader{
+	height: 50px;
+	font-size: 22px;
+	color: #555;
+	position:relative;
+	left:0%;
+}
+
 .pageButton{
 	margin: 20px;
 	height: 40px;
@@ -38,6 +48,10 @@ html {
 	  background: #FAA;
 	  color: #000;
 	  border-color: #666;
+}
+.nopad{
+	padding-right: 3px !important;
+	padding-left: 3px !important;
 }
 
 .sideBox{
