@@ -21,39 +21,6 @@ debateTable.prototype.update = function(argv){
 		this.debateNumCap = senator.debateIDs.length;
 }
 
-//------------------------------------------------------------------------------------------------------------
-//This sorts the currently active senator's debateID's according to an attribute
-//and then redraws accordingly
-//------------------------------------------------------------------------------------------------------------
-debateTable.prototype.sortBy = function(sortAttr, type){
-
-	var ascendingSort = function(a, b){
-		return global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? -1 
-		: global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? 1 : 0;
-	};
-
-	var descendingSort = function(a, b){
-		return global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? -1 
-		: global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? 1 : 0;
-	};
-	var sortFunc;
-	if(type == 'ascending')
-		sortFunc = ascendingSort;
-	else
-		sortFunc = descendingSort;
-
-	this.mainSenator.debateIDs.sort(sortFunc);
-}
-
-debateTable.prototype.sortButtonClosure = function(sortAttr, type){
-	var parentCl = this;
-	var sortFunc = function(){
-		document.getElementById('tableBody').innerHTML = '';
-		parentCl.sortBy(sortAttr, type);
-		parentCl.fillTable();
-	}
-	return sortFunc;
-}
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -88,12 +55,11 @@ debateTable.prototype.debateToHtml = function(i){
 	var currDebate = this._debateDataPtr[this.mainSenator.debateIDs[i]];
 	var row = document.createElement('tr');
 	row.id = 'debateRow' + i;
-	row.className = 'row';
 	row.innerHTML = //"<td class='col-md-1 td'>" + i + '</td>' +
-					"<td class='col-md-3 td'>" + currDebate.title + '</td>' +
-					"<td class='col-md-1 td'>" + currDebate.date + '</td>' +
-					"<td class='col-md-1 td'>" + currDebate.debateScore.toFixed(3) + '</td>' +
-					"<td class='col-md-7 td' id='debateCanvas" + i + "'></td></tr>";
+					"<td class='col-md-3 td smallpad titleFont'>" + currDebate.title + '</td>' +
+					"<td class='col-md-1 td nopad dateFont'>" + currDebate.date + '</td>' +
+					"<td class='col-md-1 td nopad dateFont'>" + currDebate.debateScore.toFixed(3) + '</td>' +
+					"<td class='col-md-7 td smallpad' id='debateCanvas" + i + "'></td>";
 	return row;
 }
 
@@ -107,19 +73,22 @@ debateTable.prototype.createDebateTable= function(){
 	var htmlStr = '';
 	//This is our table header 
 	htmlStr +=
-		"<div id='debateTable'><div class='row tableHeader nopad'>" +
+		"<div id='debateTable'><table class='table table-striped'><thead class='tableHeader nopad'>" +
 		//"<div class='col-md-1' id='tableIDHead'><h3>ID</h3></div>" +
-		"<div class='col-md-3'>" +
-			"<div class='col-md-6 nopad'>Title</div>" +
-			"<div class='col-md-6 nopad' id='tableTitleSort'></div></div>" +
-		"<div class='col-md-1 nopad' id='tableDateHead'>" +
-			"<div class='col-md-9 nopad'>Date</div>" +
-			"<div class='col-md-3 nopad' id='tableDateSort'></div></div>" +
-		"<div class='col-md-1 nopad' id='tableDScoreHead'>" +
-			"<div class='col-md-9 nopad'>Score</div>" +
-			"<div class='col-md-3 nopad' id='tableDScoreSort'></div></div>" +
-		"<div class='col-md-6' id='tableScoresHead'><h3 style='text-align:center'>Idealized Scores</h3></div></div>" +
-		"<table><tbody id='tableBody'>";
+		"<th class='col-md-3'>" +
+			"<div class='col-md-8 nopad headerPad'>Debate Title</div>" +
+			"<div class='col-md-4 nopad' id='tableTitleSort'></div></th>" +
+		"<th class='col-md-1 nopad' id='tableDateHead'>" +
+			"<div class='col-md-9 headerPad nopad'>Date</div>" +
+			"<div class='col-md-3 nopad' id='tableDateSort'></div></th>" +
+		"<th class='col-md-1 nopad' id='tableDScoreHead'>" +
+			"<div class='col-md-9 nopad' style='font-size: 15px'>Polar-<br/>ization</div>" +
+			"<div class='col-md-3 nopad' id='tableDScoreSort'></div></th>" +
+		"<th class='col-md-6 nopad' id='tableScoresHead'>" + 
+		"<div class='col-md-8 nopad headerPad' style='text-align: center'>Idealized Scores</div>" +
+		"<div class='col-md-4 nopad' id='tableSpeechSort'></div>" +
+		"</th></thead>" +
+		"<tbody id='tableBody'>";
 
 	htmlStr +="</tbody></table></div>";
 	htmlStr += "<button id='paginateButton' class='pageButton simpleBorder' align='center'>Show More Results</button>";
@@ -159,9 +128,9 @@ debateTable.prototype.incrementTableClosure = function(){
 
 debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 
-	var debateSvgHeight = 50;
+	var debateSvgHeight = 70;
 	var tickLength = 8;
-	var tickColor;
+	var sColor, fColor;
 	d3.select(debateCanvas).append('svg')
 		.attr('width', '100%')
 		.attr('height', debateSvgHeight)
@@ -174,24 +143,33 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 	d3.select('#debateSvg' + i).append('line')
 		.attr('id', 'debateLine' + i)
 		.attr('stroke-width', 2)
-		.attr('stroke', 'black')
+		.attr('stroke', '#444')
 		.attr('x1', 0)
 		.attr('x2', '100%')
-		.attr('y1', debateSvgHeight / 2)
-		.attr('y2', debateSvgHeight / 2);
+		.attr('y1', debateSvgHeight - 2)
+		.attr('y2', debateSvgHeight - 2);
 
 	var debateLineData = new Array();
-
+	var histogramBins = new Array(50);
+	for( var z= 0; z < 50; z++){
+		histogramBins[z] = 0;
+	}
 	for (var j = 0; j < debate.speakerIDs.length; j++) {
 
 		var currSenator = this._senatorMapPtr[debate.speakerIDs[j]];
 		//determine party for the tick's color
-		if(currSenator.datum.party == 'R')
-			tickColor = '#F66';
-		else if(currSenator.datum.party == 'D')
-			tickColor = '#66F';
-		else
-			tickColor = '#CAC';
+		if(currSenator.datum.party == 'R'){
+			fColor = '#F66';
+			sColor = '#F22';
+		}	
+		else if(currSenator.datum.party == 'D'){
+			fColor = '#66F';
+			sColor = '#22F';
+		}
+		else{
+			fColor = '#CAC';
+			sColor = '#C6C';
+		}
 		//Access that debate's data and draw each senator's score on the number line
 		var speakerIndex = -1;
 		for(var k = 0; k < debate.speakerIDs.length; k++){
@@ -203,58 +181,39 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		var x = debate.speakerScores[j];
 		//convert the value from [-3.0, 3.0] to [0.0, 100.0]
 		x = Math.floor((x + 3.0)*100.0/6.0);
+		x = (Math.floor(x / 2.0));
+
 		var tickMark;
-		var xStr = String(x) + '%';
+		var xStr = String(x*2) + '%';
 		var speakerLineLen = 0;
 		var speakerLineW = 0;
 		if(j == speakerIndex){
-			speakerLineLen = 15;
-			speakerLineW = 1;
+			fColor = "#222";
 		}
 		debateLineData[j] = {
 			data: currSenator,
 			x: xStr,
-			y1: debateSvgHeight / 2 - tickLength - speakerLineLen,
-			y2: debateSvgHeight / 2 + tickLength + speakerLineLen,
-			strokeW: 2 + speakerLineW,
-			strokeC: tickColor,
+			width: 5,
+			y: (debateSvgHeight - 3) - (tickLength+1)*(histogramBins[x]+1),
+			height: tickLength,
+			strokeW: 0 + speakerLineW,
+			strokeC: sColor,
+			fill: fColor,
 			debateSvgNdx: i
 		};	
-		//if this is our senator, draw a circle.   Else, the other senators get less prominent line ticks
-		/*if(j == speakerIndex){
-			tickMark = d3.select('#debateSvg' + i).append('circle')
-				.attr('class', 'c_rep')
-				.style('stroke-width', 5)
-				.attr('r', 7)
-				.attr('cx', String(x) + '%')
-				.attr('cy', debateSvgHeight / 2)
-				.attr('id', 'primarySenator' + j)
-				.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
-				.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
-		}
-		else{ 
-			var xStr = String(x) + '%';
-			tickMark = d3.select('#debateSvg' + i)
-				.append('line')
-				.style('stroke-width', 2)
-				.style('stroke', tickColor)
-				.attr('x1', xStr)
-				.attr('x2', xStr)
-				.attr('y1', debateSvgHeight / 2 - tickLength)
-				.attr('y2', debateSvgHeight / 2 + tickLength)	
-				.on('mouseover', function(d) {d3.select(this).style('stroke-width', 5);})
-				.on('mouseout', function(d) { d3.select(this).style('stroke-width', 2);});
-		}*/
+
+		histogramBins[x]++;
 		var debateLineTicks = d3.select('#debateSvg' + i).selectAll('ticks').data(debateLineData).enter()
-			.append('line')
+			.append('rect')
 			.style('stroke-width', function(d){
 				d.data.activeDebateTicks.push(this);
 				return d.strokeW;})
 			.style('stroke', function(d){return d.strokeC;})
-			.attr('x1', function(d){return d.x;})
-			.attr('x2', function(d){return d.x;})
-			.attr('y1', function(d){return d.y1;})
-			.attr('y2', function(d){return d.y2;})
+			.style('fill', function(d){return d.fill;})
+			.attr('x', function(d){return d.x;})
+			.attr('width', function(d){return d.width;})
+			.attr('y', function(d){return d.y;})
+			.attr('height', function(d){return d.height;})
 			.on('mouseover', this.mouseOver)
 			.on('mouseout', this.mouseOut)
 			.on('click', this.mouseClick);
@@ -321,6 +280,9 @@ debateTable.prototype.createSortButtons = function(){
     var dScoreSortCanvas = d3.select('#tableDScoreSort').append('svg')
 		.attr('width', canvWidth)
 		.attr('height', canvHeight);
+    var speechSortCanvas = d3.select('#tableSpeechSort').append('svg')
+		.attr('width', canvWidth)
+		.attr('height', canvHeight);
 
 	this.titleDescButton = 0;
 	var sortObj;
@@ -341,6 +303,61 @@ debateTable.prototype.createSortButtons = function(){
 	this.dScoreDescButton = sortObj.descending;
 	this.dScoreAscButton.on('click', this.sortButtonClosure('debateScore', 'ascending'));
 	this.dScoreDescButton.on('click', this.sortButtonClosure('debateScore', 'descending'));
+
+	sortObj = createSortButton(speechSortCanvas, this.speechAscButton, this.speechDescButton);
+	this.dScoreAscButton = sortObj.ascending;
+	this.dScoreDescButton = sortObj.descending;
+	this.dScoreAscButton.on('click', this.sortButtonClosure('speech', 'ascending'));
+	this.dScoreDescButton.on('click', this.sortButtonClosure('speech', 'descending'));
     //createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
 }
 
+//------------------------------------------------------------------------------------------------------------
+//This sorts the currently active senator's debateID's according to an attribute
+//and then redraws accordingly
+//------------------------------------------------------------------------------------------------------------
+debateTable.prototype.sortBy = function(sortAttr, type){
+	//sorting by speaker scores requires different logic because it isn't 1:1 in the debate data
+	if(sortAttr == 'speech'){
+		var senator = this.mainSenator;
+		var ascendingSort = function(a, b){
+			return senator.speechScores[a] < senator.speechScores[b] ? -1 
+			: senator.speechScores[a] > senator.speechScores[b] ? 1 : 0;
+		};
+
+		var descendingSort = function(a, b){
+			return senator.speechScores[a] > senator.speechScores[b] ? -1 
+			: senator.speechScores[a] < senator.speechScores[b] ? 1 : 0;
+		};
+	}
+	//all other attributes can be sorted with simpler logic
+	else{
+		var ascendingSort = function(a, b){
+			return global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? -1 
+			: global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? 1 : 0;
+		};
+
+		var descendingSort = function(a, b){
+			return global.debateData[a][sortAttr] > global.debateData[b][sortAttr] ? -1 
+			: global.debateData[a][sortAttr] < global.debateData[b][sortAttr] ? 1 : 0;
+		};
+	}
+	var sortFunc;
+	if(type == 'ascending')
+		sortFunc = ascendingSort;
+	else
+		sortFunc = descendingSort;
+
+	this.mainSenator.debateIDs.sort(sortFunc);
+}
+
+debateTable.prototype.sortButtonClosure = function(sortAttr, type){
+	var parentCl = this;
+	var sortFunc = function(){
+		document.getElementById('tableBody').innerHTML = '';
+		parentCl.drawnRows = 0;
+		parentCl.sortBy(sortAttr, type);	
+		parentCl.fillTable();
+	}
+	return sortFunc;
+}

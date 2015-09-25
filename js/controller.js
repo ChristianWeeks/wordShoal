@@ -75,6 +75,7 @@ function controller() {
 				r: 5,
 				shape: 'circle',
 				debateIDs: new Array(),
+				speechScores: {},
 				activeDebateTicks: new Array()
 			};
             _senatorMap[graphData[i].datum.speakerID] = graphData[i];
@@ -158,6 +159,7 @@ function controller() {
 //			for (k = 0; k < _senatorData.length; k++) {
                 //link the debate with the senators
                 _senatorMap[data[i].speakerID].debateIDs.push(data[i].debateID);
+                _senatorMap[data[i].speakerID].speechScores[data[i].debateID] = data[i].speakerScore;
                 //if the senator is the same as the current debate data's senator, then link them
 
 /*				if (_senatorData[k].datum.speakerID == data[i].speakerID) {

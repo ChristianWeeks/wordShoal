@@ -335,7 +335,7 @@ function elementMouseOverClosure(graphX, graphY) {
 			var tick;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
-					.style('stroke-width', 5)
+					.style('stroke-width', 2)
 					.attr('y1', function(d){
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', d.strokeC);
@@ -376,7 +376,7 @@ function elementMouseOutClosure() {
 			var senatorPointer = d.data;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
-					.style('stroke-width', 2)
+					.style('stroke-width', function(d){return d.strokeW})
 					.attr('y1', function(d){	
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', 'white');
