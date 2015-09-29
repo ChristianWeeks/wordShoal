@@ -12,9 +12,12 @@ function controller() {
     var _debateMap = {};
 	var _debateData;
 
+	var _stateData;
+
 	var _BAR_GRAPH = null;
 	var _SCATTER_PLOT = null;
 	var _DEBATE_TABLE = null;
+	var _USA_MAP = null;
 	global.minified = false;
 
 	//dynamically resizing the side bar.
@@ -49,6 +52,7 @@ function controller() {
 				_senatorData = configureSenatorData(senatorData);
 
 				//now that senators are read in, read in the debate data
+				readStates();
 				readDebateCSV();
 			});
 	}
@@ -282,6 +286,39 @@ function controller() {
 			console.error('Improper view level set: ' + viewLevelStr);
 		}
 	}
+	function configureStateData(){
+		var dataPtr = _stateData.objects.states.geometries;
+
+		for(var j = 0; j < dataPtr.length; j++){
+			dataPtr[j].properties.senators = new Array();
+			dataPtr[j].properties.scoreAvg = 0;
+		}
+		for(var i = 0; i < _senatorData.length; i++){
+			for(var j = 0; j < dataPtr.length; j++){
+				if(_senatorData[i].datum.state == dataPtr[j].properties.postal){
+					dataPtr[j].properties.senators.push(i);
+					dataPtr[j].properties.scoreAvg += _senatorData[i].x;
+				}
+			}
+		}
+		var colorScale = d3.scale.pow()
+			.domain([-1.6, 0.0, 1.6])
+			.range(["#6666ff", "#fff0ff", "#ff6666"])
+		for(var j = 0; j < dataPtr.length; j++){
+			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
+			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);
+			console.log(dataPtr[j].properties.scoreAvg);
+		}
+	}
+
+	function readStates(){
+		d3.json("data/mapData/US_States.json", function(error, data){
+			if(error) return console.error(error);
+			_stateData = data;
+			configureStateData();
+		_USA_MAP = new usaMap(_stateData);
+		});
+	}
 
 	//--------------------------------------------------------------------------------------------------------------------
 	//filters results on selecting different states
@@ -294,7 +331,7 @@ function controller() {
 
 	global.activeStateFilter = 'None';
 	createStateList('stateDropDown');
-	createYearButtons();
+//	createYearButtons();
 	//--------------------------------------------------------------------------------------------------------------------
 	//BEGIN OUR PROGRAM
 	//--------------------------------------------------------------------------------------------------------------------

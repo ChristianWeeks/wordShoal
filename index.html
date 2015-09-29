@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<script src="js/dependencies/d3.v3.js"></script>
+		<script src="js/dependencies/topojson.v1.min.js"></script>
 		<script src="js/dependencies/jquery-1.11.2.min.js"></script>
 		<script src="js/dependencies/bootstrap.min.js"></script>
 		<script src="js/dependencies/plugins.js"></script>
@@ -13,6 +14,7 @@
 		<script src="js/timeline.js"></script>
 		<script src="js/histogram.js"></script>
 		<script src="js/debateTable.js"></script>
+		<script src="js/usaMap.js"></script>
 		<title>Speech Visualization - Draft</title>
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -20,7 +22,10 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell">Select a Year</span></div>
+				<div id="usaMapContainer" align="center">
+				</div>
+			<div class="row">
+				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell"></span></div>
 				<div class="col-md-8">
 					<div align="left" id="topButtonsBar"></div>
 				</div>
