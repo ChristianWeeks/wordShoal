@@ -10,6 +10,7 @@ var debateTable = function(argv) {
 	this.mouseOut = argv.mouseOut;
 	this.mouseClick = argv.mouseClick;
 	this.svgElements = {};
+	this.svgElements.svgCanvases = new Array();
 	this.svgElements.debateLineTicks = new Array();
 }
 
@@ -129,16 +130,19 @@ debateTable.prototype.incrementTableClosure = function(){
 debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 
 	var debateSvgHeight = 70;
+	var debateSvgWidth = 500;
 	var tickLength = 8;
 	var sColor, fColor;
 	d3.select(debateCanvas).append('svg')
-		.attr('width', '100%')
+		.attr('width', "100%")
 		.attr('height', debateSvgHeight)
 		.attr('id', 'debateSvg' + i)
 		.style('border-style', 'solid')
 		.style('border-color', 'white')
 		.style('border-radius', '5px')
-		.style('border-width', '1px');
+		.style('border-width', '1px')
+		.attr('viewBox', '0 0 ' + debateSvgWidth + ' ' + debateSvgHeight)
+		.attr('preserveAspectRatio', 'xMidYMid');
 	//draw the main line
 	d3.select('#debateSvg' + i).append('line')
 		.attr('id', 'debateLine' + i)
@@ -150,8 +154,8 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		.attr('y2', debateSvgHeight - 2);
 
 	var debateLineData = new Array();
-	var histogramBins = new Array(50);
-	for( var z= 0; z < 50; z++){
+	var histogramBins = new Array(100);
+	for( var z= 0; z < 100; z++){
 		histogramBins[z] = 0;
 	}
 	for (var j = 0; j < debate.speakerIDs.length; j++) {
@@ -179,9 +183,11 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 			}
 		}
 		var x = debate.speakerScores[j];
-		//convert the value from [-3.0, 3.0] to [0.0, 100.0]
-		x = Math.floor((x + 3.0)*100.0/6.0);
-		x = (Math.floor(x / 2.0));
+		//convert the value from [-3.0, 3.0] to [0.0, canvasWidth]
+		var xPercent = Math.floor((x + 3.0)*100.0/6.0);
+		x = (x + 3.0)*debateSvgWidth/6.0;
+		
+		var histIndex = (Math.floor(xPercent / 2.0));
 
 		var tickMark;
 		var xStr = String(x*2) + '%';
@@ -190,35 +196,36 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		if(j == speakerIndex){
 			fColor = "#222";
 		}
+		var yPad = 0;
+		if(histIndex%2)
+			yPad = 4;
+		
 		debateLineData[j] = {
 			data: currSenator,
-			x: xStr,
+			x: x,
 			width: 5,
-			y: (debateSvgHeight - 3) - (tickLength+1)*(histogramBins[x]+1),
+			y: (debateSvgHeight) - (tickLength+1)*(histogramBins[histIndex]+1) - yPad,
 			height: tickLength,
 			strokeW: 0 + speakerLineW,
 			strokeC: sColor,
 			fill: fColor,
 			debateSvgNdx: i
 		};	
-
-		histogramBins[x]++;
+		histogramBins[histIndex]++;
 		var debateLineTicks = d3.select('#debateSvg' + i).selectAll('ticks').data(debateLineData).enter()
-			.append('rect')
+			.append('circle')
+			.attr('shape-rendering', 'geometricPrecision')
 			.style('stroke-width', function(d){
 				d.data.activeDebateTicks.push(this);
 				return d.strokeW;})
 			.style('stroke', function(d){return d.strokeC;})
 			.style('fill', function(d){return d.fill;})
-			.attr('x', function(d){return d.x;})
-			.attr('width', function(d){return d.width;})
-			.attr('y', function(d){return d.y;})
-			.attr('height', function(d){return d.height;})
+			.attr('cx', function(d){return d.x;})
+			.attr('cy', function(d){return d.y;})
+			.attr('r', 3)
 			.on('mouseover', this.mouseOver)
 			.on('mouseout', this.mouseOut)
-			.on('click', this.mouseClick);
-	//	d3.select(currSenator.activeDebateTicks[0])[0][0].attr('stroke-width', 5);//.attr('stroke', 5); 
-		
+			.on('click', this.mouseClick);	
 		
 	}
 	d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();

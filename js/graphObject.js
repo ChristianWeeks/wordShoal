@@ -317,9 +317,6 @@ function elementMouseOverClosure(graphX, graphY) {
 				.attr('r', 15)
 				.attr('class', function(d) {return d.cssClass + ' mOver'});
 			//highlight the nodes
-	//		d3.select(barKey).moveToFront();
-	//		d3.select(barKey).transition()
-	//			.attr('class', function(d) {return d.cssClass + ' mOverBar'});
 			d.svgXTrace.transition().style('opacity', 1).style('stroke-width', '3px');
 			d.svgYTrace.transition().style('opacity', 1).style('stroke-width', '3px');
 
@@ -336,12 +333,11 @@ function elementMouseOverClosure(graphX, graphY) {
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
 					.style('stroke-width', 2)
-					.attr('y1', function(d){
+					.attr('r', function(d){
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', d.strokeC);
 						
-						return d.y1 - 8;}) 
-					.attr('y2', function(d){return d.y2 + 8;});
+						return 5;});
 			}
 			//move to front
 			//increase stroke
@@ -377,11 +373,10 @@ function elementMouseOutClosure() {
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
 					.style('stroke-width', function(d){return d.strokeW})
-					.attr('y1', function(d){	
+					.attr('r', function(d){	
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', 'white');
-						return d.y1;}) 
-					.attr('y2', function(d){return d.y2;});
+						return 3;}) 
 			}
 		}
 	};

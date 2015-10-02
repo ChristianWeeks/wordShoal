@@ -307,7 +307,6 @@ function controller() {
 		for(var j = 0; j < dataPtr.length; j++){
 			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
 			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);
-			console.log(dataPtr[j].properties.scoreAvg);
 		}
 	}
 

@@ -130,6 +130,7 @@ scatterPlot.prototype.drawPoints = function() {
 		.enter()
 		.append('circle')
 		.attr('class', function(d) {return d.cssClass;})
+		.attr('shape-rendering', 'geometricPrecision')
 		.attr('id', function(d) { return d.id;})
 	//	.style("stroke-width", "2px")
 
