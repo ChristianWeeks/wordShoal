@@ -204,6 +204,7 @@ graphObject.prototype.drawXAxis = function() {
 			y: this.y + 20
 		})
 		.text(function(d) { return d.value});
+		console.log("XTICKFONTSIZE:" + this.xTickFontSize);
 };
 
 graphObject.prototype.drawYAxis = function() {

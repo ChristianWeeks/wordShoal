@@ -144,14 +144,41 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		.attr('viewBox', '0 0 ' + debateSvgWidth + ' ' + debateSvgHeight)
 		.attr('preserveAspectRatio', 'xMidYMid');
 	//draw the main line
+	var lineY = debateSvgHeight / 2;
 	d3.select('#debateSvg' + i).append('line')
 		.attr('id', 'debateLine' + i)
-		.attr('stroke-width', 2)
+		.attr('stroke-width', 1)
 		.attr('stroke', '#444')
 		.attr('x1', 0)
 		.attr('x2', '100%')
-		.attr('y1', debateSvgHeight - 2)
-		.attr('y2', debateSvgHeight - 2);
+		.attr('y1', lineY)
+		.attr('y2', lineY);
+	var lineTickData = new Array(5);
+	for(var w = 0; w < 5; w++)
+		lineTickData[w] = {y1: lineY-5-5*((w+1)%2), y2: lineY+5+5*((w+1)%2), x: w*debateSvgWidth/4};
+	lineTickData[0].x += 1;
+	lineTickData[4].x -= 1;
+	d3.select('#debateSvg' + i).selectAll('axisTicks').data(lineTickData).enter().append('line')
+		.attr('stroke-width', 1)
+		.attr('stroke', '#444')
+		.attr('x1', function(d){return d.x})
+		.attr('x2', function(d){return d.x})
+		.attr('y1', function(d){return d.y1})
+		.attr('y2', function(d){return d.y2});
+	var labelData = [{text: '-3.00', x: 1, y: lineY + 18, xAlign: 'start', yAlign: 'auto'},
+	{text: '3.00', x: debateSvgWidth, y: lineY + 18, xAlign: 'end', yAlign: 'auto'},
+	{text: 'Speech Score', x: debateSvgWidth / 2, y: debateSvgHeight - 4, xAlign: 'middle', yAlign: 'auto'}];
+
+
+	d3.select('#debateSvg' + i).selectAll('labels').data(labelData).enter().append('text')
+		.style('fill', '#777')
+		.attr('x', function(d){return d.x})
+		.attr('y', function(d){return d.y})
+		.attr('text-anchor', function(d){return d.xAlign})
+		.attr('alignment-baseline', 'baseline')
+		.text(function(d){return d.text});
+
+
 
 	var debateLineData = new Array();
 	var histogramBins = new Array(100);
@@ -194,6 +221,16 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		var speakerLineLen = 0;
 		var speakerLineW = 0;
 		if(j == speakerIndex){
+			speakerLineW = 2;
+			//draw a line to highlight the speaker's position
+			d3.select('#debateSvg' + i).append('line')
+				.style('stroke-width', 8)
+				.style('opacity', 0.3)
+				.style('stroke', fColor)
+				.attr('x1', x)
+				.attr('x2', x)
+				.attr('y1', 0)
+				.attr('y2', debateSvgHeight);
 			fColor = "#222";
 		}
 		var yPad = 0;
@@ -204,30 +241,33 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 			data: currSenator,
 			x: x,
 			width: 5,
-			y: (debateSvgHeight) - (tickLength+1)*(histogramBins[histIndex]+1) - yPad,
+			y: (lineY) + (Math.pow(-1, histogramBins[histIndex]%2)) * (5+(tickLength)*(Math.floor(histogramBins[histIndex]/2))),
 			height: tickLength,
 			strokeW: 0 + speakerLineW,
+			r: 3 + speakerLineW,
 			strokeC: sColor,
 			fill: fColor,
 			debateSvgNdx: i
 		};	
 		histogramBins[histIndex]++;
-		var debateLineTicks = d3.select('#debateSvg' + i).selectAll('ticks').data(debateLineData).enter()
-			.append('circle')
-			.attr('shape-rendering', 'geometricPrecision')
-			.style('stroke-width', function(d){
-				d.data.activeDebateTicks.push(this);
-				return d.strokeW;})
-			.style('stroke', function(d){return d.strokeC;})
-			.style('fill', function(d){return d.fill;})
-			.attr('cx', function(d){return d.x;})
-			.attr('cy', function(d){return d.y;})
-			.attr('r', 3)
-			.on('mouseover', this.mouseOver)
-			.on('mouseout', this.mouseOut)
-			.on('click', this.mouseClick);	
 		
 	}
+	var debateLineTicks = d3.select('#debateSvg' + i).selectAll('ticks')
+		.data(debateLineData)
+		.enter()
+		.append('circle')
+		//.attr('shape-rendering', 'geometricPrecision')
+		.style('stroke-width', function(d){
+			d.data.activeDebateTicks.push(this);
+			return d.strokeW;})
+		.style('stroke', function(d){return d.strokeC;})
+		.style('fill', function(d){return d.fill;})
+		.attr('cx', function(d){return d.x;})
+		.attr('cy', function(d){return d.y;})
+		.attr('r', function(d){return d.r;})
+		.on('mouseover', this.mouseOver)
+		.on('mouseout', this.mouseOut)
+		.on('click', this.mouseClick);	
 	d3.select('#' + 'primarySenator' + speakerIndex).moveToFront();
 }
 
