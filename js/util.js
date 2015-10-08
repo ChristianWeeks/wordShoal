@@ -35,7 +35,7 @@ function extend(subClass, superClass){
 function createStateList(divID){
 
 	var stateList = ["None", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"];
-	var menuStr = '<select onChange="changeState(this.value)">'
+	var menuStr = '<select id="stateDropdown" onChange="changeState(this.value)">'
 	var i;
 	for (i = 0; i < stateList.length; i++) {
 		menuStr += '<option value="' + stateList[i] + '">' + stateList[i] + '</option>';

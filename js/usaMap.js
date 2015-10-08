@@ -44,12 +44,23 @@ var usaMap = function(data){
 		})
 		.on("mouseout", function(d){
 			d3.select(this).transition()
-			.style('stroke-width', 1)
+			.style('stroke-width', function(d){
+				if(global.activeStateFilter != d.properties.postal)
+					return 1;
+				return 3;})
 			.style('fill', function(d){return d.properties.color})
-			.style('stroke', '#555');
+			.style('stroke', function(d){
+				if(global.activeStateFilter != d.properties.postal)
+					return '#555'
+				return "black";});
 		})
 		.on("click", function(d){
+			d3.select(this).transition().style('stroke-width', 3)
+			.style('fill', function(d){ return d.properties.color - 1000;})
+			.style('stroke', 'black');
+			d3.select(this).moveToFront();
 			changeState(d.properties.postal)
+			$("#stateDropdown").val(d.properties.postal);
 		});
 
 		d3.select("#Alaska_state").attr("transform", "translate(290,680) scale(0.7) rotate(-24)");
