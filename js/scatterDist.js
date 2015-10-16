@@ -50,10 +50,15 @@ scatterDist.prototype.setYAttr = function() {
 			'yVal': this.data[i].y,
 			'y': this.y - 4*i,
 			'x': this.mapXValToGraph(this.data[i].x),
+            'lowerBound': this.data[i].datum.lowerBound,
+            'lowerBoundX': this.mapXValToGraph(this.data[i].datum.lowerBound),
+            'upperBound': this.data[i].datum.upperBound,
+            'upperBoundX': this.mapXValToGraph(this.data[i].datum.upperBound),
 			'cssClass': this.baseCSSClass + ' ' + cssClass,
 			'svgLabel': null
 		};
 	}
+    console.log(this.data[i]);
 	if (this.minified)
 		this.drawMinified();
 	else
@@ -97,7 +102,6 @@ scatterDist.prototype.minify = function(minifiedSize) {
 };
 
 scatterDist.prototype.drawMinified = function() {
-
 	this.drawCenterLine();
 	this.drawPoints();
 
@@ -108,6 +112,7 @@ scatterDist.prototype.drawMinified = function() {
 
 scatterDist.prototype.draw = function() {
 
+    this.drawLines();
 	this.drawPoints();
 	this.drawXAxisLabel();
 	this.drawXAxis();
@@ -127,7 +132,6 @@ scatterDist.prototype.drawPoints = function() {
 		.enter()
 		.append('circle')
 		.attr('class', function(d) {return d.cssClass;})
-		.attr('shape-rendering', 'geometricPrecision')
 		.attr('id', function(d) { return d.id;})
 	//	.style("stroke-width", "2px")
 
@@ -144,6 +148,23 @@ scatterDist.prototype.drawPoints = function() {
 	//	.on("mouseover", this.mouseOver)
 	//	.on("mouseout", this.mouseOut);
 };
+
+scatterDist.prototype.drawLines = function(){
+    this.svgElements['confidenceLines'] = this.canvasPtr.selectAll('confidence')
+        .data(this.currentlyViewedData)
+        .enter()
+        .append('line')
+        .attr('class', function(d) {return d.cssClass;})
+		.attr({
+			x1: function(d) {
+			   	d.svgConfidenceLine = this;
+				return d.lowerBoundX;},
+            x2: function(d) {return d.upperBoundX;},
+			y1: function(d) {return d.y;},
+			y2: function(d) {return d.y;}
+		});
+    console.log("hi");
+}
 
 
 scatterDist.prototype.drawAxesLegends = function() {

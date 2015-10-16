@@ -39,6 +39,8 @@ function controller() {
 				party: d.party,
 				v: +d['vote.score'],
 				s: +d['speech.score'],
+                upperBound: +d['speech.score.upper'],
+                lowerBound: +d['speech.score.lower'],
 				votePos: +d['vote.score.normalized'],
 				speechPos: +d['speech.score.normalized'],
 			//	thetaCilb: +d.thetacilb,
@@ -73,7 +75,7 @@ function controller() {
 				//store data directly relevant to the graph in the first level
 				name: data[i].name,
 				id: data[i].party,
-				x: data[i].speechPos,
+				x: data[i].s,
 				y: data[i].votePos,
 				delta: data[i].speechPos - data[i].votePos,
 				r: 5,
