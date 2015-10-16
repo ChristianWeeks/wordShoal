@@ -185,7 +185,9 @@ function controller() {
 				_BAR_GRAPH = new histogram({
 					title: 'Senator Speech Score Distribution',
 					titleY: 'Number of Senators',
-					titleX: 'Speech Score'
+					titleX: 'Speech Score',
+					canvasWidth: 750,
+					canvasHeight: 300
 				});
 
 				_BAR_GRAPH.initCanvas('barCanvas', 'barSvg');
@@ -196,12 +198,18 @@ function controller() {
 				_BAR_GRAPH.destroyAll();
 
 			if (!_SCATTER_PLOT) {
-				_SCATTER_PLOT = new scatterPlot({
+				_SCATTER_PLOT = new scatterDist({
 					title: 'Senatorial Speech vs. Voting Habits',
 					titleY: 'Vote Score',
 					titleX: 'Speech Score',
+					canvasWidth: 400,
+					canvasHeight: 900,
+					leftPadding: 20,
+					rightPadding: 20,
+					botPadding: 40,
+					topPadding: 20
 				});
-				_SCATTER_PLOT.initCanvas('scatterCanvas', 'scatterPlot');
+				_SCATTER_PLOT.initCanvas('scatterDist', 'scatterDistCanvas');
 				global._SCATTER_PLOT = _SCATTER_PLOT;
 			}
 				//remove all of the previous svgs when loading a new year

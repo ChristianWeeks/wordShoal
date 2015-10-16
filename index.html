@@ -10,6 +10,7 @@
 		<script src="js/util.js"></script>
 		<script src="js/graphObject.js"></script>
 		<script src="js/scatterPlot.js"></script>
+		<script src="js/scatterDist.js">
 		<script src="js/barGraph.js"></script>
 		<script src="js/timeline.js"></script>
 		<script src="js/histogram.js"></script>
@@ -24,7 +25,12 @@
 			<div align="center">
 				<h3>Click on a state to view native senators.</h3>
 			<div class="row">
-				<div id="usaMapContainer" align="center">
+				<div class="col-md-8">
+					<div id="usaMapContainer" align="center"></div>
+					<div align="left" id="barCanvas"></div>
+				</div>
+				<div class="col-md-4">
+					<div align="left" id="scatterDist"></div>
 				</div>
 			<div class="row">
 				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell"></span></div>
@@ -40,8 +46,6 @@
 
 			<div class="row">
 				<div class="col-md-6">
-					<div align="left" id="barCanvas">
-					</div>
 				</div>
 				<div class="col-md-6">
 					<div align="left" id="scatterCanvas">

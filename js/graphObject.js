@@ -204,7 +204,6 @@ graphObject.prototype.drawXAxis = function() {
 			y: this.y + 20
 		})
 		.text(function(d) { return d.value});
-		console.log("XTICKFONTSIZE:" + this.xTickFontSize);
 };
 
 graphObject.prototype.drawYAxis = function() {
@@ -315,7 +314,7 @@ function elementMouseOverClosure(graphX, graphY) {
 
 			d3.select(pointKey).moveToFront();
 			d3.select(pointKey).transition()
-				.attr('r', 15)
+				.attr('r', 8)
 				.attr('class', function(d) {return d.cssClass + ' mOver'});
 			//highlight the nodes
 			d.svgXTrace.transition().style('opacity', 1).style('stroke-width', '3px');
@@ -338,7 +337,7 @@ function elementMouseOverClosure(graphX, graphY) {
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', d.strokeC);
 						
-						return 5;});
+						return 3;});
 			}
 			//move to front
 			//increase stroke
@@ -355,7 +354,7 @@ function elementMouseOutClosure() {
 			if (global.minified)
 				rad = 3;
 			else
-				rad = 6;
+				rad = 3;
 
 			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
 			var barKey = '#' + d.data.nameSubStr + 'Bar';

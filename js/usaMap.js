@@ -23,10 +23,10 @@ var usaMap = function(data){
 		.projection(projection);
 
 	this.mapSvg = d3.select("#usaMapContainer").append("svg")
-		.attr("width", width)
-		.attr("height", height)
-//		.attr("viewBox", "0 0 " + width + " " + height)
-//		.attr("preserveAspectRatio", "xMidYMid");
+		.attr("width", "100%")
+		.attr("height", "100%")
+		.attr("viewBox", "0 0 " + width + " " + height)
+		.attr("preserveAspectRatio", "xMidYMid");
 
 	var svg = this.mapSvg
 		svg.selectAll("states").data(this.states).enter()
