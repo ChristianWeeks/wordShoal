@@ -113,8 +113,9 @@ scatterDist.prototype.drawBoxes = function(){
 		.data(this.currentlyViewedData)
 		.enter()
 		.append("rect")
-		.style('fill', '#CCC')
-		.style('stroke-width', 0)
+		.style('fill', '#F5F5F5')
+		.style('stroke', '#CCC')
+		.style('stroke-width', 1)
 		.style('opacity', 0)
 		.attr({
 			x: 0,

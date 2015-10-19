@@ -26,8 +26,8 @@ var usaMap = function(data){
 		.attr("viewBox", "0 0 " + width + " " + height)
 		.attr("preserveAspectRatio", "xMidYMid");
 
-	var svg = this.mapSvg
-		svg.selectAll("states").data(this.states).enter()
+	var svg = this.mapSvg;
+	var stateSvgs = svg.selectAll("states").data(this.states).enter()
 		.append("path")
 		.style('stroke-width', 1)
 		.style('fill', function(d){return d.properties.color})
@@ -74,12 +74,18 @@ var usaMap = function(data){
 			}
 		})
 		.on("click", function(d){
+			stateSvgs.style('stroke', '#555')
+				.style('stroke-width', 1);	
 			d3.select(this).transition().style('stroke-width', 3)
 			.style('fill', function(d){ return d.properties.color - 1000;})
 			.style('stroke', 'black');
 			d3.select(this).moveToFront();
-			changeState(d.properties.postal)
-			$("#stateDropdown").val(d.properties.postal);
+			var val = d.properties.postal
+			if(global.activeStateFilter == d.properties.postal){
+				val = "None";
+			}
+			changeState(val)
+			$("#stateDropdown").val(val);
 		});
 
 		d3.select("#AK_state").attr("transform", "translate(290,680) scale(0.7) rotate(-24)");
