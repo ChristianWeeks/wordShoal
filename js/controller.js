@@ -18,7 +18,6 @@ function controller() {
 	var _SCATTER_PLOT = null;
 	var _DEBATE_TABLE = null;
 	var _USA_MAP = null;
-	global.minified = false;
 
 	//dynamically resizing the side bar.
 	d3.select('#sideBar1').style('height', (_mainHeight / 2) + 'px');
@@ -43,8 +42,6 @@ function controller() {
                 lowerBound: +d['speech.score.lower'],
 				votePos: +d['vote.score.normalized'],
 				speechPos: +d['speech.score.normalized'],
-			//	thetaCilb: +d.thetacilb,
-			//	thetaCiub: +d.thetaciub
 				};
 			},
 			function(error, senatorData) {
@@ -205,11 +202,11 @@ function controller() {
 					titleY: 'Vote Score',
 					titleX: 'Speech Score',
 					canvasWidth: 400,
-					canvasHeight: 900,
+					canvasHeight: 1000,
 					leftPadding: 20,
 					rightPadding: 20,
 					botPadding: 40,
-					topPadding: 20
+					topPadding: 30
 				});
 				_SCATTER_PLOT.initCanvas('scatterDist', 'scatterDistCanvas');
 				global._SCATTER_PLOT = _SCATTER_PLOT;
@@ -226,7 +223,9 @@ function controller() {
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
 			//_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
-			_SCATTER_PLOT.coupleMouseEvents('points', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents('points', setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents('confidenceLines', setViewLevel);
+			_SCATTER_PLOT.coupleMouseEvents('pointBox', setViewLevel);
 			if(!_DEBATE_TABLE){
 				
 				_DEBATE_TABLE = new debateTable({
@@ -238,20 +237,6 @@ function controller() {
 								'mouseOut' :_SCATTER_PLOT.mouseOut,
 								'mouseClick' :_SCATTER_PLOT.mouseClick});
 			}
-	}
-
-	//--------------------------------------------------------------------------------------------------------------------
-	//Minifies the main graph when moving into Senator view
-	//--------------------------------------------------------------------------------------------------------------------
-	function minifyMainGraph() {
-
-			global.minified = true;
-
-			_BAR_GRAPH.minify();
-			_SCATTER_PLOT.minify(250);
-
-			//_BAR_GRAPH.coupleMouseEvents('bars', 0, 0, setViewLevel);
-			_SCATTER_PLOT.coupleMouseEvents('points', 0, 0, setViewLevel);
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------
@@ -284,9 +269,6 @@ function controller() {
 			initMainGraph();
 		}
 		else if (viewLevelStr == 'senator') {
-			//minify the bar graph
-			minifyMainGraph();
-
 			//populate the debates window
 			_DEBATE_TABLE.update({'senator' : global.currentSenator});
 			_DEBATE_TABLE.sortBy('debateScore', 'descending');
@@ -313,7 +295,7 @@ function controller() {
 		}
 		var colorScale = d3.scale.pow()
 			.domain([-1.6, 0.0, 1.6])
-			.range(["#6666ff", "#fff0ff", "#ff6666"])
+			.range(["#4444ff", "#fff0ff", "#ff4444"])
 		for(var j = 0; j < dataPtr.length; j++){
 			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
 			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);

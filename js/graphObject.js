@@ -254,12 +254,11 @@ graphObject.prototype.drawYAxis = function() {
 
 
 //Couples the mousevents for the scatterplot and the bargraph, so they can effect eachother
-graphObject.prototype.coupleMouseEvents = function(elementStr, x, y, setViewLevelFunc) {
+graphObject.prototype.coupleMouseEvents = function(elementStr, setViewLevelFunc) {
 
-	this.mouseOver = elementMouseOverClosure(x, y);
+	this.mouseOver = elementMouseOverClosure();
 	this.mouseOut = elementMouseOutClosure();
 	this.mouseClick = elementMouseClickClosure(setViewLevelFunc);
-
 
 	this.svgElements[elementStr]
 		.on('mouseover', this.mouseOver)
@@ -284,41 +283,26 @@ graphObject.prototype.updateFilter = function(filterStr) {
 //Closure needed to have multiple svg-elements activate (highlight) when any one of them is highlighted
 //Ex. Mousing over the label, line plot, or color legend for any single computer / user will cause the label to increase its font
 //and the line to turn black and increase its stroke width.
-function elementMouseOverClosure(graphX, graphY) {
+function elementMouseOverClosure() {
 	var elementMouseOver = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
+			var senatorPointer = d.data;
 			//draw lines extending to x and y axes
-			var barKey = '#' + d.data.nameSubStr + 'Bar';
 			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
-			var barKey = '#' + d.data.nameSubStr + 'Bar';
-			var traceX = d3.select(pointKey)[0][0].cx.baseVal.value;
-			var traceY = d3.select(pointKey)[0][0].cy.baseVal.value;
-			d.svgXTrace = d3.select('#scatterPlot').append('line').attr({
-				x1: traceX,
-				y1: traceY,
-				x2: traceX,
-				y2: graphY,
-				class: d.cssClass
-			})
-			.style('opacity', 0)
-			.style('stroke-width', '0px');
-			d.svgYTrace = d3.select('#scatterPlot').append('line').attr({
-				x1: traceX,
-				y1: traceY,
-				x2: graphX,
-				y2: traceY,
-				class: d.cssClass
-			})
-			.style('opacity', 0)
-			.style('stroke-width', '0px');
-
-			d3.select(pointKey).moveToFront();
-			d3.select(pointKey).transition()
+			d3.select(senatorPointer.svgPoint).moveToFront();
+			//Highlight the elements in the vertical scatter plot
+			d3.select(senatorPointer.svgPoint).transition()
 				.attr('r', 8)
 				.attr('class', function(d) {return d.cssClass + ' mOver'});
-			//highlight the nodes
-			d.svgXTrace.transition().style('opacity', 1).style('stroke-width', '3px');
-			d.svgYTrace.transition().style('opacity', 1).style('stroke-width', '3px');
+			d3.select(senatorPointer.svgConfidenceLine).transition()
+				.style('stroke-width', 4); 
+			d3.select(senatorPointer.svgPointBox)
+				.style("opacity", 1);
+
+			//highlight the state
+			d3.select("#" + d.data.datum.state + "_state").moveToFront().transition()
+				.style("stroke", "black")
+				.style("stroke-width", 2);
 
 			//fill in the information bar at the side
 			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box sideBox');
@@ -328,7 +312,6 @@ function elementMouseOverClosure(graphX, graphY) {
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
 
 			//Highlight all tickmarks on currently active debates
-			var senatorPointer = d.data;
 			var tick;
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
@@ -339,8 +322,6 @@ function elementMouseOverClosure(graphX, graphY) {
 						
 						return 3;});
 			}
-			//move to front
-			//increase stroke
 		}
 	};
 	return elementMouseOver;
@@ -350,6 +331,7 @@ function elementMouseOverClosure(graphX, graphY) {
 function elementMouseOutClosure() {
 	var elementMouseOut = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
+			var senatorPointer = d.data;
 			var rad;
 			if (global.minified)
 				rad = 3;
@@ -358,15 +340,18 @@ function elementMouseOutClosure() {
 
 			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
 			var barKey = '#' + d.data.nameSubStr + 'Bar';
-			d3.select(pointKey).transition()
+
+			d3.select(senatorPointer.svgPoint).transition()
 				.attr('r', rad)
 				.attr('class', function(d) {return d.cssClass});
-	//		d3.select(barKey).transition()
-	//			.attr('class', function(d) {return d.cssClass});
-			d.svgXTrace.transition().style('opacity', 0);
-			d.svgYTrace.transition().style('opacity', 0);
-			d.svgXTrace.remove();
-			d.svgYTrace.remove();
+			d3.select(senatorPointer.svgConfidenceLine).transition()
+				.style('stroke-width', function(d){return d.strokeWidth;}); 
+			d3.select(senatorPointer.svgPointBox).transition()
+				.style("opacity", 0);
+
+			d3.select("#" + d.data.datum.state + "_state").transition()
+				.style("stroke-width", 1)
+				.style("stroke", "#555");
 
 			//unhighlight all tickmarks on currently active debates
 			var senatorPointer = d.data;
@@ -376,7 +361,7 @@ function elementMouseOutClosure() {
 					.attr('r', function(d){	
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', 'white');
-						return 3;}) 
+						return 2;}) 
 			}
 		}
 	};

@@ -2,10 +2,8 @@
 
 var usaMap = function(data){
 
-	console.log(data);
 	this.states = topojson.feature(data, data.objects.states).features;
 
-	console.log(this.states);
 	var width = 900,
 		height = 600;
 
@@ -34,7 +32,7 @@ var usaMap = function(data){
 		.style('stroke-width', 1)
 		.style('fill', function(d){return d.properties.color})
 		.style('stroke', '#555')
-		.attr('id', function(d){return d.properties.name + "_state";})
+		.attr('id', function(d){return d.properties.postal + "_state";})
 		.attr("d", path)
 		.on("mouseover", function(d){
 			d3.select(this).transition().style('stroke-width', 2)
@@ -65,6 +63,5 @@ var usaMap = function(data){
 
 		d3.select("#Alaska_state").attr("transform", "translate(290,680) scale(0.7) rotate(-24)");
 		d3.select("#Hawaii_state").attr("transform", "translate(760,-40) rotate(-50)").moveToFront();
-	console.log("END OF USA MAP");
 	
 }

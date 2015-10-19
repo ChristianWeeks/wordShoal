@@ -113,10 +113,6 @@ h3{
 }
 
 /*base color classes for the different political parties.  The "c_" prefix indicates they store color information*/
-.c_dem{
-	fill: #AAF;
-	stroke: #22F;
-}
 .c_demBar{
 	fill: #66F;
 	stroke: #22F;
@@ -124,6 +120,10 @@ h3{
 .c_repBar{
 	fill: #F66;
 	stroke: #F22; 
+}
+.c_dem{
+	fill: #AAF;
+	stroke: #22F;
 }
 .c_ind{
 	fill: #CAC;

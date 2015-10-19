@@ -28,15 +28,24 @@ scatterDist.prototype.setYAttr = function() {
 		return a.x > b.x ? 1 : a.x < b.x ? -1 : 0;
 	}
 	this.data.sort(sortFunc);
+	this.elementPadding = this.height / this.data.length;
 	for (var i in this.data) {
-		var cssClass;
-		if (this.data[i].id == 'R')
+		var cssClass, fillC, strokeC
+		if (this.data[i].id == 'R'){
 			cssClass = 'c_rep';
-		else if (this.data[i].id == 'D')
+			fillC = "#FAA";
+			strokeC = "#F22";
+		}
+		else if (this.data[i].id == 'D'){
 			cssClass = 'c_dem';
-		else
+			fillC = "#AAF";
+			strokeC = "#22F";
+		}
+		else{
 			cssClass = 'c_ind';
-
+			fillC = "#C8C";
+			strokeC = "#636";
+		}
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
 		this.data[i].nameSubStr = nameSubStr
 		this.data[i].scatterNdx = i;
@@ -48,70 +57,25 @@ scatterDist.prototype.setYAttr = function() {
 			'party': this.data[i].id,
 			'xVal': this.data[i].x,
 			'yVal': this.data[i].y,
-			'y': this.y - 4*i,
+			'y': this.y - this.elementPadding*i - 5,
 			'x': this.mapXValToGraph(this.data[i].x),
             'lowerBound': this.data[i].datum.lowerBound,
             'lowerBoundX': this.mapXValToGraph(this.data[i].datum.lowerBound),
             'upperBound': this.data[i].datum.upperBound,
             'upperBoundX': this.mapXValToGraph(this.data[i].datum.upperBound),
 			'cssClass': this.baseCSSClass + ' ' + cssClass,
+			'strokeWidth': 2,
+			'r': 2,
+			'fill': fillC,
+			'stroke': strokeC,
 			'svgLabel': null
 		};
 	}
-    console.log(this.data[i]);
-	if (this.minified)
-		this.drawMinified();
-	else
-		this.draw();
-};
-
-scatterDist.prototype.minify = function(minifiedSize) {
-	if(!this.minified){
-		this.minified = true;
-		this.xLen = 3;
-		this.yLen = 3;
-		this.minifiedSize = minifiedSize;
-
-		//create the new mini plot
-		if (!this.miniCanvasPtr) {
-		   this.miniCanvasPtr	= d3.select('#scatterMiniCanvas').append('svg')
-				.attr('id', 'scatterMiniSvg');
-		}
-		this.miniCanvasPtr
-			.style('height', this.minifiedSize)
-			.style('width', this.minifiedSize)
-			.attr('viewBox', '0 0 ' + (this.minifiedSize + 50) + ' ' + (this.minifiedSize + 45))
-			.attr('preserveAspectRatio', 'xMidYMid');
-
-		this.mainSvg = this.canvasPtr;
-		this.canvasPtr	= this.miniCanvasPtr;
-		this.pointRadius	= 3;
-		this.height	= this.minifiedSize;
-		this.width	= this.minifiedSize;
-		this.y	= this.minifiedSize;
-		this.x	= 40;
-		//Destroy the large graph
-		this.destroyAll();
-		this.mainSvg.style('height', 0);
-
-		this.mapXValToGraph(this.xMin);
-
-		this.setYAttr();
-	}
-
-};
-
-scatterDist.prototype.drawMinified = function() {
-	this.drawCenterLine();
-	this.drawPoints();
-
-	this.drawYAxis();
-	this.drawXAxis();
-
+	this.draw();
 };
 
 scatterDist.prototype.draw = function() {
-
+	this.drawBoxes();
     this.drawLines();
 	this.drawPoints();
 	this.drawXAxisLabel();
@@ -127,45 +91,57 @@ scatterDist.prototype.draw = function() {
 //Creates the points
 scatterDist.prototype.drawPoints = function() {
 	var rad = this.pointRadius;
+
 	 this.svgElements['points'] = this.canvasPtr.selectAll('Points')
 		.data(this.currentlyViewedData)
 		.enter()
 		.append('circle')
 		.attr('class', function(d) {return d.cssClass;})
 		.attr('id', function(d) { return d.id;})
-	//	.style("stroke-width", "2px")
-
-	//	.style("fill", function(d) {return d.color})
-	//	.style("stroke", function(d) {return d.color})
-	//	.style("stroke-width", 0)
 		.attr({
 			cx: function(d) {
-			   	d.svgPoint = this;
+			   	d.data.svgPoint = this;
 				return d.x;},
 			cy: function(d) {return d.y;},
-			r: rad//function(d) {return d.r;},
+			r:  function(d) {return d.r;}//function(d) {return d.r;},
 		});
-	//	.on("mouseover", this.mouseOver)
-	//	.on("mouseout", this.mouseOut);
 };
+
+scatterDist.prototype.drawBoxes = function(){
+	var boxHeight = this.elementPadding;
+	this.svgElements['pointBox'] = this.canvasPtr.selectAll("pointBox")
+		.data(this.currentlyViewedData)
+		.enter()
+		.append("rect")
+		.style('fill', '#CCC')
+		.style('stroke-width', 0)
+		.style('opacity', 0)
+		.attr({
+			x: 0,
+			y: function(d){
+				d.data.svgPointBox = this;
+				return d.y - boxHeight / 2;},
+			width: this.width,
+			height: boxHeight});
+
+}
 
 scatterDist.prototype.drawLines = function(){
     this.svgElements['confidenceLines'] = this.canvasPtr.selectAll('confidence')
         .data(this.currentlyViewedData)
         .enter()
         .append('line')
-        .attr('class', function(d) {return d.cssClass;})
+		.style('stroke', function(d){return d.stroke;}) 
+		.style('stroke-width', function(d){return d.strokeWidth;})
 		.attr({
 			x1: function(d) {
-			   	d.svgConfidenceLine = this;
+			   	d.data.svgConfidenceLine = this;
 				return d.lowerBoundX;},
             x2: function(d) {return d.upperBoundX;},
 			y1: function(d) {return d.y;},
 			y2: function(d) {return d.y;}
 		});
-    console.log("hi");
 }
-
 
 scatterDist.prototype.drawAxesLegends = function() {
 	var xLabelPadding = 55;
