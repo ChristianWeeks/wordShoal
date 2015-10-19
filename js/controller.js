@@ -182,12 +182,16 @@ function controller() {
 	function initMainGraph() {
 			var graphData = _senatorData;
 			if (!_BAR_GRAPH) {
-				_BAR_GRAPH = new histogram({
+				_BAR_GRAPH = new histoDotgram({
 					title: 'Senator Speech Score Distribution',
 					titleY: 'Number of Senators',
 					titleX: 'Speech Score',
 					canvasWidth: 750,
-					canvasHeight: 300
+					canvasHeight: 300,
+					topPadding: 0,
+					botPadding: 0,
+					leftPadding: 20,
+					rightPadding: 20
 				});
 
 				_BAR_GRAPH.initCanvas('barCanvas', 'barSvg');

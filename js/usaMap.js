@@ -49,6 +49,8 @@ var usaMap = function(data){
 					.style('stroke-width', 4); 
 				d3.select(senators[i].svgPointBox)
 					.style("opacity", 1);
+				d3.select(senators[i].svgDotgram).moveToFront().transition()
+					.style('stroke-width', 3);
 			}
 		})
 		.on("mouseout", function(d){
@@ -64,6 +66,7 @@ var usaMap = function(data){
 				return "black";});
 			var senators = d.properties.senators;
 			for(var i = 0; i < senators.length; i++){
+				//highlight all senator points in both graphs
 				d3.select(senators[i].svgPoint).transition()
 					.attr('r', 2)
 					.attr('class', function(d) {return d.cssClass});
@@ -71,6 +74,8 @@ var usaMap = function(data){
 					.style('stroke-width', function(d){return d.strokeWidth;}); 
 				d3.select(senators[i].svgPointBox).transition()
 					.style("opacity", 0);
+				d3.select(senators[i].svgDotgram).transition()
+					.style('stroke-width', 0);
 			}
 		})
 		.on("click", function(d){

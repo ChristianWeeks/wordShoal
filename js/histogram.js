@@ -2,7 +2,6 @@
 //The graph object draws the graph and interpolates its axis boundaries based on the data it is fed
 function histogram(argv) {
 	histogram.superClass.constructor.call(this, argv);
-	this.minifiedHeight = argv.minifiedHeight || 120;
 	this.baseCSSClass = 'barBar';
 	this.datumSvgs = 'bars';
 	this.yMax = argv.yMax || 3.0;
@@ -75,8 +74,6 @@ histogram.prototype.setYAttr = function() {
 			'cssClass': this.baseCSSClass + ' ' + 'c_repBar',
 			'svgBar': null
 		};
-		//	console.log(this.mapYValToGraph(this.data[i].y));
-		//	console.log(this.mapXValToGraph(this.data[i].x));
 		count++;
 	}
 	for (var i in this.histogram_d) {
@@ -96,33 +93,10 @@ histogram.prototype.setYAttr = function() {
 			'cssClass': this.baseCSSClass + ' ' + 'c_demBar',
 			'svgBar': null
 		};
-		//	console.log(this.mapYValToGraph(this.data[i].y));
-		//	console.log(this.mapXValToGraph(this.data[i].x));
 		count++;
 	}
-	if (this.minified)
-		this.drawMinified();
-	else
-		this.draw();
-		//setTimeout(this.draw(), 5000);
+	this.draw();
 
-};
-
-histogram.prototype.minify = function() {
-	//squash in the y direction
-	d3.select('#' + this.canvasID)
-		.style('height', this.minifiedHeight)
-		.attr('viewBox', '0 0 ' + this.canvasWidth + ' ' + this.minifiedHeight);
-	this.minified = true;
-	this.yLen = 3;
-	this.height = this.minifiedHeight;
-	this.y = this.minifiedHeight;
-
-	//destroy previous svg elements
-	this.destroyAll();
-
-	//redraw without labels
-	this.setYAttr();
 };
 
 histogram.prototype.draw = function() {
@@ -137,15 +111,6 @@ histogram.prototype.draw = function() {
 	this.drawXAxisLabel();
 	this.drawXAxis();
 	this.drawTitle();
-};
-
-histogram.prototype.drawMinified = function() {
-	this.mouseOver = elementMouseOverClosure(this.x, this.y);
-	this.mouseOut = elementMouseOutClosure();
-
-	this.drawBars();
-	this.drawYAxis();
-	this.drawXAxis();
 };
 
 //------------------------------------------------------------------------------------------------------

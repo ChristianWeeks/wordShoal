@@ -6,8 +6,8 @@ var graphObject = function(argv) {
 	//graph formatting values
 	this.canvasWidth	= argv.canvasWidth || 600;
 	this.canvasHeight	= argv.canvasHeight || 600;
-	this.topPadding	= argv.topPadding || 40;
-	this.botPadding = argv.botPadding || 80; 
+	this.topPadding	= argv.topPadding || 0;
+	this.botPadding = argv.botPadding || 0; 
 	this.leftPadding	= argv.leftPadding || 80;
 	this.rightPadding	= argv.rightPadding || 50;
 	this.width	= argv.width || this.canvasWidth - (this.leftPadding + this.rightPadding);
@@ -296,6 +296,8 @@ function elementMouseOverClosure() {
 				.attr('class', function(d) {return d.cssClass + ' mOver'});
 			d3.select(senatorPointer.svgConfidenceLine).transition()
 				.style('stroke-width', 4); 
+			d3.select(senatorPointer.svgDotgram).transition()
+				.style('stroke-width', 3);
 			d3.select(senatorPointer.svgPointBox)
 				.style("opacity", 1);
 
@@ -348,6 +350,8 @@ function elementMouseOutClosure() {
 				.style('stroke-width', function(d){return d.strokeWidth;}); 
 			d3.select(senatorPointer.svgPointBox).transition()
 				.style("opacity", 0);
+			d3.select(senatorPointer.svgDotgram).transition()
+				.style('stroke-width', 0);
 
 			d3.select("#" + d.data.datum.state + "_state").transition()
 				.style("stroke-width", 1)
