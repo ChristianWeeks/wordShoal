@@ -36,9 +36,20 @@ var usaMap = function(data){
 		.attr("d", path)
 		.on("mouseover", function(d){
 			d3.select(this).transition().style('stroke-width', 2)
-			.style('fill', function(d){ return d.properties.color - 1000;})
 			.style('stroke', 'black');
 			d3.select(this).moveToFront();
+			var senators = d.properties.senators;
+			var senatorPtr;
+			for(var i = 0; i < senators.length; i++){
+				//senatorPtr = global._senatorMap[senators[i]];
+				d3.select(senators[i].svgPoint).moveToFront().transition()
+					.attr('r', 6)
+					.attr('class', function(d) {return d.cssClass + ' mOver'});
+				d3.select(senators[i].svgConfidenceLine).transition()
+					.style('stroke-width', 4); 
+				d3.select(senators[i].svgPointBox)
+					.style("opacity", 1);
+			}
 		})
 		.on("mouseout", function(d){
 			d3.select(this).transition()
@@ -51,6 +62,16 @@ var usaMap = function(data){
 				if(global.activeStateFilter != d.properties.postal)
 					return '#555'
 				return "black";});
+			var senators = d.properties.senators;
+			for(var i = 0; i < senators.length; i++){
+				d3.select(senators[i].svgPoint).transition()
+					.attr('r', 2)
+					.attr('class', function(d) {return d.cssClass});
+				d3.select(senators[i].svgConfidenceLine).transition()
+					.style('stroke-width', function(d){return d.strokeWidth;}); 
+				d3.select(senators[i].svgPointBox).transition()
+					.style("opacity", 0);
+			}
 		})
 		.on("click", function(d){
 			d3.select(this).transition().style('stroke-width', 3)
@@ -61,7 +82,7 @@ var usaMap = function(data){
 			$("#stateDropdown").val(d.properties.postal);
 		});
 
-		d3.select("#Alaska_state").attr("transform", "translate(290,680) scale(0.7) rotate(-24)");
-		d3.select("#Hawaii_state").attr("transform", "translate(760,-40) rotate(-50)").moveToFront();
+		d3.select("#AK_state").attr("transform", "translate(290,680) scale(0.7) rotate(-24)");
+		d3.select("#HI_state").attr("transform", "translate(760,-40) rotate(-50)").moveToFront();
 	
 }

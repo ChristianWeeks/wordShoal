@@ -136,7 +136,7 @@ h3{
 }
 /* Interaction classes- these handle stylistic changes based on user interactions */
 .mOver{
-	stroke-width: 5;
+	stroke-width: 2;
 }
 .mOverBar{
 	stroke-width: 2;

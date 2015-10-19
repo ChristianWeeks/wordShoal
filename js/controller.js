@@ -12,6 +12,7 @@ function controller() {
     var _debateMap = {};
 	var _debateData;
 
+	var _stateDataMap = {};
 	var _stateData;
 
 	var _BAR_GRAPH = null;
@@ -201,6 +202,7 @@ function controller() {
 					title: 'Senatorial Speech vs. Voting Habits',
 					titleY: 'Vote Score',
 					titleX: 'Speech Score',
+					stateDataPtr: _stateData,
 					canvasWidth: 400,
 					canvasHeight: 1000,
 					leftPadding: 20,
@@ -219,6 +221,7 @@ function controller() {
 			global.debateData = _debateData;
 			global.senatorMap = _senatorMap;
 			global.debateMap = _debateMap;
+			global.stateData = _stateData;
 
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
@@ -280,7 +283,7 @@ function controller() {
 	}
 	function configureStateData(){
 		var dataPtr = _stateData.objects.states.geometries;
-
+		
 		for(var j = 0; j < dataPtr.length; j++){
 			dataPtr[j].properties.senators = new Array();
 			dataPtr[j].properties.scoreAvg = 0;
@@ -288,14 +291,14 @@ function controller() {
 		for(var i = 0; i < _senatorData.length; i++){
 			for(var j = 0; j < dataPtr.length; j++){
 				if(_senatorData[i].datum.state == dataPtr[j].properties.postal){
-					dataPtr[j].properties.senators.push(i);
+					dataPtr[j].properties.senators.push(_senatorData[i]);
 					dataPtr[j].properties.scoreAvg += _senatorData[i].x;
 				}
 			}
 		}
 		var colorScale = d3.scale.pow()
 			.domain([-1.6, 0.0, 1.6])
-			.range(["#4444ff", "#fff0ff", "#ff4444"])
+			.range(["#2222ff", "#fff0ff", "#ff2222"])
 		for(var j = 0; j < dataPtr.length; j++){
 			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
 			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);
