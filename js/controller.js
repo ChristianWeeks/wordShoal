@@ -24,8 +24,7 @@ function controller() {
 	d3.select('#sideBar1').style('height', (_mainHeight / 2) + 'px');
 
 	//--------------------------------------------------------------------------------------------------------------------
-	//read in the data from a single year.  Even though this is in the "main()" namespace, it is effectively our MAIN 
-	//function
+	//Read in our senator data
 	//--------------------------------------------------------------------------------------------------------------------
 	function readSenatorCSV(year) {
 		var fileName = !year ? 'data/US_Senate_104-113_senator_data.csv' : 'data/EstimatesSenate1' + year + '.csv';
@@ -33,7 +32,7 @@ function controller() {
 			return {
 				//NOTE: The original CSV file headers contain periods in them (e.g., theta.est).
                 speakerID: d.speakerID,
-				name: d.name ? d.name : d['speaker.name'],
+				name: d['first.name'] + ' ' + d['last.name'],
 				speakerStr: d.speaker,
 				state: d.state,
 				party: d.party,
@@ -56,8 +55,8 @@ function controller() {
 				readDebateCSV();
 			});
 	}
+
 	//--------------------------------------------------------------------------------------------------------------------
-	//Creates the year filter buttons for the top bar
 	//Configure the senator data into a format that can be properly bounded to and represented by the graph
 	//--------------------------------------------------------------------------------------------------------------------
 	function configureSenatorData(data) {
@@ -73,9 +72,7 @@ function controller() {
 				//store data directly relevant to the graph in the first level
 				name: data[i].name,
 				id: data[i].party,
-				x: data[i].s,
-				y: data[i].votePos,
-				delta: data[i].speechPos - data[i].votePos,
+				speechScore: data[i].s,
 				r: 5,
 				shape: 'circle',
 				debateIDs: new Array(),
@@ -97,6 +94,45 @@ function controller() {
 		}
 		graphData.sort(function(a, b) {return a.delta - b.delta});
 		return graphData;
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------
+	//Read in our state data
+    //--------------------------------------------------------------------------------------------------------------------
+	function readStates(){
+		d3.json("data/mapData/US_States.json", function(error, data){
+			if(error) return console.error(error);
+			_stateData = data;
+			configureStateData();
+		_USA_MAP = new usaMap(_stateData);
+		});
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------
+	//Configure state data by linking it to senators and giving it the proper color
+    //--------------------------------------------------------------------------------------------------------------------
+	function configureStateData(){
+		var dataPtr = _stateData.objects.states.geometries;
+		
+		for(var j = 0; j < dataPtr.length; j++){
+			dataPtr[j].properties.senators = new Array();
+			dataPtr[j].properties.scoreAvg = 0;
+		}
+		for(var i = 0; i < _senatorData.length; i++){
+			for(var j = 0; j < dataPtr.length; j++){
+				if(_senatorData[i].datum.state == dataPtr[j].properties.postal){
+					dataPtr[j].properties.senators.push(_senatorData[i]);
+					dataPtr[j].properties.scoreAvg += _senatorData[i].speechScore;
+				}
+			}
+		}
+		var colorScale = d3.scale.pow()
+			.domain([-1.6, 0.0, 1.6])
+			.range(["#1111ff", "#fff0ff", "#ff1111"])
+		for(var j = 0; j < dataPtr.length; j++){
+			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
+			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);
+		}
 	}
 
 	//--------------------------------------------------------------------------------------------------------------------
@@ -158,20 +194,8 @@ function controller() {
 			}
             speakerIndex = debateData[data[i].debateID].speakerScores.length - 1;
 			//link the speaker and debateIDs
-			var k = 0;
-            //for every senator
-//			for (k = 0; k < _senatorData.length; k++) {
-                //link the debate with the senators
-                _senatorMap[data[i].speakerID].debateIDs.push(data[i].debateID);
-                _senatorMap[data[i].speakerID].speechScores[data[i].debateID] = data[i].speakerScore;
-                //if the senator is the same as the current debate data's senator, then link them
-
-/*				if (_senatorData[k].datum.speakerID == data[i].speakerID) {
-					_senatorData[k].debateIDs.push(data[i].debateID);
-                   // _senatorData[k].
-					break;
-				}
-			}*/
+			_senatorMap[data[i].speakerID].debateIDs.push(data[i].debateID);
+			_senatorMap[data[i].speakerID].speechScores[data[i].debateID] = data[i].speakerScore;
 
 		}
 		return debateData;
@@ -186,7 +210,7 @@ function controller() {
 					title: 'Senator Speech Score Distribution',
 					titleY: 'Number of Senators',
 					titleX: 'Speech Score',
-					canvasWidth: 750,
+					canvasWidth: 600,
 					canvasHeight: 300,
 					topPadding: 0,
 					botPadding: 0,
@@ -203,8 +227,7 @@ function controller() {
 
 			if (!_SCATTER_PLOT) {
 				_SCATTER_PLOT = new scatterDist({
-					title: 'Senatorial Speech vs. Voting Habits',
-					titleY: 'Vote Score',
+					title: 'Senatorial Speech Scores',
 					titleX: 'Speech Score',
 					stateDataPtr: _stateData,
 					canvasWidth: 400,
@@ -227,9 +250,9 @@ function controller() {
 			global.debateMap = _debateMap;
 			global.stateData = _stateData;
 
+			//give the graphs the data
 			_BAR_GRAPH.setData(graphData);
 			_SCATTER_PLOT.setData(graphData);
-			//_BAR_GRAPH.coupleMouseEvents('bars', _SCATTER_PLOT.x, _SCATTER_PLOT.y, setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('points', setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('confidenceLines', setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('pointBox', setViewLevel);
@@ -285,51 +308,9 @@ function controller() {
 			console.error('Improper view level set: ' + viewLevelStr);
 		}
 	}
-	function configureStateData(){
-		var dataPtr = _stateData.objects.states.geometries;
-		
-		for(var j = 0; j < dataPtr.length; j++){
-			dataPtr[j].properties.senators = new Array();
-			dataPtr[j].properties.scoreAvg = 0;
-		}
-		for(var i = 0; i < _senatorData.length; i++){
-			for(var j = 0; j < dataPtr.length; j++){
-				if(_senatorData[i].datum.state == dataPtr[j].properties.postal){
-					dataPtr[j].properties.senators.push(_senatorData[i]);
-					dataPtr[j].properties.scoreAvg += _senatorData[i].x;
-				}
-			}
-		}
-		var colorScale = d3.scale.pow()
-			.domain([-1.6, 0.0, 1.6])
-			.range(["#2222ff", "#fff0ff", "#ff2222"])
-		for(var j = 0; j < dataPtr.length; j++){
-			dataPtr[j].properties.scoreAvg /= dataPtr[j].properties.senators.length;
-			dataPtr[j].properties.color = colorScale(dataPtr[j].properties.scoreAvg);
-		}
-	}
-
-	function readStates(){
-		d3.json("data/mapData/US_States.json", function(error, data){
-			if(error) return console.error(error);
-			_stateData = data;
-			configureStateData();
-		_USA_MAP = new usaMap(_stateData);
-		});
-	}
-
-	//--------------------------------------------------------------------------------------------------------------------
-	//filters results on selecting different states
-	//--------------------------------------------------------------------------------------------------------------------
-	function changeState() {
-		global.activeStateFilter = '';
-	//	_BAR_GRAPH.updateFilter();
-		_SCATTER_PLOT.updateFilter();
-	}
 
 	global.activeStateFilter = 'None';
 	createStateList('stateDropDown');
-//	createYearButtons();
 	//--------------------------------------------------------------------------------------------------------------------
 	//BEGIN OUR PROGRAM
 	//--------------------------------------------------------------------------------------------------------------------
@@ -338,8 +319,11 @@ function controller() {
 
 controller();
 
+//--------------------------------------------------------------------------------------------------------------------
+//filters results on selecting different states
+//--------------------------------------------------------------------------------------------------------------------
 function changeState(value) {
 	global.activeStateFilter = value;
-//	global._BAR_GRAPH.updateFilter(value);
+	global._BAR_GRAPH.updateFilter(value);
 	global._SCATTER_PLOT.updateFilter(value);
 }

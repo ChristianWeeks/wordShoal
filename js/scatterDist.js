@@ -6,7 +6,7 @@ function scatterDist(argv) {
 	this.miniCanvasPtr = null;
 	this.baseCSSClass = 'scatterPoint';
 	this.fadeCSSClass = 'fadeOut';
-	this.datumSvgs = 'points';
+	this.filterableSvgs = ['confidenceLines', 'points'];
 	this.xMax = argv.xMax || 3;
 	this.xMin = argv.xMin || -3;
 	this.yMax = argv.yMax || 3;
@@ -25,7 +25,7 @@ scatterDist.prototype.setYAttr = function() {
 	this.firstTimeData = null;
 	//sort the data by speech score
 	var sortFunc = function(a, b){
-		return a.x > b.x ? 1 : a.x < b.x ? -1 : 0;
+		return a.speechScore > b.speechScore ? 1 : a.speechScore < b.speechScore ? -1 : 0;
 	}
 	this.data.sort(sortFunc);
 	this.elementPadding = this.height / this.data.length;
@@ -55,16 +55,16 @@ scatterDist.prototype.setYAttr = function() {
 			'id': nameSubStr + i + 'Point',
 			'title': this.data[i].name,
 			'party': this.data[i].id,
-			'xVal': this.data[i].x,
+			'xVal': this.data[i].speechScore,
 			'yVal': this.data[i].y,
 			'y': this.y - this.elementPadding*i - 5,
-			'x': this.mapXValToGraph(this.data[i].x),
+			'x': this.mapXValToGraph(this.data[i].speechScore),
             'lowerBound': this.data[i].datum.lowerBound,
             'lowerBoundX': this.mapXValToGraph(this.data[i].datum.lowerBound),
             'upperBound': this.data[i].datum.upperBound,
             'upperBoundX': this.mapXValToGraph(this.data[i].datum.upperBound),
 			'cssClass': this.baseCSSClass + ' ' + cssClass,
-			'strokeWidth': 2,
+			'strokeWidth': 1,
 			'r': 2,
 			'fill': fillC,
 			'stroke': strokeC,

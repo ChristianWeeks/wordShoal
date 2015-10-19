@@ -85,7 +85,7 @@ var usaMap = function(data){
 			.style('fill', function(d){ return d.properties.color - 1000;})
 			.style('stroke', 'black');
 			d3.select(this).moveToFront();
-			var val = d.properties.postal
+			var val = d.properties.postal;
 			if(global.activeStateFilter == d.properties.postal){
 				val = "None";
 			}

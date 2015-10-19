@@ -3,7 +3,7 @@
 function histoDotgram(argv) {
 	histoDotgram.superClass.constructor.call(this, argv);
 	this.baseCSSClass = 'barBar';
-	this.datumSvgs = 'bars';
+	this.filterableSvgs = ['dots'];
 	this.yMax = argv.yMax || 3.0;
 	this.yMin = argv.yMin || 0;
 	this.bins = argv.bins || 24;
@@ -36,24 +36,27 @@ histoDotgram.prototype.setYAttr = function() {
 		this.histogramBins[z] = 0;
 	}
 	for(var j = 0; j < this.data.length; j++){
+		var cssClass;
 		var currSenator = this.data[j];
 		if(currSenator.datum.party == 'R'){
+			cssClass='c_rep';	
 			fColor = '#F66';
 			sColor = '#F22';
 		}	
 		else if(currSenator.datum.party == 'D'){
+			cssClass='c_dem';	
 			fColor = '#66F';
 			sColor = '#22F';
 		}
 		else{
+			cssClass='c_ind';	
 			fColor = '#CAC';
 			sColor = '#C6C';
 		}
-
 		var x = currSenator.datum.s;	
 		//convert the value from [-2.0, 2.0] to [0.0, canvasWidth]
-		var xPercent = Math.floor((x + 2.0)*100.0/4.0);
-		x = (x + 2.0)*this.width/4.0;
+		var xPercent = Math.floor((x + this.xMax)*100.0/(this.xMax*2.0));
+		x = (x + this.xMax)*this.width/(this.xMax*2.0);
 		
 		var histIndex = (Math.floor(xPercent / 2.0));
 
@@ -66,13 +69,14 @@ histoDotgram.prototype.setYAttr = function() {
 		
 		this.debateLineData[j] = {
 			data: currSenator,
-			x: this.mapXValToGraph(currSenator.datum.s),
+			cssClass: cssClass,
+			x: this.mapXValToGraph(currSenator.speechScore),
 			width: 5,
 			//alternate between putting points above and below the line
 			y: (lineY) + (Math.pow(-1, this.histogramBins[histIndex]%2)) * (tickLength+(tickLength)*(Math.floor(this.histogramBins[histIndex]/2))),
 			height: tickLength,
 			strokeW: 0,
-			r: 4,
+			r: 3.5,
 			strokeC: sColor,
 			fill: fColor,
 		};	
@@ -116,6 +120,7 @@ histoDotgram.prototype.drawDotgram = function(){
 			return d.strokeW;})
 		.style('stroke', function(d){return d.strokeC;})
 		.style('fill', function(d){return d.fill;})
+		.style('opacity', 1.0)
 		.attr('cx', function(d){return d.x;})
 		.attr('cy', function(d){return d.y;})
 		.attr('r', function(d){return d.r;})

@@ -268,16 +268,20 @@ graphObject.prototype.coupleMouseEvents = function(elementStr, setViewLevelFunc)
 
 //updates the filter so only the filtered data elements show up
 graphObject.prototype.updateFilter = function(filterStr) {
-	this.svgElements[this.datumSvgs].transition()
-		.attr('class', function(d) {
-			if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
-				d3.select(this).moveToFront();
-				return d.cssClass;
-			}
-			else {
-				return d.cssClass + ' fadeOut';
-			}
-		});
+	//each graph has an array of indices that denote which svg elements should fade out when the filter
+	//is changed
+	for(var i = 0; i < this.filterableSvgs.length; i++){
+		this.svgElements[this.filterableSvgs[i]].transition()
+			.style('opacity', function(d) {
+				if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
+					d3.select(this).moveToFront();
+					return 1;
+				}
+				else {
+					return 0.2;
+				}
+			});
+	}
 };
 
 //Closure needed to have multiple svg-elements activate (highlight) when any one of them is highlighted
@@ -302,13 +306,15 @@ function elementMouseOverClosure() {
 				.style("opacity", 1);
 
 			//highlight the state
-			d3.select("#" + d.data.datum.state + "_state").moveToFront().transition()
-				.style("stroke", "black")
-				.style("stroke-width", 2);
+			if(d.data.datum.state != global.activeStateFilter){
+				d3.select("#" + d.data.datum.state + "_state").moveToFront().transition()
+					.style("stroke", "black")
+					.style("stroke-width", 2);
+			}
 
 			//fill in the information bar at the side
-			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box sideBox');
-			document.getElementById('sideBar1').innerHTML = '<h2>' + d.data.name + '</h2><h3>Years in Office</h3><h3>' + d.data.id + '</h3><br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
+			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder');
+			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + d.data.id + '</h3><br/>Total Debates:' + d.data.debateIDs.length;
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
 			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
@@ -352,10 +358,11 @@ function elementMouseOutClosure() {
 				.style("opacity", 0);
 			d3.select(senatorPointer.svgDotgram).transition()
 				.style('stroke-width', 0);
-
-			d3.select("#" + d.data.datum.state + "_state").transition()
-				.style("stroke-width", 1)
-				.style("stroke", "#555");
+			if(d.data.datum.state != global.activeStateFilter){
+				d3.select("#" + d.data.datum.state + "_state").transition()
+					.style("stroke-width", 1)
+					.style("stroke", "#555");
+			}
 
 			//unhighlight all tickmarks on currently active debates
 			var senatorPointer = d.data;
