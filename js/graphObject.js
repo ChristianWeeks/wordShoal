@@ -313,8 +313,12 @@ function elementMouseOverClosure() {
 			}
 
 			//fill in the information bar at the side
-			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder infoBox');
-			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + d.data.id + '</h3><br/>Total Debates:' + d.data.debateIDs.length;
+			var sideBarTop = d3.select('#sideBar1')
+				.attr('class','simpleBorder infoBox')
+				.attr("align", "left");
+			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
+				d.data.id + '</h3><br/>Total Debates:' + 
+				d.data.debateIDs.length;
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
 			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
@@ -382,11 +386,9 @@ function elementMouseClickClosure(setViewLevel) {
 		}
 		global.currentSenator = d.data;
 		setViewLevel('senator');
-		document.getElementById('senatorViewBox').innerHTML = '<h2>' + d.data.name + '</h2><h3>Years in Office<br/>' + d.data.id + '<br/>Total Debates:' + d.data.debateIDs.length + '</h3>';
-		document.getElementById('sideBar1').innerHTML = '';
-	//	document.getElementById('category').innerHTML = '';
-	//	document.getElementById('value').innerHTML = '';
-	//	document.getElementById('percent').innerHTML = '';
+	$('html, body').animate({
+		scrollTop: $("#debatesCanvas").offset().top + "px"
+			}, 400);
 	};
 	return elementMouseClick;
 }

@@ -80,6 +80,8 @@ var usaMap = function(data){
 					.style("opacity", 0);
 				d3.select(senators[i].svgDotgram).transition()
 					.style('stroke-width', 0);
+			var sideBar = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder infoBox');
+			document.getElementById('sideBar1').innerHTML = "";
 			}
 		})
 		.on("click", function(d){
@@ -127,6 +129,7 @@ var usaMap = function(data){
 		var labelData = [
 		{text: "Liberal", x: gradX+gradWidth/2, y: gradY-10, xAlign: "middle", yAlign: "middle", size: 14},
 		{text: "Conservative", x: gradX+gradWidth/2, y: gradY+gradHeight+10, xAlign: "middle", yAlign: "middle", size: 14},
+		//svg doesn't support line breaks so we need different elements to fit it all neatly
 		{text: "Average", x: gradX+gradWidth+5, y: gradY+gradHeight/2-20, xAlign: "start", yAlign: "start", size: 16},
 		{text: "Speech", x: gradX+gradWidth+5, y: gradY+gradHeight/2, xAlign: "start", yAlign: "start", size: 16},
 		{text: "Score", x: gradX+gradWidth+5, y: gradY+gradHeight/2+20, xAlign: "start", yAlign: "start", size: 16}];
