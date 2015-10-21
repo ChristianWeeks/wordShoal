@@ -23,54 +23,33 @@
 	</head>
 	<body>
 		<div class="container">
-			<div align="center">
-				<h3>Click on a state to view native senators.</h3>
 			<div class="row">
-				<div class="col-md-8 smallpad">
-					<div id="usaMapContainer" align="center"></div>
-					<div class="col-md-9 smallpad">
-						<div align="left" id="barCanvas"></div>
+				<div align="center">
+					<div class="col-md-8 smallpad">
+						<h3>Click on a state to view native senators.</h3>
+						<div id="usaMapContainer" align="center"></div>
+						<div class="col-md-9 smallpad">
+							<div align="left" id="barCanvas"></div>
+						</div>
+						<div class="col-md-3 smallpad">
+							<div id="sideBar1" class='simpleborder nopad infoBox'></div>
+						</div>
 					</div>
-					<div class="col-md-3 smallpad" height=300>
-						<div id="sideBar1" class='row simpleborder nopad'></div>
+					<div class="col-md-4 smallpad">
+						<h3>Speech Scores</h3>
+						<div align="left" id="scatterDist"></div>
 					</div>
 				</div>
-				<div class="col-md-4 smallpad">
-					<div align="left" id="scatterDist"></div>
-				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell"></span></div>
 				<div class="col-md-8">
 					<div align="left" id="topButtonsBar"></div>
 				</div>
-				<div class="col-md-3"></div>
-					<p>Filter by State</p>
-					<div id="stateDropDown">
-					</div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-				</div>
-				<div class="col-md-6">
-					<div align="left" id="scatterCanvas">
-					</div>
-				</div>
+				<div id="stateDropDown"></div>
 			</div>
 			<div class="row">
-				<div class='col-md-9' align="left" id="debatesCanvas">
-				</div>
-				<div class="col-md-3" id="sideBar">
-					<!--<div class="col-md-4" id="category">
-					</div>
-					<div class="col-md-4" id="value">
-					</div>
-					<div class="col-md-4" id="percent">
-					</div>
-					<div class="row" id="sideBar2">
-				</div> -->
-				</div>
+				<div class='col-md-12' align="left" id="debatesCanvas"></div>
 			</div>
 		</div>
 		<script src="js/controller.js"></script>

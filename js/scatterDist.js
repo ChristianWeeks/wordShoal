@@ -76,11 +76,9 @@ scatterDist.prototype.setYAttr = function() {
 
 scatterDist.prototype.draw = function() {
 	this.drawBoxes();
-    this.drawLines();
+    this.drawConfidenceLines();
 	this.drawPoints();
-	this.drawXAxisLabel();
 	this.drawXAxis();
-	this.drawTitle();
 };
 
 
@@ -127,7 +125,7 @@ scatterDist.prototype.drawBoxes = function(){
 
 }
 
-scatterDist.prototype.drawLines = function(){
+scatterDist.prototype.drawConfidenceLines = function(){
     this.svgElements['confidenceLines'] = this.canvasPtr.selectAll('confidence')
         .data(this.currentlyViewedData)
         .enter()

@@ -231,11 +231,11 @@ function controller() {
 					titleX: 'Speech Score',
 					stateDataPtr: _stateData,
 					canvasWidth: 400,
-					canvasHeight: 1000,
+					canvasHeight: 850,
 					leftPadding: 20,
 					rightPadding: 20,
-					botPadding: 40,
-					topPadding: 30
+					botPadding: 10,
+					topPadding: 10
 				});
 				_SCATTER_PLOT.initCanvas('scatterDist', 'scatterDistCanvas');
 				global._SCATTER_PLOT = _SCATTER_PLOT;

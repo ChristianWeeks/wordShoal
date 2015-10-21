@@ -313,7 +313,7 @@ function elementMouseOverClosure() {
 			}
 
 			//fill in the information bar at the side
-			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder');
+			var sideBarTop = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder infoBox');
 			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + d.data.id + '</h3><br/>Total Debates:' + d.data.debateIDs.length;
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
 			//document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
@@ -326,8 +326,7 @@ function elementMouseOverClosure() {
 					.style('stroke-width', 2)
 					.attr('r', function(d){
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
-							.style('border-color', d.strokeC);
-						
+							.style('border-color', d.strokeC);	
 						return 3;});
 			}
 		}
@@ -340,17 +339,11 @@ function elementMouseOutClosure() {
 	var elementMouseOut = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
 			var senatorPointer = d.data;
-			var rad;
-			if (global.minified)
-				rad = 3;
-			else
-				rad = 3;
-
 			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
 			var barKey = '#' + d.data.nameSubStr + 'Bar';
 
 			d3.select(senatorPointer.svgPoint).transition()
-				.attr('r', rad)
+				.attr('r', function(d){return d.r;})
 				.attr('class', function(d) {return d.cssClass});
 			d3.select(senatorPointer.svgConfidenceLine).transition()
 				.style('stroke-width', function(d){return d.strokeWidth;}); 
@@ -372,7 +365,7 @@ function elementMouseOutClosure() {
 					.attr('r', function(d){	
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
 							.style('border-color', 'white');
-						return 2;}) 
+						return 3;}) 
 			}
 		}
 	};

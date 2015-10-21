@@ -1,54 +1,15 @@
+WordShoal 10/20/2014
 
+TODO
 
+*Format senator information more interestingly
+*move state dropdown menu to a better spot
+*clicking a state empties the info box
+*clicking a senator auto scrolls down to debates
+*remove low confidence senators?
+*Fisheye for scatter column
 
-TODO:
+*Brainstorm best ways to title / label things!!!
 
-DONE***Make graph dynamically resizeable
+*Clean up graph formatting
 
-DONE***Store buffer lengths of x and y tick labels, so axes labels never collide with them
-
-DONE***People like comparisons.  Mousing over points gives that person's speech and vote values, but also gives a percentage or fraction showing how
-they compare to others
-
-DONE***Normalize data values to be between 0 and 1
-
-DONE***Add delta bar graph
-
-DONE***fix delta bar graph sorting
-
-DONE***Fix axes and labels for delta bar graph
-
-DONE***Fix code structure so the bar graph and scatter plots combine with minimal excess overhead
-
-DONE***couple mouseover events between bar and scatter plots
-
-***Add colorized speech and vote scores and percentages
-
-NEEDS MORE THOUGHT***create an SVG GROUP object that contains a vector of svgs.  On mouseover, the SVG GROUP will
-activate the mouseover effects of each svg in the vector.  This will conveniently allow for multiple
-svgs to interact with eachother, without creating a mouseover closure that involves all of them.
-It will also allow for svg items to be added and removed just by putting them in / out of the group.
-
-***get more data so mouseover can properly fill out the info box on the side
-
-***add confidence intervals to each point
-
-***Add Search feature - "Find your senator" by name or by state
-
-***INFORMATION POPUPS - for instance, mousing over "Conservative Rhetoric" could bring up a description saying something like
-"Senators with a higher Speech Position more often use conservative vocabulary, like <GIVE EXAMPLES>
-
-
-***Decide how values will pop up- will they appear on axes, or on the side bar with everything else?
-
-OPTIONS:
-***Turn confidence intervals on or off
-
-***Search or filter
-
-
-----------------------------------------------------------------------------------------------------------------
-CURRENT GLITCHES
-----------------------------------------------------------------------------------------------------------------
-Mouseover sometimes corresponds to the wrong element on the other canvas.  This is because the points are identified by last names, and some senators
-have the same last name.  This will be resolved once I have data including first and last names.
