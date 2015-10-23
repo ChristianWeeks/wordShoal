@@ -186,7 +186,8 @@ graphObject.prototype.drawXAxis = function() {
 			y2: this.y + 10,
 			stroke: '#000'
 		});
-
+}
+graphObject.prototype.drawXAxisLabels = function(){
 	 this.svgElements['xTickLabels'] = this.canvasPtr.selectAll('xDataLabel')
 		.data(this.xAxisData)
 		.enter()
@@ -206,6 +207,60 @@ graphObject.prototype.drawXAxis = function() {
 		.text(function(d) { return d.value});
 };
 
+graphObject.prototype.drawBackgroundGradient = function(){
+
+	this.svgElements['bgGradient'] = this.canvasPtr.append("linearGradient")
+		.attr("id", "bgGradient")
+		.attr("gradientUnits", "objectBoundingBox")
+		.selectAll("stop")
+		.data([
+			{offset: "0%", color: "#ddddff"},
+			{offset: "50%", color: "#ffffff"},
+			{offset: "100%", color: "#ffdddd"}
+			])
+		.enter().append("stop")
+		.attr("offset", function(d) { return d.offset; })
+		.attr("stop-color", function(d) { return d.color; });
+
+	this.svgElements['bg'] = this.canvasPtr.append("rect")
+		.attr({
+			x: 0,
+			width: this.x + this.width + this.rightPadding,
+			y: 0,
+			height: this.y 
+		})
+		.style("fill", "url(#bgGradient)");
+}
+
+graphObject.prototype.drawTextLabel = function(axisLabelData){
+	console.log("hi");
+	this.svgElements['axesLegends'] = this.canvasPtr.selectAll('axesLegend')
+		.data(axisLabelData)
+		.enter()
+		.append('text')
+		.attr('text-anchor', 'middle')
+		.attr('alignment-baseline', 'middle')
+		.attr({
+			class: function(d) {return d.cssClass;},
+			x: function(d) {return d.x;},
+			y: function(d) {return d.y;},
+			id: 'axesLegend',
+			"text-anchor": function(d) {return d.align;}})
+		.text(function(d) {return d.text});
+}
+graphObject.prototype.drawVerticalGridLines = function(){
+	 this.svgElements['yTickMarks'] = this.canvasPtr.selectAll('yTickMarks')
+		.data(this.xAxisData)
+		.enter()
+		.append('line')
+		.attr({
+			x1: function(d, i) { return d.x},
+			y1: 0,
+			x2: function(d, i) { return d.x},
+			y2: this.y,
+			stroke: '#888'
+		});
+}
 graphObject.prototype.drawYAxis = function() {
 	//drawing the tick marks, labels, and grid lines for the Y axis
 	 this.svgElements['yTickMarks'] = this.canvasPtr.selectAll('yTickMarks')
@@ -315,7 +370,7 @@ function elementMouseOverClosure() {
 			//fill in the information bar at the side
 			var sideBarTop = d3.select('#sideBar1')
 				.attr('class','simpleBorder infoBox')
-				.attr("align", "left");
+				.attr("align", "center");
 			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
 				d.data.id + '</h3><br/>Total Debates:' + 
 				d.data.debateIDs.length;
@@ -385,10 +440,27 @@ function elementMouseClickClosure(setViewLevel) {
 			global.currentSenator.activeDebateTicks.length = 0;
 		}
 		global.currentSenator = d.data;
+		console.log(d.data);
 		setViewLevel('senator');
-	$('html, body').animate({
-		scrollTop: $("#debatesCanvas").offset().top + "px"
-			}, 400);
+		var color;
+		if(d.data.id == "R")
+			color = "#FCC";
+		else if(d.data.id == "D")
+			color = "#CCF";
+		else
+			color = "DBD";
+		//populate the permanent window
+		d3.select('#selectedSenatorInfo')
+			.attr('class','simpleBorder')
+			.style('background', color)
+			.attr("align", "center");
+		document.getElementById('selectedSenatorInfo').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
+			d.data.id + '</h3><br/>Total Debates:' + 
+			d.data.debateIDs.length;
+		//scroll down to the debates
+		$('html, body').animate({
+			scrollTop: $("#debatesCanvas").offset().top + "px"
+				}, 400);
 	};
 	return elementMouseClick;
 }

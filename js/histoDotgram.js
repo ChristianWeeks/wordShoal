@@ -18,8 +18,8 @@ histoDotgram.prototype.setYAttr = function() {
 	this.destroyAll();
 
 	this.firstTimeData = null;
-	this.xMax = 2.0;
-	this.xMin = -2.0;
+	this.xMax = 3.0;
+	this.xMin = -3.0;
 
 	var lineY = this.height / 2;
 	var lineTickData = new Array(5);
@@ -95,14 +95,24 @@ histoDotgram.prototype.setYAttr = function() {
 histoDotgram.prototype.draw = function() {
 	this.mouseOver = elementMouseOverClosure(this.x, this.y);
 	this.mouseOut = elementMouseOutClosure();
-	//this.drawBars();
+	var xLabelPadding = 30;
+	var axisLabelData = [{
+		text: 'Liberal',
+		x: this.x,
+		y: this.y/2 + xLabelPadding,
+		cssClass: 'demText',
+		align: 'start'},
+		{
+		text: 'Conservative',
+		x: this.x + this.width,
+		y: this.y/2 + xLabelPadding,
+		cssClass: 'repText',
+		align: 'end'}
+	];
+	//this.drawBackgroundGradient();
+	this.drawTextLabel(axisLabelData);
 	this.drawMainLine()
 	this.drawDotgram();
-
-	//Label the x axis for senators, but no need to draw the actual axis, as it isn't a measurement
-	//this.drawXAxisLabel();
-	//this.drawXAxis();
-	//this.drawTitle();
 };
 
 //------------------------------------------------------------------------------------------------------
@@ -154,16 +164,4 @@ histoDotgram.prototype.drawMainLine = function() {
 		.attr('x2', function(d){return d.x})
 		.attr('y1', function(d){return d.y1})
 		.attr('y2', function(d){return d.y2});
-	var labelData = [{text: '-2.00', x: 1, y: lineY + 18, xAlign: 'start', yAlign: 'auto'},
-	{text: '2.00', x: this.width + this.leftPadding, y: lineY + 18, xAlign: 'end', yAlign: 'auto'},
-	{text: 'Speech Score', x: this.width/ 2, y: this.height - 4, xAlign: 'middle', yAlign: 'auto'}];
-
-
-	this.canvasPtr.selectAll('labels').data(labelData).enter().append('text')
-		.style('fill', '#777')
-		.attr('x', function(d){return d.x})
-		.attr('y', function(d){return d.y})
-		.attr('text-anchor', function(d){return d.xAlign})
-		.attr('alignment-baseline', 'baseline')
-		.text(function(d){return d.text});
 }

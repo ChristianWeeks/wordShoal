@@ -234,7 +234,7 @@ function controller() {
 					canvasHeight: 850,
 					leftPadding: 20,
 					rightPadding: 20,
-					botPadding: 10,
+					botPadding: 40,
 					topPadding: 10
 				});
 				_SCATTER_PLOT.initCanvas('scatterDist', 'scatterDistCanvas');

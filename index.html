@@ -23,10 +23,21 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="row">
-				<div align="center">
-					<div class="col-md-8 smallpad">
+			<div align="center">
+				<div class="row">
+					<div class="col-md-2 smallpad">
+						State Filter:
+						<div id="stateDropDown"></div>
+					</div>
+					<div class="col-md-6 smallpad" align="left">
 						<h3>Click on a state to view native senators.</h3>
+					</div>
+					<div class="col-md-4 smallpad">
+						<h3>Speech Scores</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 smallpad">
 						<div id="usaMapContainer" align="center"></div>
 						<div class="col-md-9 smallpad">
 							<div align="left" id="barCanvas"></div>
@@ -36,17 +47,12 @@
 						</div>
 					</div>
 					<div class="col-md-4 smallpad">
-						<h3>Speech Scores</h3>
 						<div align="left" id="scatterDist"></div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-1" align="center" style="display:table; height:80px"><span style="vertical-align:middle; display: table-cell"></span></div>
-				<div class="col-md-8">
-					<div align="left" id="topButtonsBar"></div>
-				</div>
-				<div id="stateDropDown"></div>
+				<div id="selectedSenatorInfo"></div>
 			</div>
 			<div class="row">
 				<div class='col-md-12' align="left" id="debatesCanvas"></div>

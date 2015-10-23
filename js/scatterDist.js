@@ -75,12 +75,28 @@ scatterDist.prototype.setYAttr = function() {
 };
 
 scatterDist.prototype.draw = function() {
+	var xLabelPadding = 25;
+	var axisLabelData = [{
+		text: 'Liberal',
+		x: this.x,
+		y: this.y + xLabelPadding,
+		cssClass: 'demText',
+		align: 'start'},
+		{
+		text: 'Conservative',
+		x: this.x + this.width,
+		y: this.y + xLabelPadding,
+		cssClass: 'repText',
+		align: 'end'}
+	];
+	//this.drawBackgroundGradient();
+	this.drawTextLabel(axisLabelData);
+	this.drawVerticalGridLines();
 	this.drawBoxes();
     this.drawConfidenceLines();
 	this.drawPoints();
 	this.drawXAxis();
 };
-
 
 //------------------------------------------------------------------------------------------------------
 //DRAW METHODS - Everything below handles the brunt of the D3 code and draws everything to the canvas
@@ -107,6 +123,7 @@ scatterDist.prototype.drawPoints = function() {
 
 scatterDist.prototype.drawBoxes = function(){
 	var boxHeight = this.elementPadding;
+	var xStart = this.x;
 	this.svgElements['pointBox'] = this.canvasPtr.selectAll("pointBox")
 		.data(this.currentlyViewedData)
 		.enter()
@@ -116,7 +133,7 @@ scatterDist.prototype.drawBoxes = function(){
 		.style('stroke-width', 1)
 		.style('opacity', 0)
 		.attr({
-			x: 0,
+			x: xStart,
 			y: function(d){
 				d.data.svgPointBox = this;
 				return d.y - boxHeight / 2;},
