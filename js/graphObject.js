@@ -372,6 +372,7 @@ function elementMouseOverClosure() {
 				.attr('class','simpleBorder infoBox')
 				.attr("align", "center");
 			document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
+                d.data.datum.state + '</h3><h3>' + 
 				d.data.id + '</h3><br/>Total Debates:' + 
 				d.data.debateIDs.length;
 			//document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
@@ -380,6 +381,7 @@ function elementMouseOverClosure() {
 
 			//Highlight all tickmarks on currently active debates
 			var tick;
+            console.log(d.data);
 			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
 				d3.select(senatorPointer.activeDebateTicks[j]).transition()
 					.style('stroke-width', 2)
@@ -455,6 +457,7 @@ function elementMouseClickClosure(setViewLevel) {
 			.style('background', color)
 			.attr("align", "center");
 		document.getElementById('selectedSenatorInfo').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
+            d.data.datum.state + '</h3><h3>' + 
 			d.data.id + '</h3><br/>Total Debates:' + 
 			d.data.debateIDs.length;
 		//scroll down to the debates
