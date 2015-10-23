@@ -47,12 +47,13 @@ var usaMap = function(data){
 			}
 		})
 		.on("mouseout", function(d){
-            if(global.activeStateFilter != d.properties.postal)
+            if(global.activeStateFilter != d.properties.postal && global.currentState != d.properties.postal)
                 unhighlightState(this);
 			var senators = d.properties.senators;
 			for(var i = 0; i < senators.length; i++){
 				//highlight all senator points in both graphs
-                unhighlightSenator(senators[i]);
+                if(global.currentSenator != senators[i])
+                    unhighlightSenator(senators[i]);
             }
 			var sideBar = d3.select('#sideBar1').attr('class', d.cssClass + 'Box simpleBorder infoBox');
 			document.getElementById('sideBar1').innerHTML = "";

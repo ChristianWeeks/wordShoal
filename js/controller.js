@@ -277,6 +277,7 @@ function controller() {
 			_SCATTER_PLOT.coupleMouseEvents('points', setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('confidenceLines', setViewLevel);
 			_SCATTER_PLOT.coupleMouseEvents('pointBox', setViewLevel);
+            _BAR_GRAPH.coupleMouseEvents('dots', setViewLevel);
 			if(!_DEBATE_TABLE){
 				
 				_DEBATE_TABLE = new debateTable({

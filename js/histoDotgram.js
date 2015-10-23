@@ -77,8 +77,6 @@ histoDotgram.prototype.setYAttr = function() {
 };
 
 histoDotgram.prototype.draw = function() {
-	this.mouseOver = elementMouseOverClosure(this.x, this.y);
-	this.mouseOut = elementMouseOutClosure();
 	var xLabelPadding = 30;
 	var axisLabelData = [{
 		text: 'Liberal',
@@ -118,9 +116,6 @@ histoDotgram.prototype.drawDotgram = function(){
 		.attr('cx', function(d){return d.x;})
 		.attr('cy', function(d){return d.y;})
 		.attr('r', function(d){return d.r;})
-		.on('mouseover', this.mouseOver)
-		.on('mouseout', this.mouseOut)
-		.on('click', this.mouseClick);	
 }
 
 histoDotgram.prototype.drawMainLine = function() {
