@@ -30,26 +30,9 @@ scatterDist.prototype.setYAttr = function() {
 	this.data.sort(sortFunc);
 	this.elementPadding = this.height / this.data.length;
 	for (var i in this.data) {
-		var cssClass, fillC, strokeC
-		if (this.data[i].id == 'R'){
-			cssClass = 'c_rep';
-			fillC = "#FAA";
-			strokeC = "#F22";
-		}
-		else if (this.data[i].id == 'D'){
-			cssClass = 'c_dem';
-			fillC = "#AAF";
-			strokeC = "#22F";
-		}
-		else{
-			cssClass = 'c_ind';
-			fillC = "#C8C";
-			strokeC = "#636";
-		}
 		var nameSubStr = this.data[i].name.substring(0, this.data[i].name.length - 5);
 		this.data[i].nameSubStr = nameSubStr
 		this.data[i].scatterNdx = i;
-		this.data[i].cssClass = cssClass;
 		this.currentlyViewedData[i] = {
 			'data': this.data[i],
 			'id': nameSubStr + i + 'Point',
@@ -63,11 +46,11 @@ scatterDist.prototype.setYAttr = function() {
             'lowerBoundX': this.mapXValToGraph(this.data[i].datum.lowerBound),
             'upperBound': this.data[i].datum.upperBound,
             'upperBoundX': this.mapXValToGraph(this.data[i].datum.upperBound),
-			'cssClass': this.baseCSSClass + ' ' + cssClass,
+			'cssClass': this.baseCSSClass + ' ' + this.data[i].cssClass,
 			'strokeWidth': 1,
 			'r': 2,
-			'fill': fillC,
-			'stroke': strokeC,
+			'fill': this.data[i].fillC,
+			'stroke': this.data[i].strokeC,
 			'svgLabel': null
 		};
 	}

@@ -105,7 +105,7 @@ h3{
 
 /*base classes for scatter points and bargraph bars*/
 .scatterPoint{
-	stroke-width: 2px;
+	stroke-width: 0px;
 	opacity: 1.0;
 }
 .barBar{

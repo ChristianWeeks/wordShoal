@@ -36,23 +36,7 @@ histoDotgram.prototype.setYAttr = function() {
 		this.histogramBins[z] = 0;
 	}
 	for(var j = 0; j < this.data.length; j++){
-		var cssClass;
 		var currSenator = this.data[j];
-		if(currSenator.datum.party == 'R'){
-			cssClass='c_rep';	
-			fColor = '#F66';
-			sColor = '#F22';
-		}	
-		else if(currSenator.datum.party == 'D'){
-			cssClass='c_dem';	
-			fColor = '#66F';
-			sColor = '#22F';
-		}
-		else{
-			cssClass='c_ind';	
-			fColor = '#CAC';
-			sColor = '#C6C';
-		}
 		var x = currSenator.datum.s;	
 		//convert the value from [-2.0, 2.0] to [0.0, canvasWidth]
 		var xPercent = Math.floor((x + this.xMax)*100.0/(this.xMax*2.0));
@@ -69,7 +53,6 @@ histoDotgram.prototype.setYAttr = function() {
 		
 		this.debateLineData[j] = {
 			data: currSenator,
-			cssClass: cssClass,
 			x: this.mapXValToGraph(currSenator.speechScore),
 			width: 5,
 			//alternate between putting points above and below the line
@@ -77,8 +60,9 @@ histoDotgram.prototype.setYAttr = function() {
 			height: tickLength,
 			strokeW: 0,
 			r: 3.5,
-			strokeC: sColor,
-			fill: fColor,
+			cssClass: currSenator.cssClass,
+			strokeC: currSenator.strokeC,
+			fill: currSenator.fillC
 		};	
 		this.histogramBins[histIndex]++;
 	}

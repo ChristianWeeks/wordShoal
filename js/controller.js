@@ -19,6 +19,8 @@ function controller() {
 	var _SCATTER_PLOT = null;
 	var _DEBATE_TABLE = null;
 	var _USA_MAP = null;
+    global.currentSenator = null;
+    global.currentState = null;
 
 	//dynamically resizing the side bar.
 	d3.select('#sideBar1').style('height', (_mainHeight / 2) + 'px');
@@ -64,8 +66,24 @@ function controller() {
 		var voteMin, voteMax, speechMin, speechMax;
 		var speechMagnitude;
 		var isRandom = 0;
-
+        var _fillC, _strokeC, _cssClass;
 		for (var i = 0; i < data.length; i++) {
+            //assign our colors
+            if (data[i].party == 'R'){
+                _cssClass = 'c_rep';
+                _fillC = "#F99";
+                _strokeC = "#F22";
+            }
+            else if (data[i].party == 'D'){
+                _cssClass = 'c_dem';
+                _fillC = "#99F";
+                _strokeC = "#22F";
+            }
+            else{
+                _cssClass = 'c_ind';
+                _fillC = "#C8C";
+                _strokeC = "#636";
+            }
 			graphData[i] = {
 				//store all of the imported datum for display purposes
 				datum: data[i],
@@ -75,6 +93,9 @@ function controller() {
 				speechScore: data[i].s,
 				r: 5,
 				shape: 'circle',
+                fillC: _fillC,
+                strokeC: _strokeC,
+                cssClass: _cssClass,
 				debateIDs: new Array(),
 				speechScores: {},
 				activeDebateTicks: new Array()

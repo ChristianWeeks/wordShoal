@@ -345,28 +345,12 @@ graphObject.prototype.updateFilter = function(filterStr) {
 function elementMouseOverClosure() {
 	var elementMouseOver = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
-			var senatorPointer = d.data;
-			//draw lines extending to x and y axes
-			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
-			d3.select(senatorPointer.svgPoint).moveToFront();
-			//Highlight the elements in the vertical scatter plot
-			d3.select(senatorPointer.svgPoint).transition()
-				.attr('r', 8)
-				.attr('class', function(d) {return d.cssClass + ' mOver'});
-			d3.select(senatorPointer.svgConfidenceLine).transition()
-				.style('stroke-width', 4); 
-			d3.select(senatorPointer.svgDotgram).transition()
-				.style('stroke-width', 3);
-			d3.select(senatorPointer.svgPointBox)
-				.style("opacity", 1);
+			var senator = d.data;
+            highlightSenator(senator);
 
-			//highlight the state
-			if(d.data.datum.state != global.activeStateFilter){
-				d3.select("#" + d.data.datum.state + "_state").moveToFront().transition()
-					.style("stroke", "black")
-					.style("stroke-width", 2);
-			}
-
+            if(senator.datum.state != global.activeStateFilter){
+                highlightState("#" + senator.datum.state + "_state");
+            }
 			//fill in the information bar at the side
 			var sideBarTop = d3.select('#sideBar1')
 				.attr('class','simpleBorder infoBox')
@@ -380,10 +364,8 @@ function elementMouseOverClosure() {
 			//document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
 
 			//Highlight all tickmarks on currently active debates
-			var tick;
-            console.log(d.data);
-			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j]).transition()
+			for(var j = 0; j < senator.activeDebateTicks.length; j++){
+				d3.select(senator.activeDebateTicks[j]).transition()
 					.style('stroke-width', 2)
 					.attr('r', function(d){
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
@@ -399,29 +381,18 @@ function elementMouseOverClosure() {
 function elementMouseOutClosure() {
 	var elementMouseOut = function(d, i) {
 		if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
-			var senatorPointer = d.data;
-			var pointKey = '#' + d.data.nameSubStr + d.data.scatterNdx + 'Point';
-			var barKey = '#' + d.data.nameSubStr + 'Bar';
-
-			d3.select(senatorPointer.svgPoint).transition()
-				.attr('r', function(d){return d.r;})
-				.attr('class', function(d) {return d.cssClass});
-			d3.select(senatorPointer.svgConfidenceLine).transition()
-				.style('stroke-width', function(d){return d.strokeWidth;}); 
-			d3.select(senatorPointer.svgPointBox).transition()
-				.style("opacity", 0);
-			d3.select(senatorPointer.svgDotgram).transition()
-				.style('stroke-width', 0);
-			if(d.data.datum.state != global.activeStateFilter){
-				d3.select("#" + d.data.datum.state + "_state").transition()
-					.style("stroke-width", 1)
-					.style("stroke", "#555");
-			}
+			var senator = d.data;
+            //Do not change a node if it is currently selected
+            if(senator != global.currentSenator){
+                unhighlightSenator(senator);
+                if(senator.datum.state != global.activeStateFilter && senator.datum.state != global.currentState){
+                    unhighlightState("#" + senator.datum.state + "_state");
+                }
+            }
 
 			//unhighlight all tickmarks on currently active debates
-			var senatorPointer = d.data;
-			for(var j = 0; j < senatorPointer.activeDebateTicks.length; j++){
-				d3.select(senatorPointer.activeDebateTicks[j]).transition()
+			for(var j = 0; j < senator.activeDebateTicks.length; j++){
+				d3.select(senator.activeDebateTicks[j]).transition()
 					.style('stroke-width', function(d){return d.strokeW})
 					.attr('r', function(d){	
 						d3.select('#debateSvg' + d.debateSvgNdx).transition()
@@ -440,21 +411,17 @@ function elementMouseClickClosure(setViewLevel) {
 		//wipe the old senator's stored debate tick SVG pointers
 		if(global.currentSenator){
 			global.currentSenator.activeDebateTicks.length = 0;
-		}
+            unhighlightSenator(global.currentSenator);
+            unhighlightState(global.currentState);
+		} 
+        global.currentState = d.data.datum.state;
 		global.currentSenator = d.data;
-		console.log(d.data);
 		setViewLevel('senator');
-		var color;
-		if(d.data.id == "R")
-			color = "#FCC";
-		else if(d.data.id == "D")
-			color = "#CCF";
-		else
-			color = "DBD";
+        highlightSenator(global.currentSenator);
 		//populate the permanent window
 		d3.select('#selectedSenatorInfo')
 			.attr('class','simpleBorder')
-			.style('background', color)
+			.style('background', d.data.fillC)
 			.attr("align", "center");
 		document.getElementById('selectedSenatorInfo').innerHTML = '<h3>' + d.data.name + '</h3><h3>' + 
             d.data.datum.state + '</h3><h3>' + 
@@ -466,4 +433,45 @@ function elementMouseClickClosure(setViewLevel) {
 				}, 400);
 	};
 	return elementMouseClick;
+}
+
+//highlights all svgs associated with the senator
+function highlightSenator(senator){
+    d3.select(senator.svgPoint).moveToFront().transition()
+        .attr('r', 5)
+        .attr('class', function(d) {return d.cssClass + ' mOver'});
+    d3.select(senator.svgConfidenceLine).transition()
+        .style('stroke-width', 4); 
+    d3.select(senator.svgDotgram).moveToFront().transition()
+        .style('stroke-width', 3);
+    d3.select(senator.svgPointBox)
+        .style("opacity", 1);
+}
+
+//unhighlights all svgs associated with the senator
+function unhighlightSenator(senator){
+    d3.select(senator.svgPoint).transition()
+        .attr('r', function(d){return d.r;})
+        .attr('class', function(d) {return d.cssClass});
+    d3.select(senator.svgConfidenceLine).transition()
+        .style('stroke-width', function(d){return d.strokeWidth;}); 
+    d3.select(senator.svgPointBox).transition()
+        .style("opacity", 0);
+    d3.select(senator.svgDotgram).transition()
+        .style('stroke-width', 0);
+}
+
+function highlightState(state){
+    d3.select(state).moveToFront()
+        .style("stroke", "black")
+        .style("stroke-width", 2)
+        .style("opacity", 1.0);
+}
+
+function unhighlightState(state){
+    d3.select(state)
+        .style("stroke", "#333")
+        .style("stroke-width", 1)
+        .style("opacity", 0.7);
+
 }
