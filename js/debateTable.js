@@ -19,10 +19,8 @@ debateTable.prototype.update = function(argv){
 	this.debateNumCap = argv.debateNumCap || 10;
 	this.drawnRows = 0;
 	if(this.debateNumCap > this.mainSenator.debateIDs.length)
-		this.debateNumCap = senator.debateIDs.length;
+		this.debateNumCap = this.mainSenator.debateIDs.length;
 }
-
-
 
 //------------------------------------------------------------------------------------------------------------
 //Increases the amount of table rows drawn by 10
@@ -58,8 +56,13 @@ debateTable.prototype.debateToHtml = function(i){
 	row.id = 'debateRow' + i;
 	row.innerHTML = //"<td class='col-md-1 td'>" + i + '</td>' +
 					"<td class='col-md-3 td smallpad titleFont'>" + currDebate.title + '</td>' +
-					"<td class='col-md-1 td nopad dateFont'>" + currDebate.date + '</td>' +
+					"<td class='col-md-1 td nopad dateFont '>" + currDebate.date + '</td>' +
 					"<td class='col-md-1 td nopad dateFont'>" + currDebate.debateScore.toFixed(3) + '</td>' +
+					"<td class='col-md-1 td nopad dateFontSize'>" + 
+                    "<span style='color: #88F'>" + currDebate.dCount + "</span><br/>" + 
+                    "<span style='color: #F88'>" + currDebate.rCount + "</span><br/>" +
+                    "<span style='color: #C6C'>" + currDebate.iCount + "</span><br/>" +
+                    "<span class='titleFont'>" + (currDebate.speakerIDs.length) + '</span></td>' +
 					"<td class='col-md-7 td smallpad' id='debateCanvas" + i + "'></td>";
 	return row;
 }
@@ -80,11 +83,14 @@ debateTable.prototype.createDebateTable= function(){
 			"<div class='col-md-8 nopad headerPad'>Debate Title</div>" +
 			"<div class='col-md-4 nopad' id='tableTitleSort'></div></th>" +
 		"<th class='col-md-1 nopad' id='tableDateHead'>" +
-			"<div class='col-md-9 headerPad nopad'>Date</div>" +
-			"<div class='col-md-3 nopad' id='tableDateSort'></div></th>" +
+			"<div class='col-md-8 headerPad nopad'>Date</div>" +
+			"<div class='col-md-4 nopad' id='tableDateSort'></div></th>" +
 		"<th class='col-md-1 nopad' id='tableDScoreHead'>" +
-			"<div class='col-md-9 nopad' style='font-size: 15px'>Polar-<br/>ization</div>" +
-			"<div class='col-md-3 nopad' id='tableDScoreSort'></div></th>" +
+			"<div class='col-md-8 nopad' style='font-size: 15px'>Polar-<br/>ization</div>" +
+			"<div class='col-md-4 nopad' id='tableDScoreSort'></div></th>" +
+		"<th class='col-md-1 nopad' id='tableSpeakerHead'>" +
+			"<div class='col-md-11 nopad headerPad'>Speakers</div>" +
+			"<div class='col-md-1 nopad' id='tableSpeakerSort'></div></th>" +
 		"<th class='col-md-6 nopad' id='tableScoresHead'>" + 
 		"<div class='col-md-8 nopad headerPad' style='text-align: center'>Idealized Scores</div>" +
 		"<div class='col-md-4 nopad' id='tableSpeechSort'></div>" +
@@ -165,9 +171,7 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 		.attr('x2', function(d){return d.x})
 		.attr('y1', function(d){return d.y1})
 		.attr('y2', function(d){return d.y2});
-	var labelData = [{text: '-3.00', x: 1, y: lineY + 18, xAlign: 'start', yAlign: 'auto'},
-	{text: '3.00', x: debateSvgWidth, y: lineY + 18, xAlign: 'end', yAlign: 'auto'},
-	{text: 'Speech Score', x: debateSvgWidth / 2, y: debateSvgHeight - 4, xAlign: 'middle', yAlign: 'auto'}];
+	var labelData = [{text: 'Speech Score', x: debateSvgWidth / 2, y: debateSvgHeight - 4, xAlign: 'middle', yAlign: 'auto'}];
 
 
 	d3.select('#debateSvg' + i).selectAll('labels').data(labelData).enter().append('text')
@@ -327,6 +331,9 @@ debateTable.prototype.createSortButtons = function(){
     var dScoreSortCanvas = d3.select('#tableDScoreSort').append('svg')
 		.attr('width', canvWidth)
 		.attr('height', canvHeight);
+    var speakerSortCanvas = d3.select('#tableSpeakerSort').append('svg')
+		.attr('width', canvWidth)
+		.attr('height', canvHeight);
     var speechSortCanvas = d3.select('#tableSpeechSort').append('svg')
 		.attr('width', canvWidth)
 		.attr('height', canvHeight);
@@ -351,11 +358,17 @@ debateTable.prototype.createSortButtons = function(){
 	this.dScoreAscButton.on('click', this.sortButtonClosure('debateScore', 'ascending'));
 	this.dScoreDescButton.on('click', this.sortButtonClosure('debateScore', 'descending'));
 
+    sortObj = createSortButton(speakerSortCanvas, this.speakerAscButton, this.speakerDescButton);
+	this.speakerAscButton = sortObj.ascending;
+	this.speakerDescButton = sortObj.descending;
+	this.speakerAscButton.on('click', this.sortButtonClosure('speakerIndexCounter', 'ascending'));
+	this.speakerDescButton.on('click', this.sortButtonClosure('speakerIndexCounter', 'descending'));
+
 	sortObj = createSortButton(speechSortCanvas, this.speechAscButton, this.speechDescButton);
-	this.dScoreAscButton = sortObj.ascending;
-	this.dScoreDescButton = sortObj.descending;
-	this.dScoreAscButton.on('click', this.sortButtonClosure('speech', 'ascending'));
-	this.dScoreDescButton.on('click', this.sortButtonClosure('speech', 'descending'));
+	this.speechAscButton = sortObj.ascending;
+	this.speechDescButton = sortObj.descending;
+	this.speechAscButton.on('click', this.sortButtonClosure('speech', 'ascending'));
+	this.speechDescButton.on('click', this.sortButtonClosure('speech', 'descending'));
     //createSortButton(dateSortCanvas, this.dateAscButton, this.dateDescButton);
 }
 
