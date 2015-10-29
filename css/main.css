@@ -21,7 +21,9 @@ html {
 	border-top: solid 1px #ddd;
 	vertical-align:middle;
 }
-
+.mainText{
+	font-size: 20px;
+}
 h3{
 }
 .tableHeader{
@@ -94,7 +96,12 @@ h3{
 .c_indBox{
 	background:#DBD;
 }
-
+.h_repText{
+	color: #F88;
+}
+.h_demText{
+	color: #88F;
+}
 .demText{
 	font-size: 20px;
 	fill: #88F;
