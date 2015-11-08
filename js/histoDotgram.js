@@ -112,6 +112,7 @@ histoDotgram.prototype.drawDotgram = function(){
 			return d.strokeW;})
 		.style('stroke', function(d){return d.strokeC;})
 		.style('fill', function(d){return d.fill;})
+		.style('cursor', 'pointer')
 		.style('opacity', 1.0)
 		.attr('cx', function(d){return d.x;})
 		.attr('cy', function(d){return d.y;})

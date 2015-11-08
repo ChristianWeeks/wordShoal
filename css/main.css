@@ -118,6 +118,7 @@ h3{
 .scatterPoint{
 	stroke-width: 0px;
 	opacity: 1.0;
+	cursor: pointer;
 }
 .barBar{
 	stroke-width: 0px;

@@ -36,6 +36,7 @@ var usaMap = function(data){
 		.style('fill', function(d){return d.properties.color})
 		.style('stroke', 'black')
         .style('opacity', 0.7)
+		.style('cursor', 'pointer')
 		.attr('id', function(d){return d.properties.postal + "_state";})
 		.attr("d", path)
 		.attr("transform", "translate(-80,0)")

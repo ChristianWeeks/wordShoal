@@ -115,6 +115,7 @@ scatterDist.prototype.drawBoxes = function(){
 		.style('stroke', '#CCC')
 		.style('stroke-width', 1)
 		.style('opacity', 0)
+		.style('cursor', 'pointer')
 		.attr({
 			x: xStart,
 			y: function(d){
@@ -132,6 +133,7 @@ scatterDist.prototype.drawConfidenceLines = function(){
         .append('line')
 		.style('stroke', function(d){return d.stroke;}) 
 		.style('stroke-width', function(d){return d.strokeWidth;})
+		.style('cursor', 'pointer')
 		.attr({
 			x1: function(d) {
 			   	d.data.svgConfidenceLine = this;

@@ -266,6 +266,7 @@ debateTable.prototype.populateDebateLine = function(debate, debateCanvas, i){
 			return d.strokeW;})
 		.style('stroke', function(d){return d.strokeC;})
 		.style('fill', function(d){return d.fill;})
+		.style('cursor', 'pointer')
 		.attr('cx', function(d){return d.x;})
 		.attr('cy', function(d){return d.y;})
 		.attr('r', function(d){return d.r;})
@@ -301,6 +302,7 @@ debateTable.prototype.createSortButtons = function(){
             .style('stroke-width', 2)
             .style('stroke-radius', 2)
             .style('fill', 'white')
+			.style('cursor', 'pointer')
             .attr('d', lineFunction(ascPathData)) 
             .on('mouseover', buttonMouseOver)
             .on('mouseout', buttonMouseOut);
@@ -309,6 +311,7 @@ debateTable.prototype.createSortButtons = function(){
             .style('stroke-width', 2)
             .style('stroke-radius', 2)
             .style('fill', 'white')
+			.style('cursor', 'pointer')
             .attr('d', lineFunction(descPathData))
             .on('mouseover', buttonMouseOver)
             .on('mouseout', buttonMouseOut);
