@@ -287,6 +287,7 @@ function controller() {
             _SCATTER_PLOT.coupleMouseEvents('points', setViewLevel);
             _SCATTER_PLOT.coupleMouseEvents('confidenceLines', setViewLevel);
             _SCATTER_PLOT.coupleMouseEvents('pointBox', setViewLevel);
+			drawHelpBubble(_SCATTER_PLOT.canvasPtr, 'speech', '?',50, 30, speechHelpMouseClick);
             _BAR_GRAPH.coupleMouseEvents('dots', setViewLevel);
             if(!_DEBATE_TABLE){
 
@@ -340,7 +341,7 @@ function controller() {
             console.error('Improper view level set: ' + viewLevelStr);
         }
     }
-
+	global.speechHelpClicked = 0;
     global.activeStateFilter = 'None';
     createStateList('stateDropDown');
     //--------------------------------------------------------------------------------------------------------------------

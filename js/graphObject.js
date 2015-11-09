@@ -46,11 +46,9 @@ var graphObject = function(argv) {
 };
 
 graphObject.prototype.initCanvas = function(divID, canvasID) {
-
     if (this.canvasPtr == null) {
         this.canvasPtr = d3.select('#' + divID).append('svg');
     }
-    this.canvasID = canvasID;
     this.canvasPtr.style('height', this.canvasHeight)
         .style('width', '100%')
         .style('height', '100%')
@@ -233,7 +231,6 @@ graphObject.prototype.drawBackgroundGradient = function(){
 }
 
 graphObject.prototype.drawTextLabel = function(axisLabelData){
-    console.log("hi");
     this.svgElements['axesLegends'] = this.canvasPtr.selectAll('axesLegend')
         .data(axisLabelData)
         .enter()
@@ -258,7 +255,10 @@ graphObject.prototype.drawVerticalGridLines = function(){
             y1: 0,
             x2: function(d, i) { return d.x},
             y2: this.y,
-            stroke: '#888'
+            stroke: function(d,i){
+				if(i != 0 && i != 4)
+					return'#BBB'
+				return "#FFF";}
         });
 }
 graphObject.prototype.drawYAxis = function() {
@@ -339,139 +339,4 @@ graphObject.prototype.updateFilter = function(filterStr) {
     }
 };
 
-//Closure needed to have multiple svg-elements activate (highlight) when any one of them is highlighted
-//Ex. Mousing over the label, line plot, or color legend for any single computer / user will cause the label to increase its font
-//and the line to turn black and increase its stroke width.
-function elementMouseOverClosure() {
-    var elementMouseOver = function(d, i) {
-        if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
-            var senator = d.data;
-            highlightSenator(senator);
 
-            if(senator.datum.state != global.activeStateFilter){
-                highlightState("#" + senator.datum.state + "_state");
-            }
-            //fill in the information bar at the side
-            var sideBarTop = d3.select('#sideBar1')
-                .attr('class','simpleBorder infoBox')
-                .attr("align", "center");
-            document.getElementById('sideBar1').innerHTML = '<h3>' + d.data.name + '</h3><h3>' +
-                d.data.datum.state + '</h3><h3>' +
-                d.data.id + '</h3><br/>Total Debates:' +
-                d.data.debateIDs.length;
-            //document.getElementById('category').innerHTML = '<h3>Vote:<br/>Speech:</h3>';
-            //document.getElementById('value').innerHTML = '<h3>' + d.xVal.toFixed(2) + '<br/>' + d.yVal.toFixed(2) + '</h3>';
-            //document.getElementById('percent').innerHTML = '<h3>' + Math.floor(100 * d.data.votePercent) + '<br/>' + Math.floor(100 * d.data.speechPercent) + '</h3>';
-
-            //Highlight all tickmarks on currently active debates
-            for(var j = 0; j < senator.activeDebateTicks.length; j++){
-                d3.select(senator.activeDebateTicks[j]).transition()
-                    .style('stroke-width', 2)
-                    .attr('r', function(d){
-                        d3.select('#debateSvg' + d.debateSvgNdx).transition()
-                            .style('border-color', d.strokeC);
-                        return 3;});
-            }
-        }
-    };
-    return elementMouseOver;
-}
-
-//Closure handling mouse out that reverts effects of the mouse-over closure
-function elementMouseOutClosure() {
-    var elementMouseOut = function(d, i) {
-        if (d.data.datum.state == global.activeStateFilter || global.activeStateFilter == 'None') {
-            var senator = d.data;
-            //Do not change a node if it is currently selected
-            if(senator != global.currentSenator){
-                unhighlightSenator(senator);
-                if(senator.datum.state != global.activeStateFilter && senator.datum.state != global.currentState){
-                    unhighlightState("#" + senator.datum.state + "_state");
-                }
-            }
-
-            //unhighlight all tickmarks on currently active debates
-            for(var j = 0; j < senator.activeDebateTicks.length; j++){
-                d3.select(senator.activeDebateTicks[j]).transition()
-                    .style('stroke-width', function(d){return d.strokeW})
-                    .attr('r', function(d){
-                        d3.select('#debateSvg' + d.debateSvgNdx).transition()
-                            .style('border-color', 'white');
-                        return 3;})
-            }
-        }
-    };
-    return elementMouseOut;
-}
-
-//clicks will change the granularity to the senator level, add a small box to the side bar with senator information, and scrunch the top
-function elementMouseClickClosure(setViewLevel) {
-
-    var elementMouseClick = function(d, i) {
-        //wipe the old senator's stored debate tick SVG pointers
-        if(global.currentSenator){
-            global.currentSenator.activeDebateTicks.length = 0;
-            unhighlightSenator(global.currentSenator);
-            unhighlightState(global.currentState);
-        }
-        global.currentState = d.data.datum.state;
-        global.currentSenator = d.data;
-        setViewLevel('senator');
-        highlightSenator(global.currentSenator);
-        //populate the permanent window
-        d3.select('#selectedSenatorInfo')
-            .attr('class','simpleBorder')
-            .style('background', d.data.fillC)
-            .attr("align", "center");
-        document.getElementById('selectedSenatorInfo').innerHTML = '<h3>' + d.data.name + '</h3><h3>' +
-            d.data.datum.state + '</h3><h3>' +
-            d.data.id + '</h3><br/>Total Debates:' +
-            d.data.debateIDs.length;
-        //scroll down to the debates
-        $('html, body').animate({
-            scrollTop: $("#debatesCanvas").offset().top + "px"
-                }, 400);
-    };
-    return elementMouseClick;
-}
-
-//highlights all svgs associated with the senator
-function highlightSenator(senator){
-    d3.select(senator.svgPoint).moveToFront().transition()
-        .attr('r', 5)
-        .attr('class', function(d) {return d.cssClass + ' mOver'});
-    d3.select(senator.svgConfidenceLine).transition()
-        .style('stroke-width', 4);
-    d3.select(senator.svgDotgram).moveToFront().transition()
-        .style('stroke-width', 3);
-    d3.select(senator.svgPointBox)
-        .style("opacity", 1);
-}
-
-//unhighlights all svgs associated with the senator
-function unhighlightSenator(senator){
-    d3.select(senator.svgPoint).transition()
-        .attr('r', function(d){return d.r;})
-        .attr('class', function(d) {return d.cssClass});
-    d3.select(senator.svgConfidenceLine).transition()
-        .style('stroke-width', function(d){return d.strokeWidth;});
-    d3.select(senator.svgPointBox).transition()
-        .style("opacity", 0);
-    d3.select(senator.svgDotgram).transition()
-        .style('stroke-width', 0);
-}
-
-function highlightState(state){
-    d3.select(state).moveToFront()
-        .style("stroke", "black")
-        .style("stroke-width", 2)
-        .style("opacity", 1.0);
-}
-
-function unhighlightState(state){
-    d3.select(state)
-        .style("stroke", "#333")
-        .style("stroke-width", 1)
-        .style("opacity", 0.7);
-
-}

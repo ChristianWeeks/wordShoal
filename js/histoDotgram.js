@@ -14,7 +14,6 @@ extend(histoDotgram, graphObject);
 //changes the value that is currently displayed (total tasks, seconds / task, delay / task, etc.) by modifying
 //the data object that will ALWAYS be graphed
 histoDotgram.prototype.setYAttr = function() {
-	console.log(this);
 	this.destroyAll();
 
 	this.firstTimeData = null;

@@ -59,10 +59,10 @@ debateTable.prototype.debateToHtml = function(i){
 					"<td class='col-md-1 td nopad dateFont '>" + currDebate.date + '</td>' +
 					"<td class='col-md-1 td nopad dateFont'>" + currDebate.debateScore.toFixed(3) + '</td>' +
 					"<td class='col-md-1 td nopad dateFontSize'>" + 
-                    "<span style='color: #88F'>" + currDebate.dCount + "</span><br/>" + 
-                    "<span style='color: #F88'>" + currDebate.rCount + "</span><br/>" +
-                    "<span style='color: #C6C'>" + currDebate.iCount + "</span><br/>" +
-                    "<span class='titleFont'>" + (currDebate.speakerIDs.length) + '</span></td>' +
+                    "<span style='color: #88F'>D: " + currDebate.dCount + "</span><br/>" + 
+                    "<span style='color: #F88'>R: " + currDebate.rCount + "</span><br/>" +
+                    "<span style='color: #C6C'>I: " + currDebate.iCount + "</span><br/>" +
+                    "T: <span class='titleFont'>" + (currDebate.speakerIDs.length) + '</span></td>' +
 					"<td class='col-md-7 td smallpad' id='debateCanvas" + i + "'></td>";
 	return row;
 }
@@ -86,10 +86,10 @@ debateTable.prototype.createDebateTable= function(){
 			"<div class='col-md-8 headerPad nopad'>Date</div>" +
 			"<div class='col-md-4 nopad' id='tableDateSort'></div></th>" +
 		"<th class='col-md-1 nopad' id='tableDScoreHead'>" +
-			"<div class='col-md-8 nopad' style='font-size: 15px'>Polar-<br/>ization</div>" +
+			"<div class='col-md-8 nopad' >Polar-<br/>ization</div>" +
 			"<div class='col-md-4 nopad' id='tableDScoreSort'></div></th>" +
 		"<th class='col-md-1 nopad' id='tableSpeakerHead'>" +
-			"<div class='col-md-11 nopad headerPad'>Speakers</div>" +
+			"<div class='col-md-11 nopad headerPad'>Speaker<br/>Count</div>" +
 			"<div class='col-md-1 nopad' id='tableSpeakerSort'></div></th>" +
 		"<th class='col-md-6 nopad' id='tableScoresHead'>" + 
 		"<div class='col-md-8 nopad headerPad' style='text-align: center'>Idealized Scores</div>" +

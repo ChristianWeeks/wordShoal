@@ -47,8 +47,8 @@ scatterDist.prototype.setYAttr = function() {
             'upperBound': this.data[i].datum.upperBound,
             'upperBoundX': this.mapXValToGraph(this.data[i].datum.upperBound),
 			'cssClass': this.baseCSSClass + ' ' + this.data[i].cssClass,
-			'strokeWidth': 1,
-			'r': 2,
+			'strokeWidth': this.strokeWidth || 1,
+			'r': this.radius || 2,
 			'fill': this.data[i].fillC,
 			'stroke': this.data[i].strokeC,
 			'svgLabel': null
@@ -97,7 +97,8 @@ scatterDist.prototype.drawPoints = function() {
 		.attr('id', function(d) { return d.id;})
 		.attr({
 			cx: function(d) {
-			   	d.data.svgPoint = this;
+				if(!d.data.svgPoint)
+					d.data.svgPoint = this;
 				return d.x;},
 			cy: function(d) {return d.y;},
 			r:  function(d) {return d.r;}//function(d) {return d.r;},
@@ -119,7 +120,8 @@ scatterDist.prototype.drawBoxes = function(){
 		.attr({
 			x: xStart,
 			y: function(d){
-				d.data.svgPointBox = this;
+				if(!d.data.svgPointBox)
+					d.data.svgPointBox = this;
 				return d.y - boxHeight / 2;},
 			width: this.width,
 			height: boxHeight});
@@ -136,7 +138,8 @@ scatterDist.prototype.drawConfidenceLines = function(){
 		.style('cursor', 'pointer')
 		.attr({
 			x1: function(d) {
-			   	d.data.svgConfidenceLine = this;
+				if(!d.data.svgConfidenceLine)
+					d.data.svgConfidenceLine = this;
 				return d.lowerBoundX;},
             x2: function(d) {return d.upperBoundX;},
 			y1: function(d) {return d.y;},

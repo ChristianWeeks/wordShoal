@@ -24,6 +24,9 @@ html {
 .mainText{
 	font-size: 20px;
 }
+.helpText{
+	font-size: 16px;
+}
 h3{
 }
 .tableHeader{
@@ -84,7 +87,7 @@ h3{
 }
 
 .infoBox{
-	height: 270px !important;
+	height: 285px !important;
 
 }
 .c_repBox{
@@ -110,6 +113,12 @@ h3{
 .repText{
 	font-size: 20px;
 	fill: #F88;
+	opacity: 1;
+}
+.helpQuestionMark{
+	font-size: 45px;
+	font-weight: bold;
+	fill: #FFFFFF;
 	opacity: 1;
 }
 /* Graph SVG classes*/
@@ -198,33 +207,27 @@ h3{
 /*	stroke-width: 4;*/
 }
 
-.startMonth{
-
-}
-
-.endMonth{
-
-}
-
-.butText{
-
-}
-
-.graphTitle{
-
-}
-
-.loadingText{
-
-}
-
-.axisLabels{
-
-}
-
-
 .sort{
 	background: #FDD;
 	outline: 0;
 	border: 0;
+}
+.help_wrapper{
+    -webkit-transition: all 0.6s ease-in-out, height 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out, height 0.6s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    float: left;
+    height: 0;
+}
+
+
+.help{
+    background: #f4eeee;
+    margin-left: -10px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    float: left;
 }
