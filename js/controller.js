@@ -342,6 +342,7 @@ function controller() {
         }
     }
 	global.speechHelpClicked = 0;
+	global.debateHelpClicked = 0;
     global.activeStateFilter = 'None';
     createStateList('stateDropDown');
     //--------------------------------------------------------------------------------------------------------------------

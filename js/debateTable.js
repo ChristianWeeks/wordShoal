@@ -89,10 +89,11 @@ debateTable.prototype.createDebateTable= function(){
 			"<div class='col-md-8 nopad' >Polar-<br/>ization</div>" +
 			"<div class='col-md-4 nopad' id='tableDScoreSort'></div></th>" +
 		"<th class='col-md-1 nopad' id='tableSpeakerHead'>" +
-			"<div class='col-md-11 nopad headerPad'>Speaker<br/>Count</div>" +
-			"<div class='col-md-1 nopad' id='tableSpeakerSort'></div></th>" +
+			"<div class='col-md-9 nopad headerPad'>Speaker<br/>Count</div>" +
+			"<div class='col-md-3 nopad' id='tableSpeakerSort'></div></th>" +
 		"<th class='col-md-6 nopad' id='tableScoresHead'>" + 
-		"<div class='col-md-8 nopad headerPad' style='text-align: center'>Idealized Scores</div>" +
+		"<div class='col-md-4 nopad' align='center'><svg id='debateHelpSvg' width='50' height='50'></svg></div>" +
+		"<div class='col-md-4 nopad headerPad' style='text-align: center'>Idealized Scores</div>" +
 		"<div class='col-md-4 nopad' id='tableSpeechSort'></div>" +
 		"</th></thead>" +
 		"<tbody id='tableBody'>";
@@ -106,6 +107,7 @@ debateTable.prototype.createDebateTable= function(){
 	this.fillTable();
 	//create the sorting buttons
 	this.createSortButtons();
+	drawHelpBubble(d3.select("#debateHelpSvg"), 'debateHelp', '?', 25, 25, debateHelpMouseClick);
 }
 
 debateTable.prototype.fillTable = function(){
