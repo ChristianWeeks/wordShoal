@@ -93,7 +93,7 @@ function elementMouseClickClosure(setViewLevel) {
 			d.data.debateIDs.length;
 		//scroll down to the debates
 		$('html, body').animate({
-			scrollTop: $("#debatesCanvas").offset().top + "px"
+			scrollTop: $("#selectedSenatorInfo").offset().top + "px"
 				}, 400);
 	};
 	return elementMouseClick;
@@ -156,10 +156,10 @@ function speechHelpMouseClick(){
 	"senator.");
 	textColumn.append('p').attr('class', 'helpText').text(
 	"For instance, let's look at Senator Sheila Frahm of Kansas.  Senator Frahm was " +
-	"only in office for 4 months. In her short tenure, she only participated in 3" +
+	"only in office for 4 months. In her short tenure, she only participated in 3 " +
 	"debates, so there isn't enough data to calculate a very confident score.");
 	textColumn.append('p').attr('class', 'helpText').text(
-	"Senator Harry Reid, on the other hand, has been in office for over 20" +
+	"Senator Harry Reid, on the other hand, has been in office for over 20 " +
     "years and has participated in 1983 debates, so our speech estimate for him "+
    	"is much more confident.");
 
@@ -249,15 +249,15 @@ function debateHelpMouseClick(){
 		.attr('align', 'left')
 	textColumn.append('h3').text('Debate Lines');
 	textColumn.append('p').attr('class', 'helpText').text(
-	"For every debate, every word spoken is analyzed and a speech score assigned"+
-	" to every senator.  The final score, given above, is then a composite of " +
+	"For every debate, every word spoken is analyzed and a speech score assigned "+
+	"to every senator.  The final score, given above, is then a composite of " +
 	"these individual scores and the polarization of the debates.  This feature "+
 	"allows us to see how senators spoke on specific issues, and how consistent "+
 	"that speech is with how they regularly speak.");
 	textColumn.append('h3').text('Polarization');
 	textColumn.append('p').attr('class', 'helpText').text(
-	"Polarization is a measure of how partisan the speech in a particular debate"+
-	" is.  If senators of the same party consistently use similar speech patterns"+
+	"Polarization is a measure of how partisan the speech in a particular debate "+
+	"is.  If senators of the same party consistently use similar speech patterns "+
 	", we can conclude the topic is polarized.  Sometimes, though, there is "+
 	"little correlation between party and speech.  The results from these debates "+
 	"are weighted less when calculating a senator's final speech score.");
